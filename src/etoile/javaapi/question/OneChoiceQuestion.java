@@ -23,6 +23,7 @@ public class OneChoiceQuestion extends Question{
     public String correctAnswer;
     
     public QuestionType questionType = QuestionType.ONE_CHOICE;
+    private URL url;
 
     public OneChoiceQuestion(String text, int id, LinkedList<String> possibleAnswers, String correctAnswer) {
         this.text = text;
@@ -89,6 +90,17 @@ public class OneChoiceQuestion extends Question{
     @Override
     public LinkedList<String> getCorrectAnswers() {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+     @Override
+    public URL getURL() {
+        return url;
+    }
+
+    @Override
+    public boolean setURL(URL url) {
+        this.url=url;
+        return true;
     }
     
 }

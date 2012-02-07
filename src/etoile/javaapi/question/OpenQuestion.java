@@ -15,6 +15,7 @@ public class OpenQuestion extends Question{
     public int id;
     public String userAnswer;
     public QuestionType questionType = QuestionType.OPEN;
+    private URL url;
 
     public OpenQuestion(String text, int id) {
         this.text = text;
@@ -96,6 +97,17 @@ public class OpenQuestion extends Question{
     @Override
     public LinkedList<String> getCorrectAnswers() {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public URL getURL() {
+        return url;
+    }
+
+    @Override
+    public boolean setURL(URL url) {
+        this.url=url;
+        return true;
     }
     
 }
