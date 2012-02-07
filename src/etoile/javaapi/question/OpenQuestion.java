@@ -15,7 +15,7 @@ public class OpenQuestion extends Question{
     public int id;
     public String userAnswer;
     public QuestionType questionType = QuestionType.OPEN;
-    private URL url;
+    private LinkedList<URL> urls=new LinkedList<URL>();
 
     public OpenQuestion(String text, int id) {
         this.text = text;
@@ -100,14 +100,20 @@ public class OpenQuestion extends Question{
     }
 
     @Override
-    public URL getURL() {
-        return url;
+    public LinkedList<URL> getURLS() {
+        return urls;
     }
 
     @Override
-    public boolean setURL(URL url) {
-        this.url=url;
+    public boolean setURLS(LinkedList<URL> urls) {
+        this.urls=urls;
         return true;
     }
+
+    @Override
+    public void addURL(URL url) {
+        urls.add(url);
+    }
+    
     
 }

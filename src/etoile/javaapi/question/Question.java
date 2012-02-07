@@ -13,9 +13,11 @@ import java.util.LinkedList;
  */
 public abstract class Question {
     
-    public abstract URL getURL();
+    public abstract void addURL(URL url);
     
-    public abstract boolean setURL(URL url);
+    public abstract LinkedList<URL> getURLS();
+    
+    public abstract boolean setURLS(LinkedList<URL> urls);
     
     public abstract void setCorrectAnswer(String correctAnswer);
    

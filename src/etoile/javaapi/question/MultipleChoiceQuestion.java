@@ -23,7 +23,7 @@ public class MultipleChoiceQuestion extends Question{
     public LinkedList<String> correctAnswers= new LinkedList<String>();
     
     public QuestionType questionType= QuestionType.MULTIPLE_CHOICE;
-    private URL url;
+    private LinkedList<URL> urls=new LinkedList<URL>();
 
     public MultipleChoiceQuestion(String name, int id, LinkedList<String> possibleAnswers, LinkedList<String> correctAnswers) {
         this.text = name;
@@ -102,14 +102,19 @@ public class MultipleChoiceQuestion extends Question{
     }
     
      @Override
-    public URL getURL() {
-        return url;
+    public LinkedList<URL> getURLS() {
+        return urls;
     }
 
     @Override
-    public boolean setURL(URL url) {
-        this.url=url;
+    public boolean setURLS(LinkedList<URL> urls) {
+        this.urls=urls;
         return true;
+    }
+    @Override
+    public void addURL(URL url) {
+        urls.add(url);
     }
     
 }
+    
