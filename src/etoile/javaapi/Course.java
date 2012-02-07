@@ -4,8 +4,7 @@
  */
 package etoile.javaapi;
 
-import java.util.List;
-
+import java.util.LinkedList;
 /**
  *
  * @author Rui
@@ -14,14 +13,14 @@ public  class Course {
     
     public String name;
     public int id;
-    public List<Discipline> disciplines;
+    public LinkedList<Discipline> disciplines=new LinkedList<Discipline>();
 
     public Course(String name, int id) {
         this.name = name;
         this.id = id;
     }
     
-    public void setDisciplines(List<Discipline> disciplines) {
+    public void setDisciplines(LinkedList<Discipline> disciplines) {
         this.disciplines = disciplines;
     }
 
@@ -33,7 +32,7 @@ public  class Course {
         this.name = name;
     }
      
-    public List<Discipline> getDisciplines() {
+    public LinkedList<Discipline> getDisciplines() {
         return disciplines;
     }
 
@@ -45,7 +44,10 @@ public  class Course {
         return name;
     }
 
-    
+    public boolean addDiscipline(Discipline d){
+        disciplines.add(d);
+        return true;
+    }
     
  
     

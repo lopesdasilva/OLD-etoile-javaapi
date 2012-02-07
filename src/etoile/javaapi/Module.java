@@ -4,7 +4,8 @@
  */
 package etoile.javaapi;
 
-import java.util.List;
+import java.util.LinkedList;
+
 
 /**
  *
@@ -16,7 +17,7 @@ public class Module {
     
     public int id;
     
-    public List<Test> tests;
+    public LinkedList<Test> tests= new LinkedList<Test>();
     
     public Module(String name, int id) {
         this.name = name;
@@ -31,7 +32,7 @@ public class Module {
         return name;
     }
 
-    public List<Test> getTests() {
+    public LinkedList<Test> getTests() {
         return tests;
     }
 
@@ -43,8 +44,12 @@ public class Module {
         this.name = name;
     }
 
-    public void setTests(List<Test> tests) {
+    public void setTests(LinkedList<Test> tests) {
         this.tests = tests;
+    }
+
+    void addTest(Test t) {
+        tests.add(t);
     }
     
     

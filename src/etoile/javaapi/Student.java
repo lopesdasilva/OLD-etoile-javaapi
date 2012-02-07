@@ -19,7 +19,7 @@ public class Student {
     public String lastname;
     public String email;
     
-    public LinkedList<Course> courses;
+    public LinkedList<Course> courses= new LinkedList<Course>();
 
     public Student(String username, String password, String email) {
         this.username = username;
@@ -81,6 +81,10 @@ public class Student {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    void addCourse(Course c) {
+        courses.add(c);
     }
     
     

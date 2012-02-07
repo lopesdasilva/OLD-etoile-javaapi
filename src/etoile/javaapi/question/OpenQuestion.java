@@ -13,6 +13,11 @@ public class OpenQuestion extends Question{
     public int id;
     public Answer userAnwser;
 
+    public OpenQuestion(String text, int id) {
+        this.text = text;
+        this.id = id;
+    }
+
     @Override
     public String getText() {
        return text;

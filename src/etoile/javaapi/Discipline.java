@@ -4,7 +4,8 @@
  */
 package etoile.javaapi;
 
-import java.util.List;
+import java.util.LinkedList;
+
 
 /**
  *
@@ -14,7 +15,7 @@ public class Discipline {
     public String name;
     public int id;
     
-    public List<Module> modules;
+    public LinkedList<Module> modules= new LinkedList<Module>();
 
     public Discipline(String name, int id) {
         this.name = name;
@@ -26,7 +27,7 @@ public class Discipline {
         return id;
     }
 
-    public List<Module> getModules() {
+    public LinkedList<Module> getModules() {
         return modules;
     }
 
@@ -38,12 +39,20 @@ public class Discipline {
         this.id = id;
     }
 
-    public void setModules(List<Module> modules) {
+    public void setModules(LinkedList<Module> modules) {
         this.modules = modules;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    void setModules(Module module) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    void addModule(Module m) {
+        modules.add(m);
     }
     
 }

@@ -6,8 +6,7 @@ package etoile.javaapi;
 
 import etoile.javaapi.question.Question;
 import java.sql.Date;
-import java.util.List;
-
+import java.util.LinkedList;
 /**
  *
  * @author Rui
@@ -21,11 +20,13 @@ public class Test {
     //TODO: Replace String with Teacher Class
     public String author;
     
+    public String description;
+    
     public Date beginDate;
     
     public Date endDate;
     
-    public List<Question> questions;
+    public LinkedList<Question> questions= new LinkedList<Question>();
 
     public Test(String name, int id, String author) {
         this.name = name;
@@ -33,16 +34,21 @@ public class Test {
         this.author = author;
     }
 
-    public Test(String name, int id, String author, Date beginDate, Date endDate) {
+    public Test(String name, int id, String author,String description, Date beginDate, Date endDate) {
         this.name = name;
         this.id = id;
         this.author = author;
+        this.description = description;
         this.beginDate = beginDate;
         this.endDate = endDate;
     }
     
     public String getAuthor() {
         return author;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public Date getBeginDate() {
@@ -61,12 +67,16 @@ public class Test {
         return name;
     }
 
-    public List<Question> getQuestions() {
+    public LinkedList<Question> getQuestions() {
         return questions;
     }
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setBeginDate(Date beginDate) {
@@ -85,8 +95,12 @@ public class Test {
         this.name = name;
     }
 
-    public void setQuestions(List<Question> questions) {
+    public void setQuestions(LinkedList<Question> questions) {
         this.questions = questions;
+    }
+
+    void addQuestion(Question q) {
+       questions.add(q);
     }
     
     
