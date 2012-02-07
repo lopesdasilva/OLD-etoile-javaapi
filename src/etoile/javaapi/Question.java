@@ -4,10 +4,19 @@
  */
 package etoile.javaapi;
 
+import java.util.List;
+
 /**
  *
  * @author Rui
  */
-public class Question {
+public abstract class Question {
     
+    public abstract String getName();
+    
+    public abstract String getId();
+    
+    public abstract List<Question> getQuestions();
+    
+    public abstract boolean setAnswer(Anwser userAnwser);
 }
