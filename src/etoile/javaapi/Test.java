@@ -4,6 +4,7 @@
  */
 package etoile.javaapi;
 
+import etoile.javaapi.question.Question;
 import java.sql.Date;
 import java.util.List;
 

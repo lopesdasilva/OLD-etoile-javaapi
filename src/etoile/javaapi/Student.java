@@ -4,10 +4,84 @@
  */
 package etoile.javaapi;
 
+import java.util.LinkedList;
 /**
  *
  * @author Rui
  */
 public class Student {
+    
+    public String username;
+    public String password; //SHA1
+    
+    //profile
+    public String firstname;
+    public String lastname;
+    public String email;
+    
+    public LinkedList<Course> courses;
+
+    public Student(String username, String password, String email) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+    }
+
+    public Student(String username, String password, String firstname, String lastname, String email) {
+        this.username = username;
+        this.password = password;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+    }
+
+    public LinkedList<Course> getCourses() {
+        return courses;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setCourses(LinkedList<Course> courses) {
+        this.courses = courses;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    
     
 }
