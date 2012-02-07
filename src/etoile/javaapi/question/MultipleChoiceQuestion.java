@@ -4,6 +4,8 @@
  */
 package etoile.javaapi.question;
 
+import java.util.LinkedList;
+
 
 /**
  *
@@ -14,7 +16,9 @@ public class MultipleChoiceQuestion extends Question{
     
     public int id;
     
-    public Answer userAnswer;
+    public LinkedList<String> userAnswer=new LinkedList<String>();
+    
+    public QuestionType questionType= QuestionType.MULTIPLE_CHOICE;
 
     public MultipleChoiceQuestion(String name, int id) {
         this.text = name;
@@ -31,10 +35,24 @@ public class MultipleChoiceQuestion extends Question{
        return id;
     }
 
+    /**
+     * Don't use this!
+     * @param userAnswer
+     * @return always false
+     */
     @Override
-    public boolean setAnswer(Answer userAnwser) {
-      this.userAnswer=userAnwser;
+    public boolean setAnswer(String userAnswer) {
+      return false;
+    }
+    
+    public boolean setAnswer(LinkedList<String> userAnswer) {
+        this.userAnswer=userAnswer;
       return true;
+    }
+
+    @Override
+    public QuestionType getQuestionType() {
+        return questionType;
     }
     
 }

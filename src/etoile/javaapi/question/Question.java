@@ -4,7 +4,6 @@
  */
 package etoile.javaapi.question;
 
-import java.util.List;
 
 /**
  *
@@ -12,9 +11,11 @@ import java.util.List;
  */
 public abstract class Question {
     
+    public abstract QuestionType getQuestionType();
+    
     public abstract String getText();
     
     public abstract int getId();
        
-    public abstract boolean setAnswer(Answer userAnwser);
+    public abstract boolean setAnswer(String userAnswer);
 }

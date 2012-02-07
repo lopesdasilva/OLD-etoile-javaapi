@@ -8,6 +8,4 @@ package etoile.javaapi.question;
  *
  * @author Rui
  */
-public class Answer {
-    
-}
+public enum  QuestionType { ONE_CHOICE,OPEN, MULTIPLE_CHOICE }

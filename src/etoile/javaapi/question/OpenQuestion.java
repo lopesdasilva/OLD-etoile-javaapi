@@ -11,7 +11,8 @@ package etoile.javaapi.question;
 public class OpenQuestion extends Question{
     public String text;
     public int id;
-    public Answer userAnwser;
+    public String userAnswer;
+    public QuestionType questionType = QuestionType.OPEN;
 
     public OpenQuestion(String text, int id) {
         this.text = text;
@@ -29,9 +30,14 @@ public class OpenQuestion extends Question{
     }
 
     @Override
-    public boolean setAnswer(Answer userAnwser) {
-        this.userAnwser=userAnwser;
+    public boolean setAnswer(String userAnswser) {
+        this.userAnswer=userAnswser;
         return true;
+    }
+
+    @Override
+    public QuestionType getQuestionType() {
+       return questionType;
     }
     
 }
