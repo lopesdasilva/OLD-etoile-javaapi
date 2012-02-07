@@ -55,5 +55,40 @@ public class OneChoiceQuestion extends Question{
     public QuestionType getQuestionType() {
       return questionType;
     }
+
+    public LinkedList<String> getPossibleAnswers() {
+        return possibleAnswers;
+    }
+
+    @Override
+    public boolean setPossibleAnswers(LinkedList<String> possibleAnswers) {
+        this.possibleAnswers=possibleAnswers;
+        return true;
+    }
+
+    @Override
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer=correctAnswer;
+    }
+
+    @Override
+    public String getCorrectAnswer() {
+       return correctAnswer;
+    }
+
+    @Override
+    public boolean setAnswer(LinkedList<String> userAnswer) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public boolean setCorrectAnswers(LinkedList<String> correctAnswers) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public LinkedList<String> getCorrectAnswers() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     
 }

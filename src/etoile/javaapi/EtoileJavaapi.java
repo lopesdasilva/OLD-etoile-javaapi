@@ -4,6 +4,7 @@
  */
 package etoile.javaapi;
 
+import etoile.javaapi.question.MultipleChoiceQuestion;
 import etoile.javaapi.question.OneChoiceQuestion;
 import etoile.javaapi.question.OpenQuestion;
 import etoile.javaapi.question.Question;
@@ -45,15 +46,26 @@ public class EtoileJavaapi {
         
         Question q= new OpenQuestion("Qual é o resultado da Soma 1+1?", 1);
         Question q2= new OpenQuestion("Qual é o resultado da Soma 2+2?", 2);
+        //hipoteses
         LinkedList<String> h= new LinkedList<String>();
         h.add("3");
         h.add("5");
-        h.add("6");
+        h.add("5");
         Question q3= new OneChoiceQuestion("Qual o resultado de 3+3?", 3, h, "6");
+        
+        //Correctas
+        LinkedList<String> co= new LinkedList<String>();
+        co.add("5");
+        co.add("5");
+        Question q4= new MultipleChoiceQuestion("Qual o Resultado de 2+3?", 4, h, co);
+        
+        
+        
         
         t.addQuestion(q);
         t.addQuestion(q2);
         t.addQuestion(q3);
+        t.addQuestion(q4);
         
         m.addTest(t);
         
@@ -76,12 +88,31 @@ public class EtoileJavaapi {
             switch (ql.getQuestionType()){
                 case MULTIPLE_CHOICE:
                     System.out.println("Escolha Multipla");
+                    System.out.println("Pergunta "+ ql.getText());
+                    System.out.println("Hipoteses: ");
+                    for (String s: ql.getPossibleAnswers()){
+                        System.out.print("  "+s);
+                    }
+                    System.out.println();
+                    System.out.println("Respostas Correctas: ");
+                    for (String s: ql.getCorrectAnswers()){
+                        System.out.print("  "+s);
+                    }
+                     System.out.println();
                     break;
                 case ONE_CHOICE:
                     System.out.println("Uma Escolha");
+                    System.out.println("Pergunta "+ ql.getText());
+                    System.out.print("Hipoteses:");
+                    for (String s: ql.getPossibleAnswers()){
+                        System.out.print("  "+s);
+                    }
+                    System.out.println();
+                    System.out.println("Resposta Correcta: "+ql.getCorrectAnswer());
                     break;
                 case OPEN:
                     System.out.println("Pergunta Aberta");
+                    System.out.println("Pergunta "+ ql.getText());
                     break;
             }
         }

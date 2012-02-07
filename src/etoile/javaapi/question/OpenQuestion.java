@@ -4,6 +4,8 @@
  */
 package etoile.javaapi.question;
 
+import java.util.LinkedList;
+
 /**
  *
  * @author Rui
@@ -38,6 +40,62 @@ public class OpenQuestion extends Question{
     @Override
     public QuestionType getQuestionType() {
        return questionType;
+    }
+
+    /**
+     * Don't use this!
+     * @return 
+     */
+    @Override
+    public LinkedList<String> getPossibleAnswers() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+/**
+     * Don't use this!
+     * @return 
+     */
+    @Override
+    public boolean setPossibleAnswers(LinkedList<String> possibleAnswers) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+    /**
+     * Don't use this!
+     * @return 
+     */
+    @Override
+    public boolean addPossibleAnswser(String possibleAnswer) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+    /**
+     * Don't use this!
+     * @return 
+     */
+    @Override
+    public void setCorrectAnswer(String correctAnswer) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+    /**
+     * Don't use this!
+     * @return 
+     */
+    @Override
+    public String getCorrectAnswer() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public boolean setAnswer(LinkedList<String> userAnswer) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public boolean setCorrectAnswers(LinkedList<String> correctAnswers) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public LinkedList<String> getCorrectAnswers() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
 }
