@@ -23,6 +23,11 @@ public class EtoileJavaapi {
     /**
      * @param args the command line arguments
      */
+    
+    //TEST
+    int student_id=1;
+    
+    
     public static void main(String[] args) {
         new EtoileJavaapi().run();
     }
@@ -31,9 +36,11 @@ public class EtoileJavaapi {
         try {
             ServiceManager manager = new ServiceManager();
              System.out.println(manager.setAuthentication("rui", "40bd001563085fc35165329ea1ff5c5ecbdbbeef"));
-           
-             
-             
+            
+             Student student = new Student("ruben","40bd001563085fc35165329ea1ff5c5ecbdbbeef","Ruben","Paixao","r@r.r");
+
+             manager.userService().getCourses(student_id);
+             manager.userService().addStudent(student);
              
      //        Student st=new Student("Rui","123","rui@iscte.pt");
      //        st.setFirstname("Rui");
