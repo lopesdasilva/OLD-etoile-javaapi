@@ -10,7 +10,7 @@ import java.util.LinkedList;
  * @author Rui
  */
 public class Student {
-    
+    int id;
     public String username;
     public String password; //SHA1
     
@@ -28,6 +28,15 @@ public class Student {
     }
 
     public Student(String username, String password, String firstname, String lastname, String email) {
+        this.username = username;
+        this.password = password;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+    }
+    
+    public Student(int id,String username, String password, String firstname, String lastname, String email) {
+        this.id=id;
         this.username = username;
         this.password = password;
         this.firstname = firstname;
@@ -83,7 +92,7 @@ public class Student {
         this.username = username;
     }
 
-    void addCourse(Course c) {
+    public void addCourse(Course c) {
         courses.add(c);
     }
     

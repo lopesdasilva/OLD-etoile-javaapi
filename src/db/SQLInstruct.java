@@ -7,13 +7,13 @@ package db;
 public class SQLInstruct {
 
     //Database Configs:
-    public static final String dbAdress="jdbc:mysql://10.10.33.228:3306/etoile";
+    public static final String dbAdress="jdbc:mysql://localhost:3306/etoile";
 //    public static final String dbAdress="jdbc:mysql://localhost:3306/etoile";
-    public static final String dbUsername="rui";
+    public static final String dbUsername="root";
     public static final String dbPassword="etoile";
 
     public static String login(String username, String parseSHA1Password) {
-       return "SELECT id,username FROM student WHERE student.username='" + username 
+       return "SELECT id,username,password,firstname,surname,email FROM student WHERE student.username='" + username 
                + "' AND student.password='" + parseSHA1Password + "'";
            
     }

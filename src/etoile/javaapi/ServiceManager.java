@@ -15,7 +15,7 @@ import services.UserService;
  * @author Rui
  */
 public class ServiceManager {
-
+    Student current_student ;
     private String username;
     private String sha1_of_password;
     private int user_id;
@@ -33,14 +33,17 @@ public class ServiceManager {
         ResultSet rSet = db.queryDB(sqlStatement);
         if (rSet.next()) {
             user_id = rSet.getInt(1);
+            
+            current_student=new Student(rSet.getInt(1),rSet.getString(2),rSet.getString(3),rSet.getString(4),rSet.getString(5),rSet.getString(6));    
             return true;
+            
         }
         return false;
 
     }
 
     public UserService userService() {
-        UserService us = new UserService(db);
+        UserService us = new UserService(db,current_student);
         return us;
     }
 }

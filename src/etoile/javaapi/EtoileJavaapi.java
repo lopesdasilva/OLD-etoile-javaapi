@@ -40,7 +40,8 @@ public class EtoileJavaapi {
              Student student = new Student("teste","40bd001563085fc35165329ea1ff5c5ecbdbbeef","Ruben","Paixao","r@r.r");
 
              manager.userService().getCourses(student_id);
-             manager.userService().addStudent(student);
+             System.out.println(student.getCourses());
+             //manager.userService().addStudent(student);
              
      //        Student st=new Student("Rui","123","rui@iscte.pt");
      //        st.setFirstname("Rui");

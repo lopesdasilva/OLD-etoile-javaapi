@@ -15,7 +15,7 @@ public  class Course {
     public int id;
     public LinkedList<Discipline> disciplines=new LinkedList<Discipline>();
 
-    public Course(String name, int id) {
+    public Course(int id, String name) {
         this.name = name;
         this.id = id;
     }
