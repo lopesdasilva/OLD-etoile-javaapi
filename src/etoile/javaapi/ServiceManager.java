@@ -21,7 +21,7 @@ public class ServiceManager {
     private int user_id;
     DBConnect db;
 
-    public String setAuthentication(String username, String sha1_of_password) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+    public boolean setAuthentication(String username, String sha1_of_password) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
         this.username = username;
         this.sha1_of_password = sha1_of_password;
 
@@ -33,9 +33,9 @@ public class ServiceManager {
         ResultSet rSet = db.queryDB(sqlStatement);
         if (rSet.next()) {
             user_id = rSet.getInt(1);
-            return "success";
+            return true;
         }
-        return "fail";
+        return false;
 
     }
 

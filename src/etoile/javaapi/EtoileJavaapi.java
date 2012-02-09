@@ -37,7 +37,7 @@ public class EtoileJavaapi {
             ServiceManager manager = new ServiceManager();
              System.out.println(manager.setAuthentication("rui", "40bd001563085fc35165329ea1ff5c5ecbdbbeef"));
             
-             Student student = new Student("ruben","40bd001563085fc35165329ea1ff5c5ecbdbbeef","Ruben","Paixao","r@r.r");
+             Student student = new Student("teste","40bd001563085fc35165329ea1ff5c5ecbdbbeef","Ruben","Paixao","r@r.r");
 
              manager.userService().getCourses(student_id);
              manager.userService().addStudent(student);
