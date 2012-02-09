@@ -24,6 +24,11 @@ public class OneChoiceQuestion extends Question{
     
     public QuestionType questionType = QuestionType.ONE_CHOICE;
     private LinkedList<URL> urls=new LinkedList<URL>();
+    
+    public OneChoiceQuestion(String text, int id){
+        this.text = text;
+        this.id = id;
+    }
 
     public OneChoiceQuestion(String text, int id, LinkedList<String> possibleAnswers, String correctAnswer) {
         this.text = text;

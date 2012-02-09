@@ -6,32 +6,32 @@ package etoile.javaapi.question;
 
 import java.util.LinkedList;
 
-
 /**
  *
  * @author Rui
  */
-public class MultipleChoiceQuestion extends Question{
+public class MultipleChoiceQuestion extends Question {
+
     public String text;
-    
     public int id;
-    
-    public LinkedList<String> userAnswer=new LinkedList<String>();
-    
-    public LinkedList<String> possibleAnswers= new LinkedList<String>();
-    
-    public LinkedList<String> correctAnswers= new LinkedList<String>();
-    
-    public QuestionType questionType= QuestionType.MULTIPLE_CHOICE;
-    private LinkedList<URL> urls=new LinkedList<URL>();
+    public LinkedList<String> userAnswer = new LinkedList<String>();
+    public LinkedList<String> possibleAnswers = new LinkedList<String>();
+    public LinkedList<String> correctAnswers = new LinkedList<String>();
+    public QuestionType questionType = QuestionType.MULTIPLE_CHOICE;
+    private LinkedList<URL> urls = new LinkedList<URL>();
+
+    public MultipleChoiceQuestion(String name, int id) {
+        this.text = name;
+        this.id = id;
+    }
 
     public MultipleChoiceQuestion(String name, int id, LinkedList<String> possibleAnswers, LinkedList<String> correctAnswers) {
         this.text = name;
         this.id = id;
-        this.possibleAnswers=possibleAnswers;
-        this.correctAnswers=correctAnswers;
+        this.possibleAnswers = possibleAnswers;
+        this.correctAnswers = correctAnswers;
     }
-    
+
     @Override
     public String getText() {
         return text;
@@ -39,23 +39,24 @@ public class MultipleChoiceQuestion extends Question{
 
     @Override
     public int getId() {
-       return id;
+        return id;
     }
 
     /**
      * Don't use this!
+     *
      * @param userAnswer
      * @return always false
      */
     @Override
     public boolean setAnswer(String userAnswer) {
-      return false;
+        return false;
     }
-  
+
     @Override
     public boolean setAnswer(LinkedList<String> userAnswer) {
-        this.userAnswer=userAnswer;
-      return true;
+        this.userAnswer = userAnswer;
+        return true;
     }
 
     @Override
@@ -65,12 +66,12 @@ public class MultipleChoiceQuestion extends Question{
 
     @Override
     public LinkedList<String> getPossibleAnswers() {
-      return possibleAnswers;
+        return possibleAnswers;
     }
 
     @Override
     public boolean setPossibleAnswers(LinkedList<String> possibleAnswers) {
-        this.possibleAnswers=possibleAnswers;
+        this.possibleAnswers = possibleAnswers;
         return true;
     }
 
@@ -92,29 +93,28 @@ public class MultipleChoiceQuestion extends Question{
 
     @Override
     public boolean setCorrectAnswers(LinkedList<String> correctAnswers) {
-       this.correctAnswers=correctAnswers;
-       return true;
+        this.correctAnswers = correctAnswers;
+        return true;
     }
 
     @Override
     public LinkedList<String> getCorrectAnswers() {
-       return correctAnswers;
+        return correctAnswers;
     }
-    
-     @Override
+
+    @Override
     public LinkedList<URL> getURLS() {
         return urls;
     }
 
     @Override
     public boolean setURLS(LinkedList<URL> urls) {
-        this.urls=urls;
+        this.urls = urls;
         return true;
     }
+
     @Override
     public void addURL(URL url) {
         urls.add(url);
     }
-    
 }
-    
