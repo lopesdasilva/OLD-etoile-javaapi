@@ -20,8 +20,8 @@ public class MultipleChoiceQuestion extends Question {
     public QuestionType questionType = QuestionType.MULTIPLE_CHOICE;
     private LinkedList<URL> urls = new LinkedList<URL>();
 
-    public MultipleChoiceQuestion(String name, int id) {
-        this.text = name;
+    public MultipleChoiceQuestion(int id, String text) {
+        this.text = text;
         this.id = id;
     }
 

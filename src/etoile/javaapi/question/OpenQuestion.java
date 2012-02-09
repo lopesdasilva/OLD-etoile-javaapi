@@ -17,7 +17,7 @@ public class OpenQuestion extends Question{
     public QuestionType questionType = QuestionType.OPEN;
     private LinkedList<URL> urls=new LinkedList<URL>();
 
-    public OpenQuestion(String text, int id) {
+    public OpenQuestion(int id,String text) {
         this.text = text;
         this.id = id;
     }

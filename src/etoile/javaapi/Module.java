@@ -19,7 +19,7 @@ public class Module {
     
     public LinkedList<Test> tests= new LinkedList<Test>();
     
-    public Module(String name, int id) {
+    public Module(int id, String name) {
         this.name = name;
         this.id = id;
     }
@@ -48,7 +48,7 @@ public class Module {
         this.tests = tests;
     }
 
-    void addTest(Test t) {
+    public void addTest(Test t) {
         tests.add(t);
     }
     

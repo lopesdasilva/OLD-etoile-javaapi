@@ -25,7 +25,7 @@ public class OneChoiceQuestion extends Question{
     public QuestionType questionType = QuestionType.ONE_CHOICE;
     private LinkedList<URL> urls=new LinkedList<URL>();
     
-    public OneChoiceQuestion(String text, int id){
+    public OneChoiceQuestion(int id, String text){
         this.text = text;
         this.id = id;
     }

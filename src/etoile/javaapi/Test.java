@@ -28,13 +28,13 @@ public class Test {
     
     public LinkedList<Question> questions= new LinkedList<Question>();
 
-    public Test(String name, int id, String author) {
+    public Test(int id,String name, String author) {
         this.name = name;
         this.id = id;
         this.author = author;
     }
 
-    public Test(String name, int id, String author,String description, Date beginDate, Date endDate) {
+    public Test(int id, String name, String author,String description, Date beginDate, Date endDate) {
         this.name = name;
         this.id = id;
         this.author = author;
@@ -99,7 +99,7 @@ public class Test {
         this.questions = questions;
     }
 
-    void addQuestion(Question q) {
+    public void addQuestion(Question q) {
        questions.add(q);
     }
     

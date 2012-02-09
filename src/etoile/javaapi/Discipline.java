@@ -17,7 +17,7 @@ public class Discipline {
     
     public LinkedList<Module> modules= new LinkedList<Module>();
 
-    public Discipline(String name, int id) {
+    public Discipline(int id, String name) {
         this.name = name;
         this.id = id;
     }
@@ -51,7 +51,7 @@ public class Discipline {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
-    void addModule(Module m) {
+    public void addModule(Module m) {
         modules.add(m);
     }
     

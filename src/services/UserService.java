@@ -6,8 +6,10 @@ package services;
 
 import db.DBConnect;
 import db.SQLInstruct;
-import etoile.javaapi.Course;
-import etoile.javaapi.Student;
+import etoile.javaapi.*;
+import etoile.javaapi.question.MultipleChoiceQuestion;
+import etoile.javaapi.question.OneChoiceQuestion;
+import etoile.javaapi.question.OpenQuestion;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
@@ -38,6 +40,99 @@ public class UserService {
     public void addStudent(Student student) throws SQLException{
         String sqlStatement = SQLInstruct.addStudent(student.getUsername(),student.getPassword(),student.getFirstname(),student.getLastname(),student.getEmail());
         db.updateDB(sqlStatement);
+    }
+
+    public void getDisciplines(Course course) throws SQLException {
+        String sqlStatement = SQLInstruct.getDisciplines(course.getId());
+        ResultSet rSet = db.queryDB(sqlStatement);
+        
+        while(rSet.next()){
+        course.addDiscipline(new Discipline(rSet.getInt(1),rSet.getString(2)));
+        }
+    }
+
+    public void getModules(Discipline discipline) throws SQLException {
+        String sqlStatement = SQLInstruct.getModules(discipline.getId());
+        ResultSet rSet = db.queryDB(sqlStatement);
+        
+        while(rSet.next()){
+        discipline.addModule(new Module(rSet.getInt(1),rSet.getString(2)));
+        }
+    }
+
+    public void getTests(Module module) throws SQLException {
+        String sqlStatement = SQLInstruct.getTests(module.getId());
+        ResultSet rSet = db.queryDB(sqlStatement);
+        
+        while(rSet.next()){
+        
+            
+            module.addTest(new Test(rSet.getInt(1),rSet.getString(2),rSet.getString(3),rSet.getString(4),rSet.getDate(5),rSet.getDate(6)));
+        }
+    }
+
+    public void getQuestions(Test test) throws SQLException {
+        getOpenQuestions(test);
+        getOneChoiceQuestions(test);
+        getMultipleChoiceQuestions(test);
+         
+    }
+
+    private void getOpenQuestions(Test test) throws SQLException {
+        //OPENQUESTIONS
+        String sqlStatement = SQLInstruct.getOpenQuestions(test.getId());
+        ResultSet rSet = db.queryDB(sqlStatement);
+        while(rSet.next()){
+            test.addQuestion(new OpenQuestion(rSet.getInt(1), rSet.getString(2)));
+        }
+    }
+
+    private void getOneChoiceQuestions(Test test) throws SQLException {
+        String sqlStatement = SQLInstruct.getOneChoiceQuestions(test.getId());
+        ResultSet rSet = db.queryDB(sqlStatement);
+        while(rSet.next()){
+            OneChoiceQuestion op = new OneChoiceQuestion(rSet.getInt(1), rSet.getString(2));
+            test.addQuestion(op);
+            
+            //Hypothesis
+            String sqlStatement_hypothesis = SQLInstruct.getOneChoiceHypothesis(rSet.getInt(1));
+            ResultSet rSet_hypothesis = db.queryDB(sqlStatement_hypothesis);
+            while(rSet_hypothesis.next()){
+            op.addPossibleAnswser(rSet_hypothesis.getString(2));
+            }
+            
+            //Correct Answer
+            
+            String sqlStatement_correct = SQLInstruct.getOneChoiceCorrect(rSet.getInt(1));
+            ResultSet rSet_correct = db.queryDB(sqlStatement_correct);
+            if(rSet_correct.next())op.setCorrectAnswer(rSet.getString(2));
+
+        }
+    }
+
+    private void getMultipleChoiceQuestions(Test test) throws SQLException {
+             String sqlStatement = SQLInstruct.getMultipleChoiceQuestions(test.getId());
+        ResultSet rSet = db.queryDB(sqlStatement);
+        while(rSet.next()){
+            MultipleChoiceQuestion mp = new MultipleChoiceQuestion(rSet.getInt(1), rSet.getString(2));
+            test.addQuestion(mp);
+            
+            //Hypothesis
+            String sqlStatement_hypothesis = SQLInstruct.getMultipleChoiceHypothesis(rSet.getInt(1));
+            ResultSet rSet_hypothesis = db.queryDB(sqlStatement_hypothesis);
+            while(rSet_hypothesis.next()){
+            mp.addPossibleAnswser(rSet_hypothesis.getString(2));
+            }
+            
+            //Correct Answer
+            String sqlStatement_correct = SQLInstruct.getMultipleChoiceCorrect(rSet.getInt(1));
+            ResultSet rSet_correct = db.queryDB(sqlStatement_correct);
+            while(rSet_correct.next()){
+                System.out.println("ZECA");
+              mp.addPossibleAnswser(rSet_correct.getString(2));
+            }
+            
+        }
     }
     
 }

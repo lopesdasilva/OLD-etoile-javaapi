@@ -24,19 +24,19 @@ public class SQLInstruct {
     }
     
     public static String getDisciplines(int course_id) {  
-        return "SELECT discipline.id, discipline.name FROM course,course_discipline,discipline WHERE"
-            +"course.id='"+course_id+"' AND course_discipline.course_id = course.id AND"
+        return "SELECT discipline.id, discipline.name FROM course,course_discipline,discipline WHERE "
+            +"course.id='"+course_id+"' AND course_discipline.course_id = course.id AND "
             +"course_discipline.discipline_id = discipline.id";
     }
     
     public static String getModules(int discipline_id) {
-        return "SELECT module.id, module.name FROM discipline,discipline_module,module WHERE"
-            +"discipline.id='"+discipline_id+"' AND discipline.id=discipline_module.discipline_id AND"
+        return "SELECT module.id, module.name FROM discipline,discipline_module,module WHERE "
+            +"discipline.id='"+discipline_id+"' AND discipline.id=discipline_module.discipline_id AND "
             +"discipline_module.module_id=module.id";
     }
     
     public static String getTests(int module_id) {
-        return "SELECT test.id, test.name, test.author, test.beginDate,test.endDate,description "
+        return "SELECT test.id, test.name, test.author,description, test.beginDate,test.endDate "
                 + "FROM module,module_test,test WHERE "
                 + "module.id='"+module_id+"' AND module.id=module_test.module_id AND module_test.test_id=test.id";      
     }
@@ -53,9 +53,37 @@ public class SQLInstruct {
     
     public static String getMultipleChoiceQuestions(int test_id){
         return "SELECT multiplechoicequestion.id, multiplechoicequestion.text FROM test, test_multiplechoicequestion,multiplechoicequestion WHERE "
-        +"test.id='1' AND test.id=test_multiplechoicequestion.test_id " 
+        +"test.id='"+test_id+"' AND test.id=test_multiplechoicequestion.test_id " 
         +"AND test_multiplechoicequestion.multiplechoicequestion_id=multiplechoicequestion.id";
     }
+    
+     public static String getOneChoiceHypothesis(int question_id){
+      return"SELECT hypothesis.id,hypothesis.hypothesis FROM onechoicequestion,onechoicequestion_hypothesis, hypothesis WHERE "
+        +"onechoicequestion.id='"+question_id+"' AND onechoicequestion_hypothesis.onechoicequestion_id = onechoicequestion.id AND "
+        +"onechoicequestion_hypothesis.hypothesis_id=hypothesis.id";  
+     }
+     
+     public static String getMultipleChoiceHypothesis(int question_id){
+      return"SELECT hypothesis.id,hypothesis.hypothesis FROM multiplechoicequestion,multiplechoicequestion_hypothesis, hypothesis WHERE "
+        +"multiplechoicequestion.id='"+question_id+"' AND multiplechoicequestion_hypothesis.multiplechoicequestion_id = multiplechoicequestion.id AND "
+        +"multiplechoicequestion_hypothesis.hypothesis_id=hypothesis.id";
+
+     }
+     
+     public static String getOneChoiceCorrect(int question_id){
+        return "SELECT hypothesis.id,hypothesis.hypothesis FROM onechoicequestion,onechoicequestion_hypothesis, hypothesis WHERE "
+        +"onechoicequestion.id='"+question_id+"' AND onechoicequestion_hypothesis.onechoicequestion_id = onechoicequestion.id AND "
+        +"onechoicequestion_hypothesis.hypothesis_id=hypothesis.id AND hypothesis.isCorrect='1'";
+
+     }
+     
+     public static String getMultipleChoiceCorrect(int question_id){
+     return "SELECT hypothesis.id,hypothesis.hypothesis FROM multiplechoicequestion,multiplechoicequestion_hypothesis, hypothesis WHERE "
+        +"multiplechoicequestion.id='"+question_id+"' AND multiplechoicequestion_hypothesis.multiplechoicequestion_id = multiplechoicequestion.id AND "
+        +"multiplechoicequestion_hypothesis.hypothesis_id=hypothesis.id AND hypothesis.isCorrect='1'";
+
+
+     }
     
     
     //INSERTS
