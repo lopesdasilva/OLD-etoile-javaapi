@@ -30,6 +30,10 @@ public abstract class Question {
     public abstract String getText();
     
     public abstract int getId();
+    
+    public abstract String getAnswer();
+    
+    public abstract String getAnswers();
        
     public abstract boolean setAnswer(String userAnswer);
     
@@ -42,4 +46,6 @@ public abstract class Question {
     public abstract boolean setPossibleAnswers(LinkedList<String> possibleAnswers);
     
     public abstract boolean addPossibleAnswser(String possibleAnswer);
+    
+    
 }

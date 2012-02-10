@@ -117,4 +117,14 @@ public class MultipleChoiceQuestion extends Question {
     public void addURL(URL url) {
         urls.add(url);
     }
+
+    @Override
+    public String getAnswer() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public String getAnswers() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

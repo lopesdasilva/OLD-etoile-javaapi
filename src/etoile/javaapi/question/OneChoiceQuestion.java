@@ -111,5 +111,15 @@ public class OneChoiceQuestion extends Question{
     public void addURL(URL url) {
         urls.add(url);
     }
+
+    @Override
+    public String getAnswer() {
+        return userAnswer;
+    }
+
+    @Override
+    public String getAnswers() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     
 }

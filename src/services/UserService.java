@@ -10,6 +10,7 @@ import etoile.javaapi.*;
 import etoile.javaapi.question.MultipleChoiceQuestion;
 import etoile.javaapi.question.OneChoiceQuestion;
 import etoile.javaapi.question.OpenQuestion;
+import etoile.javaapi.question.Question;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
@@ -83,7 +84,12 @@ public class UserService {
         String sqlStatement = SQLInstruct.getOpenQuestions(test.getId());
         ResultSet rSet = db.queryDB(sqlStatement);
         while(rSet.next()){
-            test.addQuestion(new OpenQuestion(rSet.getInt(1), rSet.getString(2)));
+            Question q = new OpenQuestion(rSet.getInt(1), rSet.getString(2));
+            test.addQuestion(q);
+            String sqlStatement_correct = SQLInstruct.getOpenQuestionAnswer(rSet.getInt(1), current_student.getId());
+            ResultSet rSet_answer = db.queryDB(sqlStatement_correct);
+            if(rSet_answer.next())q.setAnswer(rSet_answer.getString(1));
+            
         }
     }
 
@@ -99,13 +105,13 @@ public class UserService {
             ResultSet rSet_hypothesis = db.queryDB(sqlStatement_hypothesis);
             while(rSet_hypothesis.next()){
             op.addPossibleAnswser(rSet_hypothesis.getString(2));
+            if(rSet_hypothesis.getInt(3)==1)op.setCorrectAnswer(rSet_hypothesis.getString(2));
             }
             
-            //Correct Answer
             
-            String sqlStatement_correct = SQLInstruct.getOneChoiceCorrect(rSet.getInt(1));
-            ResultSet rSet_correct = db.queryDB(sqlStatement_correct);
-            if(rSet_correct.next())op.setCorrectAnswer(rSet.getString(2));
+            String sqlStatement_correct = SQLInstruct.getOneChoiceAnswer(rSet.getInt(1), current_student.getId());
+            ResultSet rSet_answer = db.queryDB(sqlStatement_correct);
+            if(rSet_answer.next())op.setAnswer(rSet_answer.getString(1));
 
         }
     }

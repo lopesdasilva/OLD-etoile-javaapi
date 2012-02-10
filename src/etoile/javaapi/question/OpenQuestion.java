@@ -37,6 +37,10 @@ public class OpenQuestion extends Question{
         this.userAnswer=userAnswser;
         return true;
     }
+    
+    public String getAnswer(){
+        return this.userAnswer;
+    }
 
     @Override
     public QuestionType getQuestionType() {
@@ -113,6 +117,11 @@ public class OpenQuestion extends Question{
     @Override
     public void addURL(URL url) {
         urls.add(url);
+    }
+
+    @Override
+    public String getAnswers() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
     

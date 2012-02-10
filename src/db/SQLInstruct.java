@@ -84,6 +84,25 @@ public class SQLInstruct {
 
 
      }
+     
+     public static String getOneChoiceAnswer(int question_id,int student_id){
+         return "SELECT hypothesis.hypothesis, hypothesis.hypothesis FROM student, hypothesis,onechoiceanswer,onechoicequestion WHERE "
+        +"student.id='"+student_id+"' AND onechoicequestion.id='"+question_id+"' AND student.id=onechoiceanswer.student_id AND onechoiceanswer.onechoicequestion_id=onechoicequestion.id AND "
+        +"onechoiceanswer.hypothesis_id=hypothesis.id";
+     }
+     
+     public static String getOpenQuestionAnswer(int question_id,int student_id){
+         return "SELECT openanswer.text FROM openanswer,student,openquestion WHERE "
+        +"student.id='"+student_id+"' AND openquestion.id='"+question_id+"' AND student.id=openanswer.student_id AND openanswer.openquestion_id=openquestion.id";
+     }
+     
+     public static String getMultipleChoiceAnswer(int question_id,int student_id){
+         return "SELECT hypothesis.id, hypothesis.hypothesis FROM student, hypothesis,multiplechoiceanswer,multiplechoicequestion WHERE "
+        +"student.id='1' AND student.id=multiplechoiceanswer.student_id AND multiplechoiceanswer.multiplechoicequestion_id=multiplechoicequestion.id AND "
+        +"multiplechoiceanswer.hypothesis_id=hypothesis.id";
+     }
+     
+     
     
     
     //INSERTS

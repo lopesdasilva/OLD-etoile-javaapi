@@ -32,7 +32,6 @@ public class ServiceManager {
 
 
         String sqlStatement = SQLInstruct.login(username, sha1_of_password);
-        System.out.println(sqlStatement);
         ResultSet rSet = db.queryDB(sqlStatement);
         if (rSet.next()) {
             user_id = rSet.getInt(1);

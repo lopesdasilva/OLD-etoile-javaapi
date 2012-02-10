@@ -76,10 +76,12 @@ public class EtoileJavaapi {
                                         }
                                         System.out.println();
                                         System.out.println("Resposta Correcta: " + element.getCorrectAnswer());
+                                        System.out.println("Resposta do Aluno: " + element.getAnswer());
                                         break;
                                     case OPEN:
                                         System.out.println("Pergunta Aberta");
                                         System.out.println("Pergunta " + element.getText());
+                                        System.out.println("Resposta do Aluno: " + element.getAnswer());
                                         break;
                                 }
 
