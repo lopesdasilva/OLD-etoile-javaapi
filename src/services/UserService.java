@@ -31,7 +31,6 @@ public class UserService {
 
     public void updateCourses(int student_id) throws SQLException {
         String sqlStatement = SQLInstruct.getCourses(student_id);
-        System.out.println(sqlStatement);
         ResultSet rSet = db.queryDB(sqlStatement);
 
         while (rSet.next()) {
@@ -145,7 +144,7 @@ public class UserService {
                     correct.add(rSet_hypothesis.getString(2));
                 }
             }
-            }mp.setCorrectAnswers(correct);
+            mp.setCorrectAnswers(correct);
             String sqlStatement_correct = SQLInstruct.getMultipleChoiceAnswer(rSet.getInt(1), current_student.getId());
             ResultSet rSet_answer = db.queryDB(sqlStatement_correct);
             LinkedList<String> answers = new LinkedList<String>();
