@@ -45,6 +45,10 @@ public class ServiceManager {
 
     }
 
+    public Student getCurrent_student() {
+        return current_student;
+    }
+
     public UserService userService() {
         UserService us = new UserService(db,current_student);
         return us;

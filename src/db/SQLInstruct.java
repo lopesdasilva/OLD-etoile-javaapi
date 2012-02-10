@@ -58,13 +58,13 @@ public class SQLInstruct {
     }
     
      public static String getOneChoiceHypothesis(int question_id){
-      return"SELECT hypothesis.id,hypothesis.hypothesis FROM onechoicequestion,onechoicequestion_hypothesis, hypothesis WHERE "
+      return"SELECT hypothesis.id,hypothesis.hypothesis,isCorrect FROM onechoicequestion,onechoicequestion_hypothesis, hypothesis WHERE "
         +"onechoicequestion.id='"+question_id+"' AND onechoicequestion_hypothesis.onechoicequestion_id = onechoicequestion.id AND "
         +"onechoicequestion_hypothesis.hypothesis_id=hypothesis.id";  
      }
      
      public static String getMultipleChoiceHypothesis(int question_id){
-      return"SELECT hypothesis.id,hypothesis.hypothesis FROM multiplechoicequestion,multiplechoicequestion_hypothesis, hypothesis WHERE "
+      return"SELECT hypothesis.id,hypothesis.hypothesis,isCorrect FROM multiplechoicequestion,multiplechoicequestion_hypothesis, hypothesis WHERE "
         +"multiplechoicequestion.id='"+question_id+"' AND multiplechoicequestion_hypothesis.multiplechoicequestion_id = multiplechoicequestion.id AND "
         +"multiplechoicequestion_hypothesis.hypothesis_id=hypothesis.id";
 

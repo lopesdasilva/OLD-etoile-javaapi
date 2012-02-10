@@ -120,17 +120,14 @@ public class UserService {
             //Hypothesis
             String sqlStatement_hypothesis = SQLInstruct.getMultipleChoiceHypothesis(rSet.getInt(1));
             ResultSet rSet_hypothesis = db.queryDB(sqlStatement_hypothesis);
+            LinkedList<String> correct = new LinkedList<String>();
             while(rSet_hypothesis.next()){
             mp.addPossibleAnswser(rSet_hypothesis.getString(2));
+            if(rSet_hypothesis.getInt(3)==1){
+                correct.add(rSet_hypothesis.getString(2));
             }
+            }mp.setCorrectAnswers(correct);
             
-            //Correct Answer
-            String sqlStatement_correct = SQLInstruct.getMultipleChoiceCorrect(rSet.getInt(1));
-            ResultSet rSet_correct = db.queryDB(sqlStatement_correct);
-            while(rSet_correct.next()){
-                System.out.println("ZECA");
-              mp.addPossibleAnswser(rSet_correct.getString(2));
-            }
             
         }
     }

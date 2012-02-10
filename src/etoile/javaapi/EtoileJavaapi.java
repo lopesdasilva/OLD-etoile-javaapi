@@ -61,7 +61,7 @@ public class EtoileJavaapi {
                                             System.out.print("  " + s);
                                         }
                                         System.out.println();
-                                        System.out.println("Respostas Correctas: ");
+                                        System.out.println("Respostas Correctas: " + element.getCorrectAnswers().size());
                                         for (String s : element.getCorrectAnswers()) {
                                             System.out.print("  " + s);
                                         }
