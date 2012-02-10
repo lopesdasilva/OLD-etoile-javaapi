@@ -7,10 +7,12 @@ package db;
 public class SQLInstruct {
 
     //Database Configs:
-    public static final String dbAdress="jdbc:mysql://localhost:3306/etoile";
+    public static final String dbAdress="jdbc:mysql://localhost:3306/etoilev3";
 //    public static final String dbAdress="jdbc:mysql://localhost:3306/etoile";
-    public static final String dbUsername="root";
-    public static final String dbPassword="etoile";
+    public static final String dbUsername="etoilev3";
+    public static final String dbPassword="webetoile12";
+    
+    // fazer no cmd "ssh -L 3306:localhost:3306 mysql.server.org"
 
     public static String login(String username, String parseSHA1Password) {
        return "SELECT id,username,password,firstname,surname,email FROM student WHERE student.username='" + username 
