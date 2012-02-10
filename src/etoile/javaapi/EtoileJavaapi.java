@@ -34,15 +34,15 @@ public class EtoileJavaapi {
 
             Student student = new Student("teste", "40bd001563085fc35165329ea1ff5c5ecbdbbeef", "Ruben", "Paixao", "r@r.r");
 
-            manager.userService().getCourses(student_id);
+            manager.userService().updateCourses(student_id);
 
             for (Course c : manager.current_student.getCourses()) {
                 System.out.println("CURSO: " + c.getName());
 
-                manager.userService().getDisciplines(c);
+                manager.userService().updateDisciplines(c);
                 for (Discipline d : c.getDisciplines()) {
                     System.out.println("\nDISCIPLINA: " + d.getName());
-                    manager.userService().getModules(d);
+                    manager.userService().updateModules(d);
 
                     for (Module m : d.getModules()) {
                         System.out.println("*MODULO: " + m.getName());
