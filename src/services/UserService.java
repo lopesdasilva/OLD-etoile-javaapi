@@ -43,13 +43,15 @@ public class UserService {
         db.updateDB(sqlStatement);
     }
 
-    public void getDisciplines(Course course) throws SQLException {
+    public LinkedList<Discipline> getDisciplines(Course course) throws SQLException {
         String sqlStatement = SQLInstruct.getDisciplines(course.getId());
         ResultSet rSet = db.queryDB(sqlStatement);
         
         while(rSet.next()){
         course.addDiscipline(new Discipline(rSet.getInt(1),rSet.getString(2)));
         }
+        
+        return course.disciplines;
     }
 
     public void getModules(Discipline discipline) throws SQLException {
