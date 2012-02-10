@@ -89,7 +89,7 @@ public class OpenQuestion extends Question{
     }
 
     @Override
-    public boolean setAnswer(LinkedList<String> userAnswer) {
+    public boolean setAnswers(LinkedList<String> userAnswer) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -120,7 +120,7 @@ public class OpenQuestion extends Question{
     }
 
     @Override
-    public String getAnswers() {
+    public LinkedList<String> getAnswers() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     

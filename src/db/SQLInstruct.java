@@ -97,8 +97,8 @@ public class SQLInstruct {
      }
      
      public static String getMultipleChoiceAnswer(int question_id,int student_id){
-         return "SELECT hypothesis.id, hypothesis.hypothesis FROM student, hypothesis,multiplechoiceanswer,multiplechoicequestion WHERE "
-        +"student.id='1' AND student.id=multiplechoiceanswer.student_id AND multiplechoiceanswer.multiplechoicequestion_id=multiplechoicequestion.id AND "
+         return "SELECT hypothesis.hypothesis FROM student, hypothesis,multiplechoiceanswer,multiplechoicequestion WHERE "
+        +"student.id='"+student_id+"' AND  multiplechoicequestion.id = '"+question_id+"' AND student.id=multiplechoiceanswer.student_id AND multiplechoiceanswer.multiplechoicequestion_id=multiplechoicequestion.id AND "
         +"multiplechoiceanswer.hypothesis_id=hypothesis.id";
      }
      

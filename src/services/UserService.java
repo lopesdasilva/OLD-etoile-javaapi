@@ -133,8 +133,13 @@ public class UserService {
                 correct.add(rSet_hypothesis.getString(2));
             }
             }mp.setCorrectAnswers(correct);
-            
-            
+            String sqlStatement_correct = SQLInstruct.getMultipleChoiceAnswer(rSet.getInt(1), current_student.getId());
+            ResultSet rSet_answer = db.queryDB(sqlStatement_correct);
+            LinkedList<String> answers = new LinkedList<String>();
+            while(rSet_answer.next()){
+            answers.add(rSet_answer.getString(1));
+            }
+            mp.setAnswers(answers);
         }
     }
     

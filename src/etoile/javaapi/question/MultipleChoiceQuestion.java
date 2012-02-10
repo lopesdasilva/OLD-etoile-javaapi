@@ -54,7 +54,7 @@ public class MultipleChoiceQuestion extends Question {
     }
 
     @Override
-    public boolean setAnswer(LinkedList<String> userAnswer) {
+    public boolean setAnswers(LinkedList<String> userAnswer) {
         this.userAnswer = userAnswer;
         return true;
     }
@@ -124,7 +124,7 @@ public class MultipleChoiceQuestion extends Question {
     }
 
     @Override
-    public String getAnswers() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public LinkedList<String> getAnswers() {
+        return userAnswer;
     }
 }

@@ -33,11 +33,11 @@ public abstract class Question {
     
     public abstract String getAnswer();
     
-    public abstract String getAnswers();
+    public abstract LinkedList<String> getAnswers();
        
     public abstract boolean setAnswer(String userAnswer);
     
-    public abstract boolean setAnswer(LinkedList<String> userAnswer);
+    public abstract boolean setAnswers(LinkedList<String> userAnswer);
     
     public abstract LinkedList<String> getPossibleAnswers();
    
