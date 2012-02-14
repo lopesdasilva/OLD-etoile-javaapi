@@ -154,4 +154,27 @@ public class UserService {
             mp.setAnswers(answers);
         }
     }
+    
+     public Discipline getDiscipline(String name){
+       
+        for(Course c : current_student.getCourses()){
+            for(Discipline d: c.getDisciplines()){
+                if(d.getName().equals(name))
+                    return d;
+            }
+        }
+    return null;
+    }
+
+    public Module getModule(Object value) {
+        //TODO Cant exist modules with the same name
+        for(Course c: current_student.getCourses()){
+            for(Discipline d: c.getDisciplines()){
+               for(Module m: d.getModules())
+                   if(m.getName().equals(value))
+                       return m;
+            }
+        }
+        return null;
+    }
 }
