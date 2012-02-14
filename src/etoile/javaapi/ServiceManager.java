@@ -52,4 +52,8 @@ public class ServiceManager {
         UserService us = new UserService(db,current_student);
         return us;
     }
+
+    public void closeConnection() throws SQLException {
+        db.closeDB();
+    }
 }

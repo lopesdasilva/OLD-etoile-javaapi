@@ -12,7 +12,7 @@ public class SQLInstruct {
     public static final String dbUsername="etoilev3";
     public static final String dbPassword="webetoile12";
     
-    // fazer no cmd "ssh -L 3306:localhost:3306 mysql.server.org"
+    // fazer no cmd ssh -L 3306:localhost:3306 -l user v3.etoilecascadesideas.eu
 
     public static String login(String username, String parseSHA1Password) {
        return "SELECT id,username,password,firstname,surname,email FROM student WHERE student.username='" + username 
