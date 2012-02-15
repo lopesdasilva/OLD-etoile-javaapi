@@ -4,7 +4,9 @@
  */
 package db;
 
-public class SQLInstruct {
+import java.io.Serializable;
+
+public class SQLInstruct implements Serializable {
 
     //Database Configs:
     public static final String dbAdress="jdbc:mysql://localhost:3306/etoilev3";

@@ -46,7 +46,7 @@ public class EtoileJavaapi {
 
                     for (Module m : d.getModules()) {
                         System.out.println("*MODULO: " + m.getName());
-                        manager.userService().getTests(m);
+                        manager.userService().updateTests(m);
                         for (Test t : m.getTests()) {
                             System.out.println("**TESTE : " + t.getName());
                             manager.userService().getQuestions(t);

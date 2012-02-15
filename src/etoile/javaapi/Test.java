@@ -5,13 +5,14 @@
 package etoile.javaapi;
 
 import etoile.javaapi.question.Question;
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.LinkedList;
 /**
  *
  * @author Rui
  */
-public class Test {
+public class Test implements Serializable{
     
     public String name;
     

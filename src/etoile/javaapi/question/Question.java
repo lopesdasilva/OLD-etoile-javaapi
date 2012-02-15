@@ -4,6 +4,7 @@
  */
 package etoile.javaapi.question;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 
 
@@ -11,7 +12,7 @@ import java.util.LinkedList;
  *
  * @author Rui
  */
-public abstract class Question {
+public abstract class Question implements Serializable{
     
     public abstract void addURL(URL url);
     

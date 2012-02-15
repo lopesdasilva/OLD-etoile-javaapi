@@ -11,6 +11,7 @@ import etoile.javaapi.question.MultipleChoiceQuestion;
 import etoile.javaapi.question.OneChoiceQuestion;
 import etoile.javaapi.question.OpenQuestion;
 import etoile.javaapi.question.Question;
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
@@ -19,7 +20,7 @@ import java.util.LinkedList;
  *
  * @author Ruben
  */
-public class UserService {
+public class UserService implements Serializable{
 
     DBConnect db;
     Student current_student;
@@ -66,7 +67,10 @@ public class UserService {
         }
     }
 
-    public void getTests(Module module) throws SQLException {
+    public void updateTests(Module module) throws SQLException {
+        
+        module.setTests(new LinkedList<Test>()); //to restart tests No repeats
+        
         String sqlStatement = SQLInstruct.getTests(module.getId());
         ResultSet rSet = db.queryDB(sqlStatement);
 
@@ -177,4 +181,6 @@ public class UserService {
         }
         return null;
     }
+
+   
 }

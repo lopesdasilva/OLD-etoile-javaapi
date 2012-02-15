@@ -4,12 +4,13 @@
  */
 package etoile.javaapi;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 /**
  *
  * @author Rui
  */
-public class Student {
+public class Student implements Serializable {
     int id;
     public String username;
     public String password; //SHA1

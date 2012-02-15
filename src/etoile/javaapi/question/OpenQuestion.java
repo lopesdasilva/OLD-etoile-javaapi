@@ -4,13 +4,14 @@
  */
 package etoile.javaapi.question;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 
 /**
  *
  * @author Rui
  */
-public class OpenQuestion extends Question{
+public class OpenQuestion extends Question implements Serializable{
     public String text;
     public int id;
     public String userAnswer;

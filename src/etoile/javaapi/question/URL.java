@@ -4,11 +4,13 @@
  */
 package etoile.javaapi.question;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Rui
  */
-public class URL {
+public class URL implements Serializable{
     
     String url;
     

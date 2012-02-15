@@ -4,6 +4,7 @@
  */
 package etoile.javaapi;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 
 
@@ -11,7 +12,7 @@ import java.util.LinkedList;
  *
  * @author Rui
  */
-public class Module {
+public class Module implements Serializable{
     
     public String name;
     

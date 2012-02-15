@@ -4,12 +4,13 @@
  */
 package etoile.javaapi;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 /**
  *
  * @author Rui
  */
-public  class Course {
+public  class Course implements Serializable{
     
     public String name;
     public int id;

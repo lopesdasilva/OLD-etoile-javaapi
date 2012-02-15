@@ -6,6 +6,7 @@ package etoile.javaapi;
 
 import db.DBConnect;
 import db.SQLInstruct;
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import services.UserService;
@@ -14,7 +15,7 @@ import services.UserService;
  *
  * @author Rui
  */
-public class ServiceManager {
+public class ServiceManager implements Serializable{
     Student current_student ;
     private String username;
     private String sha1_of_password;

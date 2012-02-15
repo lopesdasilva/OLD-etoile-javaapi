@@ -4,13 +4,14 @@
  */
 package etoile.javaapi.question;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 
 /**
  *
  * @author Rui
  */
-public class MultipleChoiceQuestion extends Question {
+public class MultipleChoiceQuestion extends Question implements Serializable {
 
     public String text;
     public int id;
