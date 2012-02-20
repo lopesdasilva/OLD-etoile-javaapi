@@ -81,7 +81,7 @@ public class UserService implements Serializable{
         }
     }
 
-    public void getQuestions(Test test) throws SQLException {
+    public void updateQuestions(Test test) throws SQLException {
         getOpenQuestions(test);
         getOneChoiceQuestions(test);
         getMultipleChoiceQuestions(test);

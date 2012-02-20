@@ -49,7 +49,7 @@ public class EtoileJavaapi {
                         manager.userService().updateTests(m);
                         for (Test t : m.getTests()) {
                             System.out.println("**TESTE : " + t.getName());
-                            manager.userService().getQuestions(t);
+                            manager.userService().updateQuestions(t);
 
                             for (Question element : t.getQuestions()) {
                                 switch (element.getQuestionType()) {
