@@ -10,7 +10,7 @@ public class SQLInstruct implements Serializable {
 
     //Database Configs:
 //    public static final String dbAdress="jdbc:mysql://localhost:3306/etoilev3";
-    //    public static final String dbUsername="root";
+//        public static final String dbUsername="root";
 //    public static final String dbPassword="";
     public static final String dbAdress = "jdbc:mysql://localhost:3306/etoilev3";
     public static final String dbUsername = "etoilev3";
