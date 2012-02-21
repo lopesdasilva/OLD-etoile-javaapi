@@ -9,12 +9,12 @@ import java.io.Serializable;
 public class SQLInstruct implements Serializable {
 
     //Database Configs:
-//    public static final String dbAdress="jdbc:mysql://localhost:3306/etoilev3";
-//        public static final String dbUsername="root";
-//    public static final String dbPassword="";
     public static final String dbAdress = "jdbc:mysql://localhost:3306/etoilev3";
-    public static final String dbUsername = "etoilev3";
-    public static final String dbPassword = "webetoile12";
+    public static final String dbUsername = "root";
+    public static final String dbPassword = "";
+//    public static final String dbAdress = "jdbc:mysql://localhost:3306/etoilev3";
+//    public static final String dbUsername = "etoilev3";
+//    public static final String dbPassword = "webetoile12";
 
     // fazer no cmd ssh -L 3306:localhost:3306 -l user v3.etoilecascadesideas.eu
     public static String login(String username, String parseSHA1Password) {

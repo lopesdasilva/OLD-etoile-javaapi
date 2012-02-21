@@ -11,22 +11,62 @@ import java.util.LinkedList;
  *
  * @author Rui
  */
-public class OneChoiceQuestion extends Question implements Serializable{
+public class OneChoiceQuestion extends Question implements Serializable {
 
     public String text;
-    
     public int id;
-    
-    public LinkedList<String> possibleAnswers= new LinkedList<String>();
-    
-    public String userAnswer;
-    
+    public LinkedList<String> possibleAnswers = new LinkedList<String>();
+    public String userAnswer="";
     public String correctAnswer;
-    
     public QuestionType questionType = QuestionType.ONE_CHOICE;
-    private LinkedList<URL> urls=new LinkedList<URL>();
-    
-    public OneChoiceQuestion(int id, String text){
+    private LinkedList<URL> urls = new LinkedList<URL>();
+    private boolean isFirst = false;
+    private boolean isLast = false;
+    private boolean isOneChoice = true;
+    private boolean isMultipleChoice = false;
+    private boolean isOpen = false;
+
+    public boolean isIsMultipleChoice() {
+        return isMultipleChoice;
+    }
+
+    public void setIsMultipleChoice(boolean isMultipleChoice) {
+        this.isMultipleChoice = isMultipleChoice;
+    }
+
+    public boolean isIsOneChoice() {
+        return isOneChoice;
+    }
+
+    public void setIsOneChoice(boolean isOneChoice) {
+        this.isOneChoice = isOneChoice;
+    }
+
+    public boolean isIsOpen() {
+        return isOpen;
+    }
+
+    public void setIsOpen(boolean isOpen) {
+        this.isOpen = isOpen;
+    }
+
+    public boolean isIsFirst() {
+        return isFirst;
+    }
+
+    public boolean isIsLast() {
+        return isLast;
+    }
+
+    public void setIsFirst(boolean isFirst) {
+        this.isFirst = isFirst;
+    }
+
+    public void setIsLast(boolean isLast) {
+        this.isLast = isLast;
+    }
+
+    public OneChoiceQuestion(int id, String text) {
         this.text = text;
         this.id = id;
     }
@@ -37,11 +77,12 @@ public class OneChoiceQuestion extends Question implements Serializable{
         this.possibleAnswers = possibleAnswers;
         this.correctAnswer = correctAnswer;
     }
-    
-    public boolean addPossibleAnswser(String possibleAnswer){
+
+    public boolean addPossibleAnswser(String possibleAnswer) {
         possibleAnswers.add(possibleAnswer);
         return true;
     }
+
     @Override
     public String getText() {
         return text;
@@ -49,7 +90,7 @@ public class OneChoiceQuestion extends Question implements Serializable{
 
     @Override
     public int getId() {
-       return id;
+        return id;
     }
 
     @Override
@@ -60,7 +101,7 @@ public class OneChoiceQuestion extends Question implements Serializable{
 
     @Override
     public QuestionType getQuestionType() {
-      return questionType;
+        return questionType;
     }
 
     public LinkedList<String> getPossibleAnswers() {
@@ -69,18 +110,18 @@ public class OneChoiceQuestion extends Question implements Serializable{
 
     @Override
     public boolean setPossibleAnswers(LinkedList<String> possibleAnswers) {
-        this.possibleAnswers=possibleAnswers;
+        this.possibleAnswers = possibleAnswers;
         return true;
     }
 
     @Override
     public void setCorrectAnswer(String correctAnswer) {
-        this.correctAnswer=correctAnswer;
+        this.correctAnswer = correctAnswer;
     }
 
     @Override
     public String getCorrectAnswer() {
-       return correctAnswer;
+        return correctAnswer;
     }
 
     @Override
@@ -97,17 +138,18 @@ public class OneChoiceQuestion extends Question implements Serializable{
     public LinkedList<String> getCorrectAnswers() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
-      @Override
+
+    @Override
     public LinkedList<URL> getURLS() {
         return urls;
     }
 
     @Override
     public boolean setURLS(LinkedList<URL> urls) {
-        this.urls=urls;
+        this.urls = urls;
         return true;
     }
+
     @Override
     public void addURL(URL url) {
         urls.add(url);
@@ -122,5 +164,14 @@ public class OneChoiceQuestion extends Question implements Serializable{
     public LinkedList<String> getAnswers() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
+
+    @Override
+    public boolean isFirst() {
+        return isFirst;
+    }
+
+    @Override
+    public boolean isLast() {
+        return isLast;
+    }
 }

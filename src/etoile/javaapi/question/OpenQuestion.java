@@ -11,78 +11,125 @@ import java.util.LinkedList;
  *
  * @author Rui
  */
-public class OpenQuestion extends Question implements Serializable{
+public class OpenQuestion extends Question implements Serializable {
+
     public String text;
     public int id;
     public String userAnswer;
     public QuestionType questionType = QuestionType.OPEN;
-    private LinkedList<URL> urls=new LinkedList<URL>();
+    private LinkedList<URL> urls = new LinkedList<URL>();
+    private boolean isFirst = false;
+    private boolean isLast = false;
+    private boolean isOpen = true;
+    private boolean isOneChoice = false;
+    private boolean isMultipleChoice = false;
 
-    public OpenQuestion(int id,String text) {
+    public boolean isIsMultipleChoice() {
+        return isMultipleChoice;
+    }
+
+    public boolean isIsOneChoice() {
+        return isOneChoice;
+    }
+
+    public void setIsMultipleChoice(boolean isMultipleChoice) {
+        this.isMultipleChoice = isMultipleChoice;
+    }
+
+    public void setIsOneChoice(boolean isOneChoice) {
+        this.isOneChoice = isOneChoice;
+    }
+
+    public boolean isIsOpen() {
+        return isOpen;
+    }
+
+    public void setIsOpen(boolean isOpen) {
+        this.isOpen = isOpen;
+    }
+
+    public boolean isIsFirst() {
+        return isFirst;
+    }
+
+    public boolean isIsLast() {
+        return isLast;
+    }
+
+    public OpenQuestion(int id, String text) {
         this.text = text;
         this.id = id;
     }
 
     @Override
     public String getText() {
-       return text;
+        return text;
     }
 
     @Override
     public int getId() {
-       return id;
+        return id;
     }
 
     @Override
     public boolean setAnswer(String userAnswser) {
-        this.userAnswer=userAnswser;
+        this.userAnswer = userAnswser;
         return true;
     }
-    
-    public String getAnswer(){
+
+    public String getAnswer() {
         return this.userAnswer;
     }
 
     @Override
     public QuestionType getQuestionType() {
-       return questionType;
+        return questionType;
     }
 
     /**
      * Don't use this!
-     * @return 
+     *
+     * @return
      */
     @Override
     public LinkedList<String> getPossibleAnswers() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-/**
+
+    /**
      * Don't use this!
-     * @return 
+     *
+     * @return
      */
     @Override
     public boolean setPossibleAnswers(LinkedList<String> possibleAnswers) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
     /**
      * Don't use this!
-     * @return 
+     *
+     * @return
      */
     @Override
     public boolean addPossibleAnswser(String possibleAnswer) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
     /**
      * Don't use this!
-     * @return 
+     *
+     * @return
      */
     @Override
     public void setCorrectAnswer(String correctAnswer) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
     /**
      * Don't use this!
-     * @return 
+     *
+     * @return
      */
     @Override
     public String getCorrectAnswer() {
@@ -111,7 +158,7 @@ public class OpenQuestion extends Question implements Serializable{
 
     @Override
     public boolean setURLS(LinkedList<URL> urls) {
-        this.urls=urls;
+        this.urls = urls;
         return true;
     }
 
@@ -124,6 +171,14 @@ public class OpenQuestion extends Question implements Serializable{
     public LinkedList<String> getAnswers() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
-    
+
+    @Override
+    public boolean isFirst() {
+        return isFirst;
+    }
+
+    @Override
+    public boolean isLast() {
+        return isLast;
+    }
 }

@@ -20,6 +20,51 @@ public class MultipleChoiceQuestion extends Question implements Serializable {
     public LinkedList<String> correctAnswers = new LinkedList<String>();
     public QuestionType questionType = QuestionType.MULTIPLE_CHOICE;
     private LinkedList<URL> urls = new LinkedList<URL>();
+    private boolean isFirst = false;
+    private boolean isLast = false;
+    private boolean isOneChoice = false;
+    private boolean isMultipleChoice = true;
+    private boolean isOpen = false;
+
+    public boolean isIsMultipleChoice() {
+        return isMultipleChoice;
+    }
+
+    public void setIsMultipleChoice(boolean isMultipleChoice) {
+        this.isMultipleChoice = isMultipleChoice;
+    }
+
+    public boolean isIsOneChoice() {
+        return isOneChoice;
+    }
+
+    public void setIsOneChoice(boolean isOneChoice) {
+        this.isOneChoice = isOneChoice;
+    }
+
+    public boolean isIsOpen() {
+        return isOpen;
+    }
+
+    public void setIsOpen(boolean isOpen) {
+        this.isOpen = isOpen;
+    }
+
+    public boolean isIsFirst() {
+        return isFirst;
+    }
+
+    public boolean isIsLast() {
+        return isLast;
+    }
+
+    public void setIsFirst(boolean isFirst) {
+        this.isFirst = isFirst;
+    }
+
+    public void setIsLast(boolean isLast) {
+        this.isLast = isLast;
+    }
 
     public MultipleChoiceQuestion(int id, String text) {
         this.text = text;
@@ -127,5 +172,15 @@ public class MultipleChoiceQuestion extends Question implements Serializable {
     @Override
     public LinkedList<String> getAnswers() {
         return userAnswer;
+    }
+
+    @Override
+    public boolean isFirst() {
+        return isFirst;
+    }
+
+    @Override
+    public boolean isLast() {
+        return isLast;
     }
 }

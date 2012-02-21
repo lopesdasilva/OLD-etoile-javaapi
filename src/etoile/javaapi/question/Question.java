@@ -48,5 +48,10 @@ public abstract class Question implements Serializable{
     
     public abstract boolean addPossibleAnswser(String possibleAnswer);
     
+    public abstract boolean isFirst();
+    
+    public abstract boolean isLast();
+    
+    
     
 }
