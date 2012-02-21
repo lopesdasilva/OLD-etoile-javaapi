@@ -98,7 +98,7 @@ public class UserService implements Serializable{
             String sqlStatement_correct = SQLInstruct.getOpenQuestionAnswer(rSet.getInt(1), current_student.getId());
             ResultSet rSet_answer = db.queryDB(sqlStatement_correct);
             if (rSet_answer.next()) {
-                q.setAnswer(rSet_answer.getString(1));
+                q.setUserAnswer(rSet_answer.getString(1));
             }
 
         }
@@ -125,7 +125,7 @@ public class UserService implements Serializable{
             String sqlStatement_correct = SQLInstruct.getOneChoiceAnswer(rSet.getInt(1), current_student.getId());
             ResultSet rSet_answer = db.queryDB(sqlStatement_correct);
             if (rSet_answer.next()) {
-                op.setAnswer(rSet_answer.getString(1));
+                op.setUserAnswer(rSet_answer.getString(1));
             }
 
         }

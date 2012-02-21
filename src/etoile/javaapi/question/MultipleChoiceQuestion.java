@@ -25,6 +25,7 @@ public class MultipleChoiceQuestion extends Question implements Serializable {
     private boolean isOneChoice = false;
     private boolean isMultipleChoice = true;
     private boolean isOpen = false;
+    private int number;
 
     public boolean isIsMultipleChoice() {
         return isMultipleChoice;
@@ -95,7 +96,7 @@ public class MultipleChoiceQuestion extends Question implements Serializable {
      * @return always false
      */
     @Override
-    public boolean setAnswer(String userAnswer) {
+    public boolean setUserAnswer(String userAnswer) {
         return false;
     }
 
@@ -165,7 +166,7 @@ public class MultipleChoiceQuestion extends Question implements Serializable {
     }
 
     @Override
-    public String getAnswer() {
+    public String getUserAnswer() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -182,5 +183,15 @@ public class MultipleChoiceQuestion extends Question implements Serializable {
     @Override
     public boolean isLast() {
         return isLast;
+    }
+
+    @Override
+    public int getNumber() {
+        return number;
+    }
+
+    @Override
+    public void setNumber(int number) {
+       this.number=number;
     }
 }

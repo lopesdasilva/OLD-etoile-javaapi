@@ -23,6 +23,7 @@ public class OpenQuestion extends Question implements Serializable {
     private boolean isOpen = true;
     private boolean isOneChoice = false;
     private boolean isMultipleChoice = false;
+    private int number;
 
     public boolean isIsMultipleChoice() {
         return isMultipleChoice;
@@ -72,12 +73,12 @@ public class OpenQuestion extends Question implements Serializable {
     }
 
     @Override
-    public boolean setAnswer(String userAnswser) {
+    public boolean setUserAnswer(String userAnswser) {
         this.userAnswer = userAnswser;
         return true;
     }
 
-    public String getAnswer() {
+    public String getUserAnswer() {
         return this.userAnswer;
     }
 
@@ -180,5 +181,15 @@ public class OpenQuestion extends Question implements Serializable {
     @Override
     public boolean isLast() {
         return isLast;
+    }
+
+    @Override
+    public int getNumber() {
+        return number;
+    }
+
+    @Override
+    public void setNumber(int number) {
+        this.number=number;
     }
 }

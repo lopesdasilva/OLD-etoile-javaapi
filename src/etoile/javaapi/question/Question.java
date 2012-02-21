@@ -32,11 +32,11 @@ public abstract class Question implements Serializable{
     
     public abstract int getId();
     
-    public abstract String getAnswer();
+    public abstract String getUserAnswer();
     
     public abstract LinkedList<String> getAnswers();
        
-    public abstract boolean setAnswer(String userAnswer);
+    public abstract boolean setUserAnswer(String userAnswer);
     
     public abstract boolean setAnswers(LinkedList<String> userAnswer);
     
@@ -52,6 +52,9 @@ public abstract class Question implements Serializable{
     
     public abstract boolean isLast();
     
+    public abstract int getNumber();
+    
+    public abstract void setNumber(int number);
     
     
 }
