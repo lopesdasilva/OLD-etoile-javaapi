@@ -31,10 +31,10 @@ public class EtoileJavaapi {
         try {
             ServiceManager manager = new ServiceManager();
             System.out.println(manager.setAuthentication("rui", "40bd001563085fc35165329ea1ff5c5ecbdbbeef"));
+            
+            //Student student = new Student("teste", "40bd001563085fc35165329ea1ff5c5ecbdbbeef", "Ruben", "Paixao", "r@r.r");
 
-            Student student = new Student("teste", "40bd001563085fc35165329ea1ff5c5ecbdbbeef", "Ruben", "Paixao", "r@r.r");
-
-            manager.userService().updateCourses(student_id);
+           manager.userService().updateCourses(student_id);
 
             for (Course c : manager.current_student.getCourses()) {
                 System.out.println("CURSO: " + c.getName());
@@ -50,15 +50,20 @@ public class EtoileJavaapi {
                         for (Test t : m.getTests()) {
                             System.out.println("**TESTE : " + t.getName());
                             manager.userService().updateQuestions(t);
-
+                            
                             for (Question element : t.getQuestions()) {
                                 switch (element.getQuestionType()) {
                                     case MULTIPLE_CHOICE:
                                         System.out.println("Escolha Multipla");
                                         System.out.println("Pergunta " + element.getText());
+                                        System.out.println("URL's: ");
+                                        for(URL url: element.getURLS()){
+                                            System.out.println(" "+ url.getName() +": " + url.getUrl() + "-> " + url.getVotes());
+                                        }
                                         System.out.println("Hipoteses: ");
                                         for (String s : element.getPossibleAnswers()) {
                                             System.out.print("  " + s);
+                                                                                        
                                         }
                                         System.out.println();
                                         System.out.println("Respostas Correctas: " );
@@ -66,14 +71,18 @@ public class EtoileJavaapi {
                                             System.out.print("  " + s);
                                         }
                                         System.out.println("\nRespostas do aluno: ");
-                                         for (String asd : element.getAnswers()) {
-                                            System.out.print("  " + asd);
+                                         for (String s : element.getAnswers()) {
+                                            System.out.print("  " + s);
                                         }
                                         System.out.println();
                                         break;
                                     case ONE_CHOICE:
                                         System.out.println("Uma Escolha");
                                         System.out.println("Pergunta " + element.getText());
+                                        System.out.println("URL's: ");
+                                        for(URL url: element.getURLS()){
+                                            System.out.println(" "+ url.getName() +": " + url.getUrl()+ "-> " + url.getVotes() );
+                                        }
                                         System.out.print("Hipoteses:");
                                         for (String s : element.getPossibleAnswers()) {
                                             System.out.print("  " + s);
@@ -85,6 +94,10 @@ public class EtoileJavaapi {
                                     case OPEN:
                                         System.out.println("Pergunta Aberta");
                                         System.out.println("Pergunta " + element.getText());
+                                        System.out.println("URL's: ");
+                                        for(URL url: element.getURLS()){
+                                            System.out.println(" "+ url.getName() +": " + url.getUrl() + "-> " + url.getVotes());
+                                        }
                                         System.out.println("Resposta do Aluno: " + element.getUserAnswer());
                                         break;
                                 }

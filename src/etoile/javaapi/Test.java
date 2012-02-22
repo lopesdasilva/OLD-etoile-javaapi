@@ -42,6 +42,7 @@ public class Test implements Serializable{
         this.description = description;
         this.beginDate = beginDate;
         this.endDate = endDate;
+                
     }
     
     public String getAuthor() {

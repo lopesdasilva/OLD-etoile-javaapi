@@ -12,6 +12,7 @@ public class SQLInstruct implements Serializable {
     public static final String dbAdress = "jdbc:mysql://localhost:3306/etoilev3";
     public static final String dbUsername = "root";
     public static final String dbPassword = "";
+    //public static final String dbPassword = "etoile";
 //    public static final String dbAdress = "jdbc:mysql://localhost:3306/etoilev3";
 //    public static final String dbUsername = "etoilev3";
 //    public static final String dbPassword = "webetoile12";
@@ -48,17 +49,17 @@ public class SQLInstruct implements Serializable {
     }
 
     public static String getOpenQuestions(int test_id) {
-        return "SELECT openquestion.id, openquestion.text FROM test, test_openquestion,openquestion WHERE "
+        return "SELECT openquestion.id, openquestion.text , test_openquestion.number FROM test, test_openquestion,openquestion WHERE "
                 + "test.id='" + test_id + "' AND test.id=test_openquestion.test_id AND test_openquestion.openquestion_id=openquestion.id";
     }
 
     public static String getOneChoiceQuestions(int test_id) {
-        return "SELECT onechoicequestion.id, onechoicequestion.text FROM test, test_onechoicequestion,onechoicequestion WHERE "
+        return "SELECT onechoicequestion.id, onechoicequestion.text, test_onechoicequestion.number FROM test, test_onechoicequestion,onechoicequestion WHERE "
                 + "test.id='" + test_id + "' AND test.id=test_onechoicequestion.test_id AND test_onechoicequestion.onechoicequestion_id=onechoicequestion.id";
     }
 
     public static String getMultipleChoiceQuestions(int test_id) {
-        return "SELECT multiplechoicequestion.id, multiplechoicequestion.text FROM test, test_multiplechoicequestion,multiplechoicequestion WHERE "
+        return "SELECT multiplechoicequestion.id, multiplechoicequestion.text, test_multiplechoicequestion.number FROM test, test_multiplechoicequestion,multiplechoicequestion WHERE "
                 + "test.id='" + test_id + "' AND test.id=test_multiplechoicequestion.test_id "
                 + "AND test_multiplechoicequestion.multiplechoicequestion_id=multiplechoicequestion.id";
     }
@@ -108,6 +109,20 @@ public class SQLInstruct implements Serializable {
                 + "multiplechoiceanswer.hypothesis_id=hypothesis.id";
     }
 
+    public static String getMultipleChoiceURLs(int question_id) {
+        return "SELECT url.id, url.name, url.url, url.votes FROM url,multiplechoicequestion_url,multiplechoicequestion WHERE "
+                +"multiplechoicequestion.id="+question_id+" AND multiplechoicequestion.id=multiplechoicequestion_url.multiplechoicequestion_id AND multiplechoicequestion_url.url_id=url.id";
+    }
+    
+     public static String getOneChoiceURLs(int question_id) {
+         return "SELECT url.id, url.name, url.url, url.votes FROM url,onechoicequestion_url,onechoicequestion WHERE "
+                +"onechoicequestion.id="+question_id+" AND onechoicequestion.id=onechoicequestion_url.onechoicequestion_id AND onechoicequestion_url.url_id=url.id";
+     }
+     
+     public static String getOpenQuestionURLs(int question_id) {
+         return "SELECT url.id, url.name, url.url, url.votes FROM url,openquestion_url,openquestion WHERE "
+                +"openquestion.id="+question_id+" AND openquestion.id=openquestion_url.openquestion_id AND openquestion_url.url_id=url.id";
+     }
     //INSERTS
     public static String addStudent(String username, String password, String firstname, String surname, String email) {
 

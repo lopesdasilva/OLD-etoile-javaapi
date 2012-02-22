@@ -7,10 +7,7 @@ package services;
 import db.DBConnect;
 import db.SQLInstruct;
 import etoile.javaapi.*;
-import etoile.javaapi.question.MultipleChoiceQuestion;
-import etoile.javaapi.question.OneChoiceQuestion;
-import etoile.javaapi.question.OpenQuestion;
-import etoile.javaapi.question.Question;
+import etoile.javaapi.question.*;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -82,19 +79,25 @@ public class UserService implements Serializable{
     }
 
     public void updateQuestions(Test test) throws SQLException {
-        getOpenQuestions(test);
-        getOneChoiceQuestions(test);
-        getMultipleChoiceQuestions(test);
+        LinkedList<Question> openquestions = getOpenQuestions(test);
+        getOpenQuestionURLs(openquestions);
+        LinkedList<Question> onechoicequestions =getOneChoiceQuestions(test);
+        getOneChoiceQuestionURLs(onechoicequestions);
+        LinkedList<Question> multiplechoicequestions = getMultipleChoiceQuestions(test);
+        getMultipleChoiceQuestionURLs(multiplechoicequestions);
 
     }
 
-    private void getOpenQuestions(Test test) throws SQLException {
+    private LinkedList<Question> getOpenQuestions(Test test) throws SQLException {
         //OPENQUESTIONS
         String sqlStatement = SQLInstruct.getOpenQuestions(test.getId());
         ResultSet rSet = db.queryDB(sqlStatement);
+        LinkedList<Question> questions = new LinkedList<Question>();
         while (rSet.next()) {
             Question q = new OpenQuestion(rSet.getInt(1), rSet.getString(2));
+            q.setNumber(rSet.getInt(3));
             test.addQuestion(q);
+            questions.add(q);
             String sqlStatement_correct = SQLInstruct.getOpenQuestionAnswer(rSet.getInt(1), current_student.getId());
             ResultSet rSet_answer = db.queryDB(sqlStatement_correct);
             if (rSet_answer.next()) {
@@ -102,15 +105,18 @@ public class UserService implements Serializable{
             }
 
         }
+        return questions;
     }
 
-    private void getOneChoiceQuestions(Test test) throws SQLException {
+    private LinkedList<Question> getOneChoiceQuestions(Test test) throws SQLException {
         String sqlStatement = SQLInstruct.getOneChoiceQuestions(test.getId());
         ResultSet rSet = db.queryDB(sqlStatement);
+        LinkedList<Question> questions = new LinkedList<Question>();
         while (rSet.next()) {
             OneChoiceQuestion op = new OneChoiceQuestion(rSet.getInt(1), rSet.getString(2));
+            op.setNumber(rSet.getInt(3));
             test.addQuestion(op);
-
+            questions.add(op);
             //Hypothesis
             String sqlStatement_hypothesis = SQLInstruct.getOneChoiceHypothesis(rSet.getInt(1));
             ResultSet rSet_hypothesis = db.queryDB(sqlStatement_hypothesis);
@@ -129,15 +135,19 @@ public class UserService implements Serializable{
             }
 
         }
+        
+        return questions;
     }
 
-    private void getMultipleChoiceQuestions(Test test) throws SQLException {
+        public LinkedList<Question> getMultipleChoiceQuestions(Test test) throws SQLException {
         String sqlStatement = SQLInstruct.getMultipleChoiceQuestions(test.getId());
         ResultSet rSet = db.queryDB(sqlStatement);
+        LinkedList<Question> questions = new LinkedList<Question>();
         while (rSet.next()) {
             MultipleChoiceQuestion mp = new MultipleChoiceQuestion(rSet.getInt(1), rSet.getString(2));
+            mp.setNumber(rSet.getInt(3));
             test.addQuestion(mp);
-
+            questions.add(mp);
             //Hypothesis
             String sqlStatement_hypothesis = SQLInstruct.getMultipleChoiceHypothesis(rSet.getInt(1));
             ResultSet rSet_hypothesis = db.queryDB(sqlStatement_hypothesis);
@@ -157,8 +167,41 @@ public class UserService implements Serializable{
             }
             mp.setAnswers(answers);
         }
+        
+        return questions;
     }
     
+     private void getOpenQuestionURLs(LinkedList<Question> questions) throws SQLException {
+      for(Question q : questions){
+          String sqlStatement = SQLInstruct.getOpenQuestionURLs(q.getId());
+          ResultSet rSet = db.queryDB(sqlStatement);
+          while(rSet.next()){
+              q.addURL(new URL(rSet.getInt(1),rSet.getString(2),rSet.getString(3),"noname",rSet.getInt(4)));
+          }
+      }
+    }
+     
+    private void getOneChoiceQuestionURLs(LinkedList<Question> questions) throws SQLException {
+        for(Question q : questions){
+          String sqlStatement = SQLInstruct.getOneChoiceURLs(q.getId());
+          ResultSet rSet = db.queryDB(sqlStatement);
+          while(rSet.next()){
+              q.addURL(new URL(rSet.getInt(1),rSet.getString(2),rSet.getString(3),"noname",rSet.getInt(4)));
+          }
+      }
+    } 
+    
+     private void getMultipleChoiceQuestionURLs(LinkedList<Question> questions) throws SQLException {
+       for(Question q : questions){
+          String sqlStatement = SQLInstruct.getMultipleChoiceURLs(q.getId());
+          ResultSet rSet = db.queryDB(sqlStatement);
+          while(rSet.next()){
+              q.addURL(new URL(rSet.getInt(1),rSet.getString(2),rSet.getString(3),"noname",rSet.getInt(4)));
+          }
+      } 
+    } 
+     
+     
      public Discipline getDiscipline(String name){
        
         for(Course c : current_student.getCourses()){
@@ -181,6 +224,10 @@ public class UserService implements Serializable{
         }
         return null;
     }
+
+    
+
+   
 
    
 }

@@ -11,18 +11,25 @@ import java.io.Serializable;
  * @author Rui
  */
 public class URL implements Serializable{
+    int id;
     
     String url;
     
     String name;
     
     String username;
+    
+    int votes;
 
-    public URL(String url, String name, String username) {
+    public URL(int id, String url, String name, String username, int votes) {
+        this.id = id;
         this.url = url;
         this.name = name;
         this.username = username;
+        this.votes = votes;
     }
+
+
 
     public void setName(String name) {
         this.name = name;
@@ -49,5 +56,8 @@ public class URL implements Serializable{
         this.username = username;
     }
     
+    public int getVotes(){
+        return votes;
+    }
     
 }
