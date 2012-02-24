@@ -42,6 +42,13 @@ public class UserService implements Serializable{
     public void addStudent(Student student) throws SQLException {
         String sqlStatement = SQLInstruct.addStudent(student.getUsername(), student.getPassword(), student.getFirstname(), student.getLastname(), student.getEmail());
         db.updateDB(sqlStatement);
+        System.out.println("SELECT id FROM student WHERE student.username = "+student.getUsername()+"");
+        ResultSet rSet = db.queryDB("SELECT id FROM student WHERE student.username = '"+student.getUsername()+"'");
+        while(rSet.next()){
+        String statmentAddCourse = SQLInstruct.registerStudentCourse(rSet.getInt(1),1);
+        db.updateDB(statmentAddCourse);
+        }
+        
     }
 
     public void updateDisciplines(Course course) throws SQLException {

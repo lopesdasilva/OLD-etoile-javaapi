@@ -27,7 +27,7 @@ public class SQLInstruct implements Serializable {
     public static String getCourses(int student_id) {
         return "SELECT course.id,course.name from student,student_course, course "
                 + "WHERE student.id='" + student_id + "' AND student.id=student_course.student_id "
-                + "AND student_course.student_id=course.id";
+                + "AND student_course.course_id=course.id";
     }
 
     public static String getDisciplines(int course_id) {
@@ -126,6 +126,12 @@ public class SQLInstruct implements Serializable {
     //INSERTS
     public static String addStudent(String username, String password, String firstname, String surname, String email) {
 
-        return "INSERT INTO student (username, password, firstname, surname, email) VALUES ('" + username + "', '" + password + "','" + firstname + "','" + surname + "','" + email + "')";
+        return "INSERT INTO student (username, password, firstname, surname, email) VALUES ('" + username + "', '" + password + "','" + firstname + "','" + surname + "','" + email + "');";
     }
+    
+    public static String registerStudentCourse(int student_id, int course_id){
+        return "INSERT INTO student_course (student_id, course_id) VALUES( '"+student_id+"','"+course_id+"')";
+    }
+    
+   
 }
