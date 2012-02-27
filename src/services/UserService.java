@@ -252,6 +252,27 @@ public class UserService implements Serializable{
     
     }
     
+    public void updateOneChoiceQuestion(){
+        
+    }
+    
+    public void updateMultipleChoiceQuestion(){
+        
+    }
+    
+    public void vote() throws SQLException{
+        int url_id=0;//obter id do url
+        String sqlStatement = SQLInstruct.vote(url_id);
+        db.updateDB(sqlStatement);
+    }
+    
+    public void addURL() throws SQLException{
+        String name = ""; //obter name
+        String url = ""; //obter url
+        String sqlStatement = SQLInstruct.addUrl(name, url);
+        db.updateDB(sqlStatement);
+    }
+    
    
 
    

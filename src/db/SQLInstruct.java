@@ -141,5 +141,13 @@ public class SQLInstruct implements Serializable {
         return "UPDATE openanswer SET openanswer.text='answer' WHERE EXISTS"
             +" (SELECT openanswer.id FROM student WHERE"
             +" openanswer.id='"+answer_id+"')";
-    }   
+    }
+    
+    public static String vote(int url_id){
+        return "UPDATE url SET votes=(votes+1) where id='"+url_id+"';";
+    }
+    
+    public static String addUrl(String name, String url){
+        return "INSERT INTO url (name,url) VALUES ('"+name+"','"+url+"')";
+    }
 }
