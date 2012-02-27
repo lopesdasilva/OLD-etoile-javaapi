@@ -15,7 +15,6 @@ public class OpenQuestion extends Question implements Serializable, Comparable<Q
 
     public String text;
     public int id;
-    public String userAnswer;
     public QuestionType questionType = QuestionType.OPEN;
     private LinkedList<URL> urls = new LinkedList<URL>();
     private boolean isFirst = false;
@@ -24,6 +23,9 @@ public class OpenQuestion extends Question implements Serializable, Comparable<Q
     private boolean isOneChoice = false;
     private boolean isMultipleChoice = false;
     private int number;
+    
+    public String userAnswer;
+    private int answer_id;
 
     public boolean isIsMultipleChoice() {
         return isMultipleChoice;
@@ -194,11 +196,7 @@ public class OpenQuestion extends Question implements Serializable, Comparable<Q
     }
 
     @Override
-    public int compareTo(Question t) {
-       if(t.getNumber()>this.number)
-           return -1;
-       if (t.getNumber()==this.number)
-           return 0;
-       return 1;
+    public void setAnswerId(int aInt) {
+        this.answer_id = aInt;
     }
 }

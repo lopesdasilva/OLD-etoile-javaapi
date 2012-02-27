@@ -194,13 +194,9 @@ public class MultipleChoiceQuestion extends Question implements Serializable, Co
     public void setNumber(int number) {
        this.number=number;
     }
-    
+
     @Override
-    public int compareTo(Question t) {
-       if(t.getNumber()>this.number)
-           return -1;
-       if (t.getNumber()==this.number)
-           return 0;
-       return 1;
+    public void setAnswerId(int aInt) {
+         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

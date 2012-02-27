@@ -88,6 +88,7 @@ public class UserService implements Serializable{
     }
 
     public void updateQuestions(Test test) throws SQLException {
+        
         LinkedList<Question> openquestions = getOpenQuestions(test);
         getOpenQuestionURLs(openquestions);
         LinkedList<Question> onechoicequestions =getOneChoiceQuestions(test);
@@ -111,7 +112,12 @@ public class UserService implements Serializable{
             String sqlStatement_correct = SQLInstruct.getOpenQuestionAnswer(rSet.getInt(1), current_student.getId());
             ResultSet rSet_answer = db.queryDB(sqlStatement_correct);
             if (rSet_answer.next()) {
-                q.setUserAnswer(rSet_answer.getString(1));
+                q.setUserAnswer(rSet_answer.getString(2));
+                q.setAnswerId(rSet_answer.getInt(1));
+            }else {
+                String sqlStatementAddAnswer = SQLInstruct.insertOpenQuestionAnswer(current_student.getId(), q.getId(), "Sem Resposta.");
+                db.updateDB(sqlStatementAddAnswer);
+                q.setUserAnswer("Sem Resposta.");
             }
 
         }
@@ -237,6 +243,39 @@ public class UserService implements Serializable{
 
     
 
+    //UPDATE QUESTIONS
+    
+    public void updateOpenQuestion() throws SQLException{
+        int answer_id=0; //este valor é obtido após ser feito um get na Question.getAnswerId();
+        String question="";
+        
+        String sqlStatement = SQLInstruct.updateOpenQuetionAnswer(answer_id, question);
+        db.updateDB(sqlStatement);
+        
+    
+    }
+    
+    public void updateOneChoiceQuestion(){
+        
+    }
+    
+    public void updateMultipleChoiceQuestion(){
+        
+    }
+    
+    public void vote() throws SQLException{
+        int url_id=0;//obter id do url
+        String sqlStatement = SQLInstruct.vote(url_id);
+        db.updateDB(sqlStatement);
+    }
+    
+    public void addURL() throws SQLException{
+        String name = ""; //obter name
+        String url = ""; //obter url
+        String sqlStatement = SQLInstruct.addUrl(name, url);
+        db.updateDB(sqlStatement);
+    }
+    
    
 
    

@@ -26,6 +26,8 @@ public class OneChoiceQuestion extends Question implements Serializable, Compara
     private boolean isMultipleChoice = false;
     private boolean isOpen = false;
     private int number;
+    private int answer_id;
+    
 
     public boolean isIsMultipleChoice() {
         return isMultipleChoice;
@@ -185,13 +187,9 @@ public class OneChoiceQuestion extends Question implements Serializable, Compara
     public void setNumber(int number) {
         this.number=number;
     }
-    
+
     @Override
-    public int compareTo(Question t) {
-       if(t.getNumber()>this.number)
-           return -1;
-       if (t.getNumber()==this.number)
-           return 0;
-       return 1;
+    public void setAnswerId(int aInt) {
+       this.answer_id=aInt;
     }
 }
