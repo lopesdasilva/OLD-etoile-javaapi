@@ -15,7 +15,6 @@ public class OpenQuestion extends Question implements Serializable {
 
     public String text;
     public int id;
-    public String userAnswer;
     public QuestionType questionType = QuestionType.OPEN;
     private LinkedList<URL> urls = new LinkedList<URL>();
     private boolean isFirst = false;
@@ -24,6 +23,9 @@ public class OpenQuestion extends Question implements Serializable {
     private boolean isOneChoice = false;
     private boolean isMultipleChoice = false;
     private int number;
+    
+    public String userAnswer;
+    private int answer_id;
 
     public boolean isIsMultipleChoice() {
         return isMultipleChoice;
@@ -191,5 +193,10 @@ public class OpenQuestion extends Question implements Serializable {
     @Override
     public void setNumber(int number) {
         this.number=number;
+    }
+
+    @Override
+    public void setAnswerId(int aInt) {
+        this.answer_id = aInt;
     }
 }

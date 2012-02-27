@@ -26,6 +26,8 @@ public class OneChoiceQuestion extends Question implements Serializable {
     private boolean isMultipleChoice = false;
     private boolean isOpen = false;
     private int number;
+    private int answer_id;
+    
 
     public boolean isIsMultipleChoice() {
         return isMultipleChoice;
@@ -184,5 +186,10 @@ public class OneChoiceQuestion extends Question implements Serializable {
     @Override
     public void setNumber(int number) {
         this.number=number;
+    }
+
+    @Override
+    public void setAnswerId(int aInt) {
+       this.answer_id=aInt;
     }
 }

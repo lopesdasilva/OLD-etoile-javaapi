@@ -11,8 +11,8 @@ public class SQLInstruct implements Serializable {
     //Database Configs:
     public static final String dbAdress = "jdbc:mysql://localhost:3306/etoilev3";
     public static final String dbUsername = "root";
-    public static final String dbPassword = "";
-    //public static final String dbPassword = "etoile";
+    //public static final String dbPassword = "";
+    public static final String dbPassword = "etoile";
 //    public static final String dbAdress = "jdbc:mysql://localhost:3306/etoilev3";
 //    public static final String dbUsername = "etoilev3";
 //    public static final String dbPassword = "webetoile12";
@@ -99,7 +99,7 @@ public class SQLInstruct implements Serializable {
     }
 
     public static String getOpenQuestionAnswer(int question_id, int student_id) {
-        return "SELECT openanswer.text FROM openanswer,student,openquestion WHERE "
+        return "SELECT openanswer.id, openanswer.text FROM openanswer,student,openquestion WHERE "
                 + "student.id='" + student_id + "' AND openquestion.id='" + question_id + "' AND student.id=openanswer.student_id AND openanswer.openquestion_id=openquestion.id";
     }
 
@@ -133,5 +133,13 @@ public class SQLInstruct implements Serializable {
         return "INSERT INTO student_course (student_id, course_id) VALUES( '"+student_id+"','"+course_id+"')";
     }
     
-   
+    public static String insertOpenQuestionAnswer(int student_id, int question_id, String answer){
+        return "INSERT INTO openanswer ( student_id, openquestion_id, text ) VALUES ( '"+student_id+"','"+question_id+"','"+answer+"' )";
+    }
+    
+    public static String updateOpenQuetionAnswer(int answer_id, String answer){
+        return "UPDATE openanswer SET openanswer.text='answer' WHERE EXISTS"
+            +" (SELECT openanswer.id FROM student WHERE"
+            +" openanswer.id='"+answer_id+"')";
+    }   
 }

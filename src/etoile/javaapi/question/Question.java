@@ -55,6 +55,8 @@ public abstract class Question implements Serializable{
     public abstract int getNumber();
     
     public abstract void setNumber(int number);
+
+    public abstract  void setAnswerId(int aInt) ;
     
     
 }

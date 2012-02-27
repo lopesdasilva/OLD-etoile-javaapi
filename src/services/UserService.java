@@ -108,7 +108,12 @@ public class UserService implements Serializable{
             String sqlStatement_correct = SQLInstruct.getOpenQuestionAnswer(rSet.getInt(1), current_student.getId());
             ResultSet rSet_answer = db.queryDB(sqlStatement_correct);
             if (rSet_answer.next()) {
-                q.setUserAnswer(rSet_answer.getString(1));
+                q.setUserAnswer(rSet_answer.getString(2));
+                q.setAnswerId(rSet_answer.getInt(1));
+            }else {
+                String sqlStatementAddAnswer = SQLInstruct.insertOpenQuestionAnswer(current_student.getId(), q.getId(), "Sem Resposta.");
+                db.updateDB(sqlStatementAddAnswer);
+                q.setUserAnswer("Sem Resposta.");
             }
 
         }
@@ -234,6 +239,18 @@ public class UserService implements Serializable{
 
     
 
+    //UPDATE QUESTIONS
+    
+    public void updateOpenQuestion() throws SQLException{
+        int answer_id=0; //este valor é obtido após ser feito um get na Question.getAnswerId();
+        String question="";
+        
+        String sqlStatement = SQLInstruct.updateOpenQuetionAnswer(answer_id, question);
+        db.updateDB(sqlStatement);
+        
+    
+    }
+    
    
 
    

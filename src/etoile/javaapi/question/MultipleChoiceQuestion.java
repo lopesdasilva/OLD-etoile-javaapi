@@ -194,4 +194,9 @@ public class MultipleChoiceQuestion extends Question implements Serializable {
     public void setNumber(int number) {
        this.number=number;
     }
+
+    @Override
+    public void setAnswerId(int aInt) {
+         throw new UnsupportedOperationException("Not supported yet.");
+    }
 }
