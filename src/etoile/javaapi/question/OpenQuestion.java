@@ -199,4 +199,13 @@ public class OpenQuestion extends Question implements Serializable, Comparable<Q
     public void setAnswerId(int aInt) {
         this.answer_id = aInt;
     }
+
+    @Override
+    public int compareTo(Question t) {
+        if (t.getNumber()>this.number)
+            return -1;
+        if (t.getNumber()==this.number)
+            return 0;
+        return 1;
+    }
 }
