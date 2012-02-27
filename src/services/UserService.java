@@ -86,6 +86,7 @@ public class UserService implements Serializable{
     }
 
     public void updateQuestions(Test test) throws SQLException {
+        
         LinkedList<Question> openquestions = getOpenQuestions(test);
         getOpenQuestionURLs(openquestions);
         LinkedList<Question> onechoicequestions =getOneChoiceQuestions(test);
