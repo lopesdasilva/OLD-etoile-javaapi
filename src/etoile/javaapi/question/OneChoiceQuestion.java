@@ -11,7 +11,7 @@ import java.util.LinkedList;
  *
  * @author Rui
  */
-public class OneChoiceQuestion extends Question implements Serializable {
+public class OneChoiceQuestion extends Question implements Serializable, Comparable<Question> {
 
     public String text;
     public int id;
@@ -184,5 +184,14 @@ public class OneChoiceQuestion extends Question implements Serializable {
     @Override
     public void setNumber(int number) {
         this.number=number;
+    }
+    
+    @Override
+    public int compareTo(Question t) {
+       if(t.getNumber()>this.number)
+           return -1;
+       if (t.getNumber()==this.number)
+           return 0;
+       return 1;
     }
 }

@@ -12,7 +12,7 @@ import java.util.LinkedList;
  *
  * @author Rui
  */
-public abstract class Question implements Serializable{
+public abstract class Question implements Serializable, Comparable<Question> {
     
     public abstract void addURL(URL url);
     

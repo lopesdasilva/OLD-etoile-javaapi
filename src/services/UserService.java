@@ -11,6 +11,7 @@ import etoile.javaapi.question.*;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.LinkedList;
 
 /**
@@ -83,6 +84,7 @@ public class UserService implements Serializable{
 
             module.addTest(new Test(rSet.getInt(1), rSet.getString(2), rSet.getString(3), rSet.getString(4), rSet.getDate(5), rSet.getDate(6)));
         }
+        
     }
 
     public void updateQuestions(Test test) throws SQLException {
@@ -92,6 +94,7 @@ public class UserService implements Serializable{
         getOneChoiceQuestionURLs(onechoicequestions);
         LinkedList<Question> multiplechoicequestions = getMultipleChoiceQuestions(test);
         getMultipleChoiceQuestionURLs(multiplechoicequestions);
+        Collections.sort(test.questions);
 
     }
 
