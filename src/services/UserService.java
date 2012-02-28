@@ -115,9 +115,9 @@ public class UserService implements Serializable{
                 q.setUserAnswer(rSet_answer.getString(2));
                 q.setAnswerId(rSet_answer.getInt(1));
             }else {
-                String sqlStatementAddAnswer = SQLInstruct.insertOpenQuestionAnswer(current_student.getId(), q.getId(), "Sem Resposta.");
+                String sqlStatementAddAnswer = SQLInstruct.insertOpenQuestionAnswer(current_student.getId(), q.getId(), "No Answer.");
                 db.updateDB(sqlStatementAddAnswer);
-                q.setUserAnswer("Sem Resposta.");
+                q.setUserAnswer("No Answer.");
             }
 
         }
