@@ -96,8 +96,7 @@ public class MultipleChoiceQuestion extends Question implements Serializable, Co
      * @return always false
      */
     @Override
-    public boolean setUserAnswer(String userAnswer) {
-        return false;
+    public void setUserAnswer(String userAnswer) {
     }
 
     @Override
@@ -197,7 +196,7 @@ public class MultipleChoiceQuestion extends Question implements Serializable, Co
 
     @Override
     public void setAnswerId(int aInt) {
-         throw new UnsupportedOperationException("Not supported yet.");
+//         this.answer_id=aInt;
     }
     
     @Override
@@ -221,5 +220,10 @@ public class MultipleChoiceQuestion extends Question implements Serializable, Co
 
     public boolean isOneChoiceQuestion() {
         return isOneChoice;
+    }
+
+    @Override
+    public int getAnswerId() {
+        return 0;
     }
 }

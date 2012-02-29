@@ -75,9 +75,8 @@ public class OpenQuestion extends Question implements Serializable, Comparable<Q
     }
 
     @Override
-    public boolean setUserAnswer(String userAnswser) {
+    public void setUserAnswer(String userAnswser) {
         this.userAnswer = userAnswser;
-        return true;
     }
 
     public String getUserAnswer() {
@@ -222,6 +221,11 @@ public class OpenQuestion extends Question implements Serializable, Comparable<Q
     @Override
     public boolean isOneChoiceQuestion() {
         return isOneChoice;
+    }
+
+    @Override
+    public int getAnswerId() {
+        return answer_id;
     }
     
     

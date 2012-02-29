@@ -142,7 +142,7 @@ public class SQLInstruct implements Serializable {
     }
     
     public static String updateOpenQuetionAnswer(int answer_id, String answer){
-        return "UPDATE openanswer SET openanswer.text='answer' WHERE EXISTS"
+        return "UPDATE openanswer SET openanswer.text='"+answer+"' WHERE EXISTS"
             +" (SELECT openanswer.id FROM student WHERE"
             +" openanswer.id='"+answer_id+"')";
     }

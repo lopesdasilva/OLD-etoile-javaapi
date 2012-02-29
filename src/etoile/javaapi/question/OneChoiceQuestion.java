@@ -97,9 +97,8 @@ public class OneChoiceQuestion extends Question implements Serializable, Compara
     }
 
     @Override
-    public boolean setUserAnswer(String userAnswer) {
+    public void setUserAnswer(String userAnswer) {
         this.userAnswer = userAnswer;
-        return true;
     }
 
     @Override
@@ -216,5 +215,10 @@ public class OneChoiceQuestion extends Question implements Serializable, Compara
     @Override
     public boolean isOneChoiceQuestion() {
         return isOneChoice;
+    }
+
+    @Override
+    public int getAnswerId() {
+       return answer_id;
     }
 }
