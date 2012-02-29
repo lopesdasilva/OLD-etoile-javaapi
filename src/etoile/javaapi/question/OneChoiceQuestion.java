@@ -201,4 +201,9 @@ public class OneChoiceQuestion extends Question implements Serializable, Compara
             return 0;
         return 1;
     }
+
+    @Override
+    public boolean isOpenQuestion() {
+        return isOneChoice;
+    }
 }

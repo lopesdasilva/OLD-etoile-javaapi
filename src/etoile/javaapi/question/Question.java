@@ -58,5 +58,5 @@ public abstract class Question implements Serializable, Comparable<Question> {
 
     public abstract  void setAnswerId(int aInt) ;
     
-    
+    public abstract boolean isOpenQuestion();
 }

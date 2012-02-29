@@ -208,4 +208,9 @@ public class MultipleChoiceQuestion extends Question implements Serializable, Co
             return 0;
         return 1;
     }
+
+    @Override
+    public boolean isOpenQuestion() {
+        return isMultipleChoice;
+    }
 }

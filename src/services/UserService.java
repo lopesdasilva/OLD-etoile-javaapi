@@ -245,14 +245,12 @@ public class UserService implements Serializable{
 
     //UPDATE QUESTIONS
     
-    public void updateOpenQuestion() throws SQLException{
-        int answer_id=0; //este valor é obtido após ser feito um get na Question.getAnswerId();
-        String question="";
+    public void updateOpenAnswer(int answer_id, String openanswer) throws SQLException{
+        // answer_id este valor é obtido após ser feito um get na Question.getAnswerId();
         
-        String sqlStatement = SQLInstruct.updateOpenQuetionAnswer(answer_id, question);
+        String sqlStatement = SQLInstruct.updateOpenQuetionAnswer(answer_id, openanswer);
         db.updateDB(sqlStatement);
         
-    
     }
     
     public void updateOneChoiceQuestion(){
@@ -263,16 +261,13 @@ public class UserService implements Serializable{
         
     }
     
-    public void vote() throws SQLException{
-        int url_id=0;//obter id do url
+    public void vote(int url_id) throws SQLException{
         String sqlStatement = SQLInstruct.vote(url_id);
         db.updateDB(sqlStatement);
     }
     
-    public void addURL() throws SQLException{
-        String name = ""; //obter name
-        String url = ""; //obter url
-        String sqlStatement = SQLInstruct.addUrl(name, url);
+    public void addURL(String url_name, String url) throws SQLException{
+        String sqlStatement = SQLInstruct.addUrl(url_name, url);
         db.updateDB(sqlStatement);
     }
     
