@@ -204,6 +204,17 @@ public class OneChoiceQuestion extends Question implements Serializable, Compara
 
     @Override
     public boolean isOpenQuestion() {
+        return isOpen;
+    }
+
+    @Override
+    public boolean isMultipleChoiceQuestion() {
+       return isMultipleChoice;
+    }
+    
+
+    @Override
+    public boolean isOneChoiceQuestion() {
         return isOneChoice;
     }
 }

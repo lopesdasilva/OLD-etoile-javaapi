@@ -213,4 +213,16 @@ public class OpenQuestion extends Question implements Serializable, Comparable<Q
     public boolean isOpenQuestion() {
       return isOpen;  
     }
+
+    @Override
+    public boolean isMultipleChoiceQuestion() {
+        return isMultipleChoice;
+    }
+
+    @Override
+    public boolean isOneChoiceQuestion() {
+        return isOneChoice;
+    }
+    
+    
 }
