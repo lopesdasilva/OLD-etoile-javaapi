@@ -266,10 +266,25 @@ public class UserService implements Serializable{
         db.updateDB(sqlStatement);
     }
     
-    public void addURL(String url_name, String url , Question question, int question_id ) throws SQLException{
-      
+    public void addURL(String url_name, String url , QuestionType type, int question_id ) throws SQLException{
+        int url_id=0;
+        
+        
+       if (type==QuestionType.OPEN){
+        
         String sqlStatement = SQLInstruct.addUrl(url_name, url);
         db.updateDB(sqlStatement);
+        
+        String sqlGetUrl = SQLInstruct.getLastURLInserted();
+        ResultSet rSet=db.queryDB(sqlGetUrl);
+        if(rSet.next()){
+            String sqlLinkURLOpenQuestion = SQLInstruct.linkURLOpenQuestion(question_id, url_id);
+            db.updateDB(sqlLinkURLOpenQuestion);
+        }
+        
+        
+        
+        }
     }
     
    

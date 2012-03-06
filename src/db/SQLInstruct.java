@@ -154,4 +154,12 @@ public class SQLInstruct implements Serializable {
     public static String addUrl(String name, String url){
         return "INSERT INTO url (name,url) VALUES ('"+name+"','"+url+"')";
     }
+    
+    public static String getLastURLInserted(){
+        return  "SELECT MAX(url.id) FROM url;";
+    }
+
+    public static String linkURLOpenQuestion(int question_id, int url_id) {
+        return "INSERT INTO openquestion_url( openquestion_id, url_id ) VALUES('"+question_id+"','"+url_id+"');";
+    }
 }
