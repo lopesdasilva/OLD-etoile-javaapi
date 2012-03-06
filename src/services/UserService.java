@@ -266,7 +266,8 @@ public class UserService implements Serializable{
         db.updateDB(sqlStatement);
     }
     
-    public void addURL(String url_name, String url , boolean questionType, int question_id ) throws SQLException{
+    public void addURL(String url_name, String url , Question question, int question_id ) throws SQLException{
+      
         String sqlStatement = SQLInstruct.addUrl(url_name, url);
         db.updateDB(sqlStatement);
     }
