@@ -17,7 +17,7 @@ public class SQLInstruct implements Serializable {
 //    public static final String dbUsername = "root";
 //    public static final String dbPassword = "";
     //public static final String dbPassword = "etoile";
-    public static final String dbAdress = "jdbc:mysql://localhost:3306/etoilepl_etoilev3";
+    public static final String dbAdress = "jdbc:mysql://84.40.22.48:3306/etoilepl_etoilev3";
     public static final String dbUsername = "etoilepl_etoile";
     public static final String dbPassword = "WryDiluteQuirkyRider";
     
@@ -161,5 +161,13 @@ public class SQLInstruct implements Serializable {
 
     public static String linkURLOpenQuestion(int question_id, int url_id) {
         return "INSERT INTO openquestion_url( openquestion_id, url_id ) VALUES('"+question_id+"','"+url_id+"');";
+    }
+
+    public static String linkURLOneChoiceQuestion(int question_id, int url_id) {
+        return "INSERT INTO multiplechoicequestion_url( multiplechoicequestion_id, url_id ) VALUES('"+question_id+"','"+url_id+"');";
+    }
+
+    public static String linkURLMultipleChoiceQuestion(int question_id, int url_id) {
+        return "INSERT INTO onechoicequestion_url( onechoicequestion_id, url_id ) VALUES('"+question_id+"','"+url_id+"');";
     }
 }

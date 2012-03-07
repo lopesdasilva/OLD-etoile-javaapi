@@ -267,27 +267,37 @@ public class UserService implements Serializable{
     }
     
     public void addURL(String url_name, String url , QuestionType type, int question_id ) throws SQLException{
-        int url_id=0;
-        
-        
-       if (type==QuestionType.OPEN){
         
         String sqlStatement = SQLInstruct.addUrl(url_name, url);
         db.updateDB(sqlStatement);
-        
-        String sqlGetUrl = SQLInstruct.getLastURLInserted();
+                String sqlGetUrl = SQLInstruct.getLastURLInserted();
         ResultSet rSet=db.queryDB(sqlGetUrl);
-        if(rSet.next()){
-            String sqlLinkURLOpenQuestion = SQLInstruct.linkURLOpenQuestion(question_id, url_id);
+                if(rSet.next()){
+        if (type==QuestionType.OPEN){ // adiciona À openquestion
+
+
+            String sqlLinkURLOpenQuestion = SQLInstruct.linkURLOpenQuestion(question_id, rSet.getInt(1));
+            System.out.println("OPEN: "+sqlLinkURLOpenQuestion);
+
             db.updateDB(sqlLinkURLOpenQuestion);
-        }
+         
+        }else if(type==QuestionType.ONE_CHOICE){ // adiciona À onechoicequestion
+
+            String sqlLinkURLOneChoiceQuestion = SQLInstruct.linkURLOneChoiceQuestion(question_id, rSet.getInt(1));
+            System.out.println("ONECHOICE: "+sqlLinkURLOneChoiceQuestion);
+            db.updateDB(sqlLinkURLOneChoiceQuestion);
+          
+            
+        }else{//adiciona à multiplechoicequestion
+
+            String sqlLinkURLMultipleChoiceQuestion = SQLInstruct.linkURLMultipleChoiceQuestion(question_id, rSet.getInt(1));
+            System.out.println("MULTIPLE: "+sqlLinkURLMultipleChoiceQuestion);
+
+            db.updateDB(sqlLinkURLMultipleChoiceQuestion);
         
-        
-        
-        }
     }
     
-   
-
+                }
+    }
    
 }
