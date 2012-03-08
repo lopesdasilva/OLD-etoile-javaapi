@@ -151,8 +151,8 @@ public class SQLInstruct implements Serializable {
     }
        
     public static String updateOneChoiceAnswer(int answer_id, String answer) {
-        return "UPDATE onechoiceanswer SET onechoiceanswer.text='"+answer+"' WHERE EXISTS"
-                +" (SELECT onechoiceanswer.id FROM student WHERE onechoiceanswer.id='"+answer_id+"')";
+        return "UPDATE openchoiceanswer SET onechoiceanswer.text='"+answer+"' WHERE EXISTS"
+                +" (SELECT onechoiceanswer.id FROM student WHERE onechoiceanswer.id='"+answer_id+"'";
     }
     
     public static String vote(int url_id){
