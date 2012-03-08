@@ -71,7 +71,7 @@ public class EtoileJavaapi {
                                             System.out.print("  " + s);
                                         }
                                         System.out.println("\nRespostas do aluno: ");
-                                         for (String s : element.getAnswers()) {
+                                         for (String s : element.getUserAnswers()) {
                                             System.out.print("  " + s);
                                         }
                                         System.out.println();

@@ -168,7 +168,7 @@ public class MultipleChoiceQuestion extends Question implements Serializable, Co
     }
 
     @Override
-    public LinkedList<String> getAnswers() {
+    public LinkedList<String> getUserAnswers() {
         return userAnswer;
     }
 

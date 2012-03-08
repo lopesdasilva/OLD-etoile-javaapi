@@ -162,7 +162,7 @@ public class OneChoiceQuestion extends Question implements Serializable, Compara
     }
 
     @Override
-    public LinkedList<String> getAnswers() {
+    public LinkedList<String> getUserAnswers() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

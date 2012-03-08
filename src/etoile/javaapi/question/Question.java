@@ -34,7 +34,7 @@ public abstract class Question implements Serializable, Comparable<Question> {
     
     public abstract String getUserAnswer();
     
-    public abstract LinkedList<String> getAnswers();
+    public abstract LinkedList<String> getUserAnswers();
        
     public abstract void setUserAnswer(String userAnswer);
     
