@@ -111,9 +111,8 @@ public class OneChoiceQuestion extends Question implements Serializable, Compara
     }
 
     @Override
-    public boolean setPossibleAnswers(LinkedList<String> possibleAnswers) {
+    public void setPossibleAnswers(LinkedList<String> possibleAnswers) {
         this.possibleAnswers = possibleAnswers;
-        return true;
     }
 
     @Override

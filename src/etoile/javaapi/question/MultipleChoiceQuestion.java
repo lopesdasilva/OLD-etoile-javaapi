@@ -116,9 +116,8 @@ public class MultipleChoiceQuestion extends Question implements Serializable, Co
     }
 
     @Override
-    public boolean setPossibleAnswers(LinkedList<String> possibleAnswers) {
+    public void setPossibleAnswers(LinkedList<String> possibleAnswers) {
         this.possibleAnswers = possibleAnswers;
-        return true;
     }
 
     @Override
