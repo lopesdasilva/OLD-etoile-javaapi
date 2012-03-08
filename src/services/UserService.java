@@ -150,9 +150,8 @@ public class UserService implements Serializable{
                 op.setAnswerId(rSet_answer.getInt(1));
                 op.setUserAnswer(rSet_answer.getString(2));
             }else{
-                String sqlStatementAddAnswer = SQLInstruct.insertOneChoiceQuestionAnswer(current_student.getId(), op.getId());
+                String sqlStatementAddAnswer = SQLInstruct.insertOneChoiceQuestionAnswer(current_student.getId(),op.getId());
                 db.updateDB(sqlStatementAddAnswer);
-                op.setAnswerId(9999);
                 op.setUserAnswer("No Answer.");
             }
 
@@ -259,12 +258,12 @@ public class UserService implements Serializable{
         
     }
     
-    public void updateOneChoiceQuestion(int answer_id,int hypothesis_id) throws SQLException{
-        String sqlStatement = SQLInstruct.updateOneChoiceAnswer(answer_id,hypothesis_id);
+    public void updateOneChoiceAnswer(int answer_id,String answer) throws SQLException{
+        String sqlStatement = SQLInstruct.updateOneChoiceAnswer(answer_id,answer);
         db.updateDB(sqlStatement);
     }
     
-    public void updateMultipleChoiceQuestion(){
+    public void updateMultipleChoiceAnswer(){
         
     }
     

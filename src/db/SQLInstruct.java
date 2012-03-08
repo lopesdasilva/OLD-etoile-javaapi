@@ -97,9 +97,9 @@ public class SQLInstruct implements Serializable {
     }
 
     public static String getOneChoiceAnswer(int question_id, int student_id) {
-        return "SELECT hypothesis.id, hypothesis.hypothesis FROM student, hypothesis,onechoiceanswer,onechoicequestion WHERE "
-                + "student.id='" + student_id + "' AND onechoicequestion.id='" + question_id + "' AND student.id=onechoiceanswer.student_id AND onechoiceanswer.onechoicequestion_id=onechoicequestion.id AND "
-                + "onechoiceanswer.hypothesis_id=hypothesis.id";
+        return "SELECT onechoiceanswer.text FROM student, hypothesis,onechoiceanswer,onechoicequestion WHERE "
+                + "student.id='" + student_id + "' AND onechoicequestion.id='" + question_id + "' AND student.id=onechoiceanswer.student_id AND onechoiceanswer.onechoicequestion_id=onechoicequestion.id";
+                
     }
 
     public static String getOpenQuestionAnswer(int question_id, int student_id) {
@@ -141,7 +141,7 @@ public class SQLInstruct implements Serializable {
         return "INSERT INTO openanswer ( student_id, openquestion_id, text ) VALUES ( '"+student_id+"','"+question_id+"','"+answer+"' )";
     }
     public static String insertOneChoiceQuestionAnswer(int student_id, int question_id){
-        return "INSERT INTO onechoiceanswer ( student_id, onechoicequestion_id, hypothesis_id ) VALUES ( '"+student_id+"','"+question_id+"','9999' )";
+        return "INSERT INTO onechoiceanswer ( student_id, onechoicequestion_id) VALUES ( '"+student_id+"','"+question_id+"')";
     }
     
     public static String updateOpenQuetionAnswer(int answer_id, String answer){
@@ -150,8 +150,8 @@ public class SQLInstruct implements Serializable {
             +" openanswer.id='"+answer_id+"')";
     }
        
-    public static String updateOneChoiceAnswer(int answer_id, int hypothesis_id) {
-        return "UPDATE openchoiceanswer SET onechoiceanswer.hypothesis_id='"+hypothesis_id+"' WHERE EXISTS"
+    public static String updateOneChoiceAnswer(int answer_id, String answer) {
+        return "UPDATE openchoiceanswer SET onechoiceanswer.text='"+answer+"' WHERE EXISTS"
                 +" (SELECT onechoiceanswer.id FROM student WHERE onechoiceanswer.id='"+answer_id+"'";
     }
     
