@@ -108,9 +108,9 @@ public class SQLInstruct implements Serializable {
     }
 
     public static String getMultipleChoiceAnswer(int question_id, int student_id) {
-        return "SELECT hypothesis.hypothesis FROM student, hypothesis,multiplechoiceanswer,multiplechoicequestion WHERE "
-                + "student.id='" + student_id + "' AND  multiplechoicequestion.id = '" + question_id + "' AND student.id=multiplechoiceanswer.student_id AND multiplechoiceanswer.multiplechoicequestion_id=multiplechoicequestion.id AND "
-                + "multiplechoiceanswer.hypothesis_id=hypothesis.id";
+        return "SELECT multiplechoiceanswer.id, multiplechoiceanswer.text FROM student,multiplechoiceanswer,multiplechoicequestion WHERE "
+                + "student.id='" + student_id + "' AND  multiplechoicequestion.id = '" + question_id + "' AND student.id=multiplechoiceanswer.student_id AND multiplechoiceanswer.multiplechoicequestion_id=multiplechoicequestion.id";
+               
     }
 
     public static String getMultipleChoiceURLs(int question_id) {
@@ -142,6 +142,10 @@ public class SQLInstruct implements Serializable {
     }
     public static String insertOneChoiceQuestionAnswer(int student_id, int question_id){
         return "INSERT INTO onechoiceanswer ( student_id, onechoicequestion_id) VALUES ( '"+student_id+"','"+question_id+"')";
+    }
+    
+    public static String insertMultipleChoiceAnswer(int question_id, int student_id, String answer) {
+        return "INSERT INTO multiplechoiceanswer ( multiplechoicequestion_id, student_id, text ) VALUES ('"+question_id+"','"+student_id+"','"+answer+"' )";
     }
     
     public static String updateOpenQuetionAnswer(int answer_id, String answer){
@@ -178,6 +182,8 @@ public class SQLInstruct implements Serializable {
     public static String linkURLOneChoiceQuestion(int question_id, int url_id) {
         return "INSERT INTO onechoicequestion_url( onechoicequestion_id, url_id ) VALUES('"+question_id+"','"+url_id+"');";
     }
+
+    
 
  
 }

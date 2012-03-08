@@ -180,11 +180,12 @@ public class UserService implements Serializable{
                 }
             }
             mp.setCorrectAnswers(correct);
-            String sqlStatement_correct = SQLInstruct.getMultipleChoiceAnswer(rSet.getInt(1), current_student.getId());
-            ResultSet rSet_answer = db.queryDB(sqlStatement_correct);
+            String sqlStatement_useranswer= SQLInstruct.getMultipleChoiceAnswer(rSet.getInt(1), current_student.getId());
+            ResultSet rSet_answer = db.queryDB(sqlStatement_useranswer);
             LinkedList<String> answers = new LinkedList<String>();
             while(rSet_answer.next()){
-            answers.add(rSet_answer.getString(1));
+            answers.add(rSet_answer.getString(2));
+
             }
             mp.setUserAnswers(answers);
         }
@@ -263,8 +264,20 @@ public class UserService implements Serializable{
         db.updateDB(sqlStatement);
     }
     
-    public void updateMultipleChoiceAnswer(){
-        
+    public void updateMultipleChoiceAnswer(int question_id, LinkedList<String> userAnswers) throws SQLException{
+            String sqlStatement_useranswer= SQLInstruct.getMultipleChoiceAnswer(question_id, current_student.getId());
+            ResultSet rSet_answer = db.queryDB(sqlStatement_useranswer);
+            //remover respostas anteriores
+            while(rSet_answer.next()){
+             String SqlStatement_removeAnswer = "DELETE FROM multiplechoiceanswer WHERE id='"+rSet_answer.getInt(1)+"'";
+             db.updateDB(SqlStatement_removeAnswer);
+            }
+            //adicionar respostas actuais
+            for(String answer: userAnswers){
+                String sqlStatement = SQLInstruct.insertMultipleChoiceAnswer(question_id,current_student.getId(),answer);
+                db.updateDB(sqlStatement);
+            }
+            
     }
     
     public void vote(int url_id) throws SQLException{
