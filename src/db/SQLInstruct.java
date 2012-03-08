@@ -97,7 +97,7 @@ public class SQLInstruct implements Serializable {
     }
 
     public static String getOneChoiceAnswer(int question_id, int student_id) {
-        return "SELECT hypothesis.hypothesis, hypothesis.hypothesis FROM student, hypothesis,onechoiceanswer,onechoicequestion WHERE "
+        return "SELECT hypothesis.id, hypothesis.hypothesis FROM student, hypothesis,onechoiceanswer,onechoicequestion WHERE "
                 + "student.id='" + student_id + "' AND onechoicequestion.id='" + question_id + "' AND student.id=onechoiceanswer.student_id AND onechoiceanswer.onechoicequestion_id=onechoicequestion.id AND "
                 + "onechoiceanswer.hypothesis_id=hypothesis.id";
     }
@@ -140,11 +140,19 @@ public class SQLInstruct implements Serializable {
     public static String insertOpenQuestionAnswer(int student_id, int question_id, String answer){
         return "INSERT INTO openanswer ( student_id, openquestion_id, text ) VALUES ( '"+student_id+"','"+question_id+"','"+answer+"' )";
     }
+    public static String insertOneChoiceQuestionAnswer(int student_id, int question_id){
+        return "INSERT INTO onechoiceanswer ( student_id, onechoicequestion_id, hypothesis_id ) VALUES ( '"+student_id+"','"+question_id+"','9999' )";
+    }
     
     public static String updateOpenQuetionAnswer(int answer_id, String answer){
         return "UPDATE openanswer SET openanswer.text='"+answer+"' WHERE EXISTS"
             +" (SELECT openanswer.id FROM student WHERE"
             +" openanswer.id='"+answer_id+"')";
+    }
+       
+    public static String updateOneChoiceAnswer(int answer_id, int hypothesis_id) {
+        return "UPDATE openchoiceanswer SET onechoiceanswer.hypothesis_id='"+hypothesis_id+"' WHERE EXISTS"
+                +" (SELECT onechoiceanswer.id FROM student WHERE onechoiceanswer.id='"+answer_id+"'";
     }
     
     public static String vote(int url_id){
@@ -163,11 +171,13 @@ public class SQLInstruct implements Serializable {
         return "INSERT INTO openquestion_url( openquestion_id, url_id ) VALUES('"+question_id+"','"+url_id+"');";
     }
 
-    public static String linkURLOneChoiceQuestion(int question_id, int url_id) {
+    public static String linkURLMultipleChoiceQuestion(int question_id, int url_id) {
         return "INSERT INTO multiplechoicequestion_url( multiplechoicequestion_id, url_id ) VALUES('"+question_id+"','"+url_id+"');";
     }
 
-    public static String linkURLMultipleChoiceQuestion(int question_id, int url_id) {
+    public static String linkURLOneChoiceQuestion(int question_id, int url_id) {
         return "INSERT INTO onechoicequestion_url( onechoicequestion_id, url_id ) VALUES('"+question_id+"','"+url_id+"');";
     }
+
+ 
 }
