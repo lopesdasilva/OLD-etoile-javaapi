@@ -186,7 +186,7 @@ public class UserService implements Serializable{
             while(rSet_answer.next()){
             answers.add(rSet_answer.getString(1));
             }
-            mp.setAnswers(answers);
+            mp.setUserAnswers(answers);
         }
         
         return questions;

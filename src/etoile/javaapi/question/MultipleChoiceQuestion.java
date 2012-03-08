@@ -100,7 +100,7 @@ public class MultipleChoiceQuestion extends Question implements Serializable, Co
     }
 
     @Override
-    public void setAnswers(LinkedList<String> userAnswer) {
+    public void setUserAnswers(LinkedList<String> userAnswer) {
         this.userAnswer = userAnswer;
     }
 
