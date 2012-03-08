@@ -139,7 +139,7 @@ public class OpenQuestion extends Question implements Serializable, Comparable<Q
     }
 
     @Override
-    public boolean setAnswers(LinkedList<String> userAnswer) {
+    public void setAnswers(LinkedList<String> userAnswer) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
