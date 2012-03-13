@@ -220,4 +220,9 @@ public class OneChoiceQuestion extends Question implements Serializable, Compara
     public int getAnswerId() {
        return answer_id;
     }
+
+    @Override
+    public String getUserAnswersString() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

@@ -227,6 +227,11 @@ public class OpenQuestion extends Question implements Serializable, Comparable<Q
     public int getAnswerId() {
         return answer_id;
     }
+
+    @Override
+    public String getUserAnswersString() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     
     
 }

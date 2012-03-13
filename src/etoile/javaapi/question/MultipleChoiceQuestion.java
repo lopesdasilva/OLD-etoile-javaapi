@@ -27,6 +27,20 @@ public class MultipleChoiceQuestion extends Question implements Serializable, Co
     private boolean isOpen = false;
     private int number;
 
+   
+    @Override
+    public String getUserAnswersString() {
+        StringBuilder sb= new StringBuilder();
+        for (String s : userAnswer){
+            sb.append(s);
+            sb.append(", ");
+        }
+        return sb.toString();
+    }
+
+    
+    
+    
     public boolean isIsMultipleChoice() {
         return isMultipleChoice;
     }

@@ -65,4 +65,5 @@ public abstract class Question implements Serializable, Comparable<Question> {
     public abstract boolean isMultipleChoiceQuestion();
     
     public abstract boolean isOneChoiceQuestion();
+    public abstract String getUserAnswersString();
 }
