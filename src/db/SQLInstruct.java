@@ -17,7 +17,7 @@ public class SQLInstruct implements Serializable {
 //    public static final String dbUsername = "root";
 //    public static final String dbPassword = "";
     //public static final String dbPassword = "etoile";
-    public static final String dbAdress = "jdbc:mysql://84.40.22.48:3306/etoilepl_etoilev3";
+    public static final String dbAdress = "jdbc:mysql://localhost:3306/etoilepl_etoilev3";
     public static final String dbUsername = "etoilepl_etoile";
     public static final String dbPassword = "WryDiluteQuirkyRider";
     
@@ -115,17 +115,17 @@ public class SQLInstruct implements Serializable {
 
     public static String getMultipleChoiceURLs(int question_id) {
         return "SELECT url.id, url.name, url.url, url.votes FROM url,multiplechoicequestion_url,multiplechoicequestion WHERE "
-                +"multiplechoicequestion.id="+question_id+" AND multiplechoicequestion.id=multiplechoicequestion_url.multiplechoicequestion_id AND multiplechoicequestion_url.url_id=url.id";
+                +"multiplechoicequestion.id="+question_id+" AND multiplechoicequestion.id=multiplechoicequestion_url.multiplechoicequestion_id AND multiplechoicequestion_url.url_id=url.id ORDER BY url.votes DESC";
     }
     
      public static String getOneChoiceURLs(int question_id) {
          return "SELECT url.id, url.name, url.url, url.votes FROM url,onechoicequestion_url,onechoicequestion WHERE "
-                +"onechoicequestion.id="+question_id+" AND onechoicequestion.id=onechoicequestion_url.onechoicequestion_id AND onechoicequestion_url.url_id=url.id";
+                +"onechoicequestion.id="+question_id+" AND onechoicequestion.id=onechoicequestion_url.onechoicequestion_id AND onechoicequestion_url.url_id=url.id ORDER BY url.votes DESC";
      }
      
      public static String getOpenQuestionURLs(int question_id) {
          return "SELECT url.id, url.name, url.url, url.votes FROM url,openquestion_url,openquestion WHERE "
-                +"openquestion.id="+question_id+" AND openquestion.id=openquestion_url.openquestion_id AND openquestion_url.url_id=url.id";
+                +"openquestion.id="+question_id+" AND openquestion.id=openquestion_url.openquestion_id AND openquestion_url.url_id=url.id ORDER BY url.votes DESC";
      }
     //INSERTS
     public static String addStudent(String username, String password, String firstname, String surname, String email) {
@@ -159,8 +159,8 @@ public class SQLInstruct implements Serializable {
                 +" (SELECT onechoiceanswer.id FROM student WHERE onechoiceanswer.id='"+answer_id+"')";
     }
     
-    public static String vote(int url_id){
-        return "UPDATE url SET votes=(votes+1) where id='"+url_id+"';";
+    public static String vote(int url_id, int stars){
+        return "UPDATE url SET votes=(votes+'"+stars+"') where id='"+url_id+"';";
     }
     
     public static String addUrl(String name, String url){

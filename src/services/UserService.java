@@ -280,8 +280,8 @@ public class UserService implements Serializable{
             
     }
     
-    public void vote(int url_id) throws SQLException{
-        String sqlStatement = SQLInstruct.vote(url_id);
+    public void vote(int url_id, int stars) throws SQLException{
+        String sqlStatement = SQLInstruct.vote(url_id,stars);
         db.updateDB(sqlStatement);
     }
     
@@ -317,6 +317,10 @@ public class UserService implements Serializable{
     }
     
                 }
+    }
+    
+    public void getOpenQuestionTestResults(int test_id){
+        
     }
    
 }
