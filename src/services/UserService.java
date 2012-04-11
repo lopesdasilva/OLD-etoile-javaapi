@@ -285,7 +285,7 @@ public class UserService implements Serializable{
         db.updateDB(sqlStatement);
     }
     
-    public void addURL(String url_name, String url , QuestionType type, int question_id ) throws SQLException{
+    public void addURL(String url_name, String url , QuestionType type, Question question ) throws SQLException{
         
         String sqlStatement = SQLInstruct.addUrl(url_name, url);
         db.updateDB(sqlStatement);
@@ -295,21 +295,21 @@ public class UserService implements Serializable{
         if (type==QuestionType.OPEN){ // adiciona À openquestion
 
 
-            String sqlLinkURLOpenQuestion = SQLInstruct.linkURLOpenQuestion(question_id, rSet.getInt(1));
+            String sqlLinkURLOpenQuestion = SQLInstruct.linkURLOpenQuestion(question.getId(), rSet.getInt(1));
             System.out.println("OPEN: "+sqlLinkURLOpenQuestion);
 
             db.updateDB(sqlLinkURLOpenQuestion);
-         
+            
         }else if(type==QuestionType.ONE_CHOICE){ // adiciona À onechoicequestion
 
-            String sqlLinkURLOneChoiceQuestion = SQLInstruct.linkURLOneChoiceQuestion(question_id, rSet.getInt(1));
+            String sqlLinkURLOneChoiceQuestion = SQLInstruct.linkURLOneChoiceQuestion(question.getId(), rSet.getInt(1));
             System.out.println("ONECHOICE: "+sqlLinkURLOneChoiceQuestion);
             db.updateDB(sqlLinkURLOneChoiceQuestion);
           
             
         }else{//adiciona à multiplechoicequestion
 
-            String sqlLinkURLMultipleChoiceQuestion = SQLInstruct.linkURLMultipleChoiceQuestion(question_id, rSet.getInt(1));
+            String sqlLinkURLMultipleChoiceQuestion = SQLInstruct.linkURLMultipleChoiceQuestion(question.getId(), rSet.getInt(1));
             System.out.println("MULTIPLE: "+sqlLinkURLMultipleChoiceQuestion);
 
             db.updateDB(sqlLinkURLMultipleChoiceQuestion);
@@ -317,6 +317,9 @@ public class UserService implements Serializable{
     }
     
                 }
+    
+                question.addURL(new URL(rSet.getInt(1),url,url_name,"noname",0));
+    
     }
     
     public void getOpenQuestionTestResults(int test_id){
