@@ -251,17 +251,24 @@ public class UserService implements Serializable{
 
     //UPDATE QUESTIONS
     
-    public void updateOpenAnswer(int answer_id, String openanswer) throws SQLException{
+    public void updateOpenAnswer(int question_id, String openanswer) throws SQLException{
         // answer_id este valor é obtido após ser feito um get na Question.getAnswerId();
-        
-        String sqlStatement = SQLInstruct.updateOpenQuetionAnswer(answer_id, openanswer);
+        String sqlStatement_getQuestion = SQLInstruct.getOpenQuestionAnswer(question_id, current_student.getId());
+        ResultSet rSet = db.queryDB(sqlStatement_getQuestion);
+        while(rSet.next()){
+        String sqlStatement = SQLInstruct.updateOpenQuetionAnswer(rSet.getInt(1), openanswer);
         db.updateDB(sqlStatement);
+        }
         
     }
     
-    public void updateOneChoiceAnswer(int answer_id,String answer) throws SQLException{
-        String sqlStatement = SQLInstruct.updateOneChoiceAnswer(answer_id,answer);
+    public void updateOneChoiceAnswer(int question_id,String answer) throws SQLException{
+        String sqlStatement_getQuestion = SQLInstruct.getOneChoiceAnswer(question_id, current_student.getId());
+        ResultSet rSet = db.queryDB(sqlStatement_getQuestion);
+        while(rSet.next()){
+        String sqlStatement = SQLInstruct.updateOneChoiceAnswer(rSet.getInt(1),answer);
         db.updateDB(sqlStatement);
+        }
     }
     
     public void updateMultipleChoiceAnswer(int question_id, LinkedList<String> userAnswers) throws SQLException{
