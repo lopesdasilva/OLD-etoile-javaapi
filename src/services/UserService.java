@@ -325,7 +325,7 @@ public class UserService implements Serializable{
     
                 }
     
-                question.addURL(new URL(rSet.getInt(1),url,url_name,"noname",0));
+                question.addURL(new URL(rSet.getInt(1),url_name,url,"noname",0));
     
     }
     

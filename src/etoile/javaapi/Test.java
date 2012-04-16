@@ -30,12 +30,19 @@ public class Test implements Serializable{
     public LinkedList<Question> questions= new LinkedList<Question>();
     
     public String url;
+    
+    public boolean hasURL=false;
+    
+    
 
     public String getUrl() {
         return url;
     }
 
     public Test(int id,String name, String author,String url) {
+        if (!url.equals("no url") || !url.equals(""))
+        hasURL=true;      
+            
         this.name = name;
         this.id = id;
         this.author = author;
