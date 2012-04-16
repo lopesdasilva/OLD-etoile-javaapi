@@ -82,7 +82,7 @@ public class UserService implements Serializable{
         while (rSet.next()) {
 
 
-            module.addTest(new Test(rSet.getInt(1), rSet.getString(2), rSet.getString(3), rSet.getString(4), rSet.getDate(5), rSet.getDate(6)));
+            module.addTest(new Test(rSet.getInt(1), rSet.getString(2), rSet.getString(3), rSet.getString(4), rSet.getDate(5), rSet.getDate(6), rSet.getString(7)));
         }
         
     }

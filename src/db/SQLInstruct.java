@@ -17,7 +17,7 @@ public class SQLInstruct implements Serializable {
 //    public static final String dbUsername = "root";
 //    public static final String dbPassword = "";
     //public static final String dbPassword = "etoile";
-    public static final String dbAdress = "jdbc:mysql://localhost:3306/etoilepl_etoilev3";
+    public static final String dbAdress = "jdbc:mysql://84.40.22.48:3306/etoilepl_etoilev3";
     public static final String dbUsername = "etoilepl_etoile";
     public static final String dbPassword = "WryDiluteQuirkyRider";
     
@@ -47,7 +47,7 @@ public class SQLInstruct implements Serializable {
     }
 
     public static String getTests(int module_id) {
-        return "SELECT test.id, test.name, test.author,description, test.beginDate,test.endDate "
+        return "SELECT test.id, test.name, test.author,description, test.beginDate,test.endDate, test.url "
                 + "FROM module,module_test,test WHERE "
                 + "module.id='" + module_id + "' AND module.id=module_test.module_id AND module_test.test_id=test.id";
     }

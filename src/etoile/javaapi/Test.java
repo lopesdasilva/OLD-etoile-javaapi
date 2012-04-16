@@ -28,20 +28,28 @@ public class Test implements Serializable{
     public Date endDate;
     
     public LinkedList<Question> questions= new LinkedList<Question>();
+    
+    public String url;
 
-    public Test(int id,String name, String author) {
+    public String getUrl() {
+        return url;
+    }
+
+    public Test(int id,String name, String author,String url) {
         this.name = name;
         this.id = id;
         this.author = author;
+        this.url=url;
     }
 
-    public Test(int id, String name, String author,String description, Date beginDate, Date endDate) {
+    public Test(int id, String name, String author,String description, Date beginDate, Date endDate, String url) {
         this.name = name;
         this.id = id;
         this.author = author;
         this.description = description;
         this.beginDate = beginDate;
         this.endDate = endDate;
+        this.url=url;
                 
     }
     
@@ -105,5 +113,6 @@ public class Test implements Serializable{
        questions.add(q);
     }
     
+
     
 }
