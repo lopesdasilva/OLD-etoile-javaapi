@@ -59,7 +59,7 @@ public class UserService implements Serializable{
     public void getNews() throws SQLException{
         ResultSet rSet = db.queryDB(SQLInstruct.getNews());
         while(rSet.next()){
-           current_student.addNew(new News(rSet.getInt(1),rSet.getString(2),rSet.getString(3),rSet.getString(4))); 
+           current_student.addNew(new News(rSet.getInt(1),rSet.getString(2),rSet.getString(3),rSet.getString(4),rSet.getString(5))); 
         }
     }
     

@@ -15,12 +15,18 @@ public class News {
     String title;
     String url;
     String text;
+    String professor;
 
-    public News(int id, String title, String url, String text) {
+    public News(int id, String title, String url, String text, String professor) {
         this.id = id;
         this.title = title;
         this.url = url;
         this.text = text;
+        this.professor=professor;
+    }
+
+    public String getProfessor() {
+        return professor;
     }
     public int getId() {
         return id;

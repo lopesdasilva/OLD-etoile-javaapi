@@ -30,7 +30,7 @@ public class SQLInstruct implements Serializable {
     }
     
     public static String getNews(){
-       return "SELECT id,title,news,url FROM news"; 
+       return "SELECT id,title,news,url, professor FROM news"; 
     }
 
     public static String getCourses(int student_id) {
