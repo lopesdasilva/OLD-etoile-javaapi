@@ -21,7 +21,7 @@ public class URL implements Serializable{
     
     int votes;
 
-    public URL(int id, String url, String name, String username, int votes) {
+    public URL(int id, String name, String url, String username, int votes) {
         this.id = id;
         this.url = url;
         this.name = name;

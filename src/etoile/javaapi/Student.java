@@ -17,10 +17,15 @@ public class Student implements Serializable {
     
     //profile
     public String firstname;
+
+    public LinkedList<News> getNews() {
+        return news;
+    }
     public String lastname;
     public String email;
     
     public LinkedList<Course> courses= new LinkedList<Course>();
+    public LinkedList<News> news = new LinkedList<News>();
 
     public Student(String username, String password, String email) {
         this.username = username;
@@ -100,6 +105,10 @@ public class Student implements Serializable {
 
     public void addCourse(Course c) {
         courses.add(c);
+    }
+    
+    public void addNew(News n){
+        news.add(n);
     }
     
     

@@ -27,7 +27,9 @@ public class UserService implements Serializable{
         this.db = db;
         this.current_student = current_student;
     }
+    
 
+    
     public void updateCourses(int student_id) throws SQLException {
         String sqlStatement = SQLInstruct.getCourses(student_id);
         ResultSet rSet = db.queryDB(sqlStatement);
@@ -39,6 +41,8 @@ public class UserService implements Serializable{
         }
 
     }
+    
+
 
     public void addStudent(Student student) throws SQLException {
         String sqlStatement = SQLInstruct.addStudent(student.getUsername(), student.getPassword(), student.getFirstname(), student.getLastname(), student.getEmail());
@@ -51,6 +55,14 @@ public class UserService implements Serializable{
         }
         
     }
+    
+    public void getNews() throws SQLException{
+        ResultSet rSet = db.queryDB(SQLInstruct.getNews());
+        while(rSet.next()){
+           current_student.addNew(new News(rSet.getInt(1),rSet.getString(2),rSet.getString(3),rSet.getString(4))); 
+        }
+    }
+    
 
     public void updateDisciplines(Course course) throws SQLException {
         String sqlStatement = SQLInstruct.getDisciplines(course.getId());
@@ -324,8 +336,10 @@ public class UserService implements Serializable{
     }
     
                 }
-    
+               
                 question.addURL(new URL(rSet.getInt(1),url_name,url,"noname",0));
+     
+                
     
     }
     
