@@ -29,7 +29,9 @@ public class URL implements Serializable{
         this.votes = votes;
     }
 
-
+    public int getId(){
+        return id;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -60,4 +62,8 @@ public class URL implements Serializable{
         return votes;
     }
     
+    public void setVotes(int stars){
+        this.votes=this.votes+stars;
+    }
 }
+    

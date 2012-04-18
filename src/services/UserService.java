@@ -299,9 +299,11 @@ public class UserService implements Serializable{
             
     }
     
-    public void vote(int url_id, int stars) throws SQLException{
-        String sqlStatement = SQLInstruct.vote(url_id,stars);
+    public void setVotes(URL url, int stars) throws SQLException{
+        String sqlStatement = SQLInstruct.vote(url.getId(),stars);
         db.updateDB(sqlStatement);
+        
+        url.setVotes(stars);
     }
     
     public void addURL(String url_name, String url , QuestionType type, Question question ) throws SQLException{
