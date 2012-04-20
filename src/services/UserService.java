@@ -280,6 +280,7 @@ public class UserService implements Serializable{
         while(rSet.next()){
         String sqlStatement = SQLInstruct.updateOneChoiceAnswer(rSet.getInt(1),answer);
         db.updateDB(sqlStatement);
+            System.out.println("ONECHOICEANSWER UPDATED!!!");
         }
     }
     

@@ -102,7 +102,7 @@ public class SQLInstruct implements Serializable {
     }
 
     public static String getOneChoiceAnswer(int question_id, int student_id) {
-        return "SELECT onechoiceanswer.id, onechoiceanswer.text FROM student, hypothesis,onechoiceanswer,onechoicequestion WHERE "
+        return "SELECT onechoiceanswer.id, onechoiceanswer.text FROM student,onechoiceanswer,onechoicequestion WHERE "
                 + "student.id='" + student_id + "' AND onechoicequestion.id='" + question_id + "' AND student.id=onechoiceanswer.student_id AND onechoiceanswer.onechoicequestion_id=onechoicequestion.id";
                 
     }
