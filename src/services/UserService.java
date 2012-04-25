@@ -69,7 +69,7 @@ public class UserService implements Serializable{
         ResultSet rSet = db.queryDB(sqlStatement);
 
         while (rSet.next()) {
-            Discipline d = new Discipline(rSet.getInt(1), rSet.getString(2));
+            Discipline d = new Discipline(rSet.getInt(1), rSet.getString(2),rSet.getString(3));
             course.addDiscipline(d);
             updateModules(d);
         }

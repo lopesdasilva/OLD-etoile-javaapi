@@ -17,8 +17,8 @@ public class SQLInstruct implements Serializable {
 //    public static final String dbUsername = "root";
 //    public static final String dbPassword = "";
     //public static final String dbPassword = "etoile";
-    public static final String dbAdress = "jdbc:mysql://localhost:3306/etoilepl_etoilev3";
-//    public static final String dbAdress = "jdbc:mysql://84.40.22.48:3306/etoilepl_etoilev3";
+//   S public static final String dbAdress = "jdbc:mysql://localhost:3306/etoilepl_etoilev3";
+    public static final String dbAdress = "jdbc:mysql://84.40.22.48:3306/etoilepl_etoilev3";
     public static final String dbUsername = "etoilepl_etoile";
     public static final String dbPassword = "WryDiluteQuirkyRider";
     
@@ -40,7 +40,7 @@ public class SQLInstruct implements Serializable {
     }
 
     public static String getDisciplines(int course_id) {
-        return "SELECT discipline.id, discipline.name FROM course,course_discipline,discipline WHERE "
+        return "SELECT discipline.id,discipline.description, discipline.name FROM course,course_discipline,discipline WHERE "
                 + "course.id='" + course_id + "' AND course_discipline.course_id = course.id AND "
                 + "course_discipline.discipline_id = discipline.id";
     }

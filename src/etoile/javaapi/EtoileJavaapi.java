@@ -32,14 +32,26 @@ public class EtoileJavaapi {
             ServiceManager manager = new ServiceManager();
             System.out.println(manager.setAuthentication("rui", "40bd001563085fc35165329ea1ff5c5ecbdbbeef"));
             
-            //Student student = new Student("teste", "40bd001563085fc35165329ea1ff5c5ecbdbbeef", "Ruben", "Paixao", "r@r.r");
-           manager.userService().getNews();
-            for(News n: manager.current_student.getNews()){
-                System.out.println(n.getProfessor());
-               System.out.println(n.getTitle());
-                System.out.println(n.getText());
-                System.out.println(n.getUrl());
+            manager.userService().updateCourses(student_id);
+            for(Course c : manager.current_student.getCourses()){
+            manager.userService().updateDisciplines(c);
+                for(Discipline d : c.getDisciplines()){
+                    System.out.println(d.getId());
+                    System.out.println(d.getDescription());
+                    System.out.println(d.getName());
+                    System.out.println("");
+                }
             }
+            
+            
+            //Student student = new Student("teste", "40bd001563085fc35165329ea1ff5c5ecbdbbeef", "Ruben", "Paixao", "r@r.r");
+//           manager.userService().getNews();
+//            for(News n: manager.current_student.getNews()){
+//                System.out.println(n.getProfessor());
+//               System.out.println(n.getTitle());
+//                System.out.println(n.getText());
+//                System.out.println(n.getUrl());
+//            }
            /* 
            manager.userService().updateCourses(student_id);
 
