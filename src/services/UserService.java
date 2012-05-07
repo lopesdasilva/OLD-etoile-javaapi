@@ -94,7 +94,7 @@ public class UserService implements Serializable{
         while (rSet.next()) {
 
 
-            module.addTest(new Test(rSet.getInt(1), rSet.getString(2), rSet.getString(3), rSet.getString(4), rSet.getDate(5), rSet.getDate(6), rSet.getString(7)));
+            module.addTest(new Test(rSet.getInt(1), rSet.getString(2), rSet.getString(3), rSet.getString(4), rSet.getDate(5), rSet.getDate(6), rSet.getString(7), rSet.getInt(8)));
         }
         
     }
@@ -127,9 +127,9 @@ public class UserService implements Serializable{
                 q.setUserAnswer(rSet_answer.getString(2));
                 q.setAnswerId(rSet_answer.getInt(1));
             }else {
-                String sqlStatementAddAnswer = SQLInstruct.insertOpenQuestionAnswer(current_student.getId(), q.getId(), "No Answer.");
+                String sqlStatementAddAnswer = SQLInstruct.insertOpenQuestionAnswer(current_student.getId(), q.getId(), "");
                 db.updateDB(sqlStatementAddAnswer);
-                q.setUserAnswer("No Answer.");
+                q.setUserAnswer("");
             }
 
         }
@@ -344,6 +344,17 @@ public class UserService implements Serializable{
      
                 
     
+    }
+    
+    public void changeNoAnswersToNull() throws SQLException{
+       String sqlStatement = SQLInstruct.getallopenanswers();
+       ResultSet rSet = db.queryDB(sqlStatement);
+       while(rSet.next()){
+           if(rSet.getString(2).equals("No Answer.")){
+               String udpateDB = SQLInstruct.changeNoAnswerToNull(rSet.getInt(1));
+               db.updateDB(udpateDB);
+           }
+       }
     }
     
     public void getOpenQuestionTestResults(int test_id){

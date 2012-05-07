@@ -52,7 +52,7 @@ public class EtoileJavaapi {
 //                System.out.println(n.getText());
 //                System.out.println(n.getUrl());
 //            }
-           /* 
+            
            manager.userService().updateCourses(student_id);
 
             for (Course c : manager.current_student.getCourses()) {
@@ -67,7 +67,14 @@ public class EtoileJavaapi {
                         System.out.println("*MODULO: " + m.getName());
                         manager.userService().updateTests(m);
                         for (Test t : m.getTests()) {
-                            System.out.println("**TESTE : " + t.getName() + " ->" + t.getUrl());
+                            System.out.println("**TESTE : " + t.getName() + " ->" + t.showURLS);
+                        }
+                    }
+                }
+            }
+            
+            manager.userService().changeNoAnswersToNull();
+                            /**
                             manager.userService().updateQuestions(t);
                             
                             for (Question element : t.getQuestions()) {

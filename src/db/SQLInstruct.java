@@ -52,7 +52,7 @@ public class SQLInstruct implements Serializable {
     }
 
     public static String getTests(int module_id) {
-        return "SELECT test.id, test.name, test.author,description, test.beginDate,test.endDate, test.url "
+        return "SELECT test.id, test.name, test.author,description, test.beginDate,test.endDate, test.url, test.hasURLS "
                 + "FROM module,module_test,test WHERE "
                 + "module.id='" + module_id + "' AND module.id=module_test.module_id AND module_test.test_id=test.id";
     }
@@ -186,6 +186,16 @@ public class SQLInstruct implements Serializable {
 
     public static String linkURLOneChoiceQuestion(int question_id, int url_id) {
         return "INSERT INTO onechoicequestion_url( onechoicequestion_id, url_id ) VALUES('"+question_id+"','"+url_id+"');";
+    }
+
+    public static String getallopenanswers() {
+        
+        return "SELECT id, text FROM openanswer";
+    }
+
+    public static String changeNoAnswerToNull(int id) {
+        //UPDATE url SET votes=(votes+'"+stars+"') where id='"+url_id+"';
+        return "UPDATE openanswer SET text=('') WHERE id='"+id+"'";
     }
 
     

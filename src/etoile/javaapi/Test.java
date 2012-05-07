@@ -33,15 +33,23 @@ public class Test implements Serializable{
     
     public boolean hasURL=false;
     
+    public boolean showURLS = true;
     
-
+    
+    public boolean showUrls(){
+        return showURLS;
+    }
     public String getUrl() {
         return url;
     }
 
-    public Test(int id,String name, String author,String url) {
+    public Test(int id,String name, String author,String url, int showURLS) {
         if (!url.equals("no url") || !url.equals(""))
-        hasURL=true;      
+        hasURL=true;
+        
+        if ( showURLS == 1){
+            this.showURLS = true;
+        }
             
         this.name = name;
         this.id = id;
@@ -49,7 +57,7 @@ public class Test implements Serializable{
         this.url=url;
     }
 
-    public Test(int id, String name, String author,String description, Date beginDate, Date endDate, String url) {
+    public Test(int id, String name, String author,String description, Date beginDate, Date endDate, String url, int showURLS) {
         this.name = name;
         this.id = id;
         this.author = author;
@@ -57,6 +65,8 @@ public class Test implements Serializable{
         this.beginDate = beginDate;
         this.endDate = endDate;
         this.url=url;
+        
+        if(showURLS==0) this.showURLS=false;
                 
     }
     
