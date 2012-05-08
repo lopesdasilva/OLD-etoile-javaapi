@@ -34,11 +34,12 @@ public class Test implements Serializable{
     public boolean hasURL=false;
     
     public boolean showURLS = true;
-    
-    
-    public boolean showUrls(){
+
+    public boolean isShowURLS() {
         return showURLS;
     }
+
+    
     public String getUrl() {
         return url;
     }
