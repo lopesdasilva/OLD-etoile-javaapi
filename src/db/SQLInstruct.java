@@ -119,18 +119,18 @@ public class SQLInstruct implements Serializable {
     }
 
     public static String getMultipleChoiceURLs(int question_id) {
-        return "SELECT url.id, url.name, url.url, url.votes FROM url,multiplechoicequestion_url,multiplechoicequestion WHERE "
+        return "SELECT url.id, url.name, url.url, url.votes, url.n_votes FROM url,multiplechoicequestion_url,multiplechoicequestion WHERE "
                 +"multiplechoicequestion.id="+question_id+" AND multiplechoicequestion.id=multiplechoicequestion_url.multiplechoicequestion_id AND multiplechoicequestion_url.url_id=url.id ORDER BY url.votes DESC";
     }
     
      public static String getOneChoiceURLs(int question_id) {
-         return "SELECT url.id, url.name, url.url, url.votes FROM url,onechoicequestion_url,onechoicequestion WHERE "
+         return "SELECT url.id, url.name, url.url, url.votes, url.n_votes FROM url,onechoicequestion_url,onechoicequestion WHERE "
                 +"onechoicequestion.id="+question_id+" AND onechoicequestion.id=onechoicequestion_url.onechoicequestion_id AND onechoicequestion_url.url_id=url.id ORDER BY url.votes DESC";
      }
      
      public static String getOpenQuestionURLs(int question_id) {
-         return "SELECT url.id, url.name, url.url, url.votes FROM url,openquestion_url,openquestion WHERE "
-                +"openquestion.id="+question_id+" AND openquestion.id=openquestion_url.openquestion_id AND openquestion_url.url_id=url.id ORDER BY url.votes DESC";
+         return "SELECT url.id, url.name, url.url, url.votes, url.n_votes FROM url,openquestion_url,openquestion WHERE "
+                +"openquestion.id="+question_id+" AND openquestion.id=openquestion_url.openquestion_id AND openquestion_url.url_id=url.id ORDER BY url.votes/url.n_votes DESC";
      }
     //INSERTS
     public static String addStudent(String username, String password, String firstname, String surname, String email) {
@@ -165,7 +165,7 @@ public class SQLInstruct implements Serializable {
     }
     
     public static String vote(int url_id, int stars){
-        return "UPDATE url SET votes=(votes+'"+stars+"') where id='"+url_id+"';";
+        return "UPDATE url SET votes=(votes+'"+stars+"'),n_votes=(n_votes+1) where id='"+url_id+"';";
     }
     
     public static String addUrl(String name, String url){

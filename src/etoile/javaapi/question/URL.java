@@ -20,13 +20,23 @@ public class URL implements Serializable{
     String username;
     
     int votes;
+    
+    int n_votes;
+    
+    int average;
 
-    public URL(int id, String name, String url, String username, int votes) {
+    public URL(int id, String name, String url, String username, int votes, int n_votes) {
         this.id = id;
         this.url = url;
         this.name = name;
         this.username = username;
         this.votes = votes;
+        this.n_votes = n_votes;
+        if(n_votes!=0){
+        this.average = votes/n_votes;
+        }else{
+            this.average = 0;
+        }
     }
 
     public int getId(){
@@ -64,6 +74,15 @@ public class URL implements Serializable{
     
     public void setVotes(int stars){
         this.votes=this.votes+stars;
+        this.n_votes++;
+    }
+    
+    public int getNVotes(){
+        return n_votes;
+    }
+    
+    public int getAverage(){
+        return average;
     }
 }
     

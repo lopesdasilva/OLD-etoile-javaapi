@@ -32,16 +32,6 @@ public class EtoileJavaapi {
             ServiceManager manager = new ServiceManager();
             System.out.println(manager.setAuthentication("rui", "40bd001563085fc35165329ea1ff5c5ecbdbbeef"));
             
-            manager.userService().updateCourses(student_id);
-            for(Course c : manager.current_student.getCourses()){
-            manager.userService().updateDisciplines(c);
-                for(Discipline d : c.getDisciplines()){
-                    System.out.println(d.getId());
-                    System.out.println(d.getDescription());
-                    System.out.println(d.getName());
-                    System.out.println("");
-                }
-            }
             
             
             //Student student = new Student("teste", "40bd001563085fc35165329ea1ff5c5ecbdbbeef", "Ruben", "Paixao", "r@r.r");
@@ -60,20 +50,28 @@ public class EtoileJavaapi {
 
                 manager.userService().updateDisciplines(c);
                 for (Discipline d : c.getDisciplines()) {
-                    System.out.println("\nDISCIPLINA: " + d.getName());
                     manager.userService().updateModules(d);
-
+                    if(d.getName().equals("es")){
+                    System.out.println("\nDISCIPLINA: " + d.getName());
                     for (Module m : d.getModules()) {
                         System.out.println("*MODULO: " + m.getName());
                         manager.userService().updateTests(m);
                         for (Test t : m.getTests()) {
                             System.out.println("**TESTE : " + t.getName() + " ->" + t.showURLS);
+                            manager.userService().updateQuestions(t);
+                            for( Question q: t.getQuestions()){
+                                for(URL u : q.getURLS()){
+                                    System.out.println("URL:" + u.getName() + " - AVERAGE:" + u.getAverage());
+                                    
+                                    manager.userService().setVotes(u, 4);
+                                }
                         }
+                        }
+                    }
                     }
                 }
             }
             
-            manager.userService().changeNoAnswersToNull();
                             /**
                             manager.userService().updateQuestions(t);
                             

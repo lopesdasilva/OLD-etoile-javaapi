@@ -210,7 +210,7 @@ public class UserService implements Serializable{
           String sqlStatement = SQLInstruct.getOpenQuestionURLs(q.getId());
           ResultSet rSet = db.queryDB(sqlStatement);
           while(rSet.next()){
-              q.addURL(new URL(rSet.getInt(1),rSet.getString(2),rSet.getString(3),"noname",rSet.getInt(4)));
+              q.addURL(new URL(rSet.getInt(1),rSet.getString(2),rSet.getString(3),"noname",rSet.getInt(4), rSet.getInt(5)));
           }
       }
     }
@@ -220,7 +220,7 @@ public class UserService implements Serializable{
           String sqlStatement = SQLInstruct.getOneChoiceURLs(q.getId());
           ResultSet rSet = db.queryDB(sqlStatement);
           while(rSet.next()){
-              q.addURL(new URL(rSet.getInt(1),rSet.getString(2),rSet.getString(3),"noname",rSet.getInt(4)));
+              q.addURL(new URL(rSet.getInt(1),rSet.getString(2),rSet.getString(3),"noname",rSet.getInt(4), rSet.getInt(5)));
           }
       }
     } 
@@ -230,7 +230,7 @@ public class UserService implements Serializable{
           String sqlStatement = SQLInstruct.getMultipleChoiceURLs(q.getId());
           ResultSet rSet = db.queryDB(sqlStatement);
           while(rSet.next()){
-              q.addURL(new URL(rSet.getInt(1),rSet.getString(2),rSet.getString(3),"noname",rSet.getInt(4)));
+              q.addURL(new URL(rSet.getInt(1),rSet.getString(2),rSet.getString(3),"noname",rSet.getInt(4), rSet.getInt(5)));
           }
       } 
     } 
@@ -301,6 +301,7 @@ public class UserService implements Serializable{
     }
     
     public void setVotes(URL url, int stars) throws SQLException{
+        System.out.println("Vou votar!!!" + stars);
         String sqlStatement = SQLInstruct.vote(url.getId(),stars);
         db.updateDB(sqlStatement);
         
@@ -340,7 +341,7 @@ public class UserService implements Serializable{
     
                 }
                
-                question.addURL(new URL(rSet.getInt(1),url_name,url,"noname",0));
+                question.addURL(new URL(rSet.getInt(1),url_name,url,"noname",0,0));
      
                 
     
