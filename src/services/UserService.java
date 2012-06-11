@@ -304,7 +304,7 @@ public class UserService implements Serializable{
         System.out.println("Vou votar!!!" + stars);
         String sqlStatement = SQLInstruct.vote(url.getId(),stars);
         db.updateDB(sqlStatement);
-        
+
         url.setVotes(stars);
     }
     

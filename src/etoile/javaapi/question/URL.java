@@ -83,6 +83,7 @@ public class URL implements Serializable{
     public void setVotes(int stars){
         this.votes=this.votes+stars;
         this.n_votes++;
+        this.average = this.votes/this.n_votes;
     }
     
     public void setAverage(int stars){
