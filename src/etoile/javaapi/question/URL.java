@@ -77,6 +77,12 @@ public class URL implements Serializable{
         this.n_votes++;
     }
     
+    public void setAverage(int stars){
+       this.votes +=stars;
+       this.n_votes++;
+       this.average=votes/n_votes;
+    }
+    
     public int getNVotes(){
         return n_votes;
     }
