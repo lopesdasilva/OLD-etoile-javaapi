@@ -30,47 +30,47 @@ public class EtoileJavaapi {
     private void run() {
         try {
             ServiceManager manager = new ServiceManager();
-            System.out.println(manager.setAuthentication("rui", "40bd001563085fc35165329ea1ff5c5ecbdbbeef"));
-            
-            
-            
-            //Student student = new Student("teste", "40bd001563085fc35165329ea1ff5c5ecbdbbeef", "Ruben", "Paixao", "r@r.r");
-//           manager.userService().getNews();
-//            for(News n: manager.current_student.getNews()){
-//                System.out.println(n.getProfessor());
-//               System.out.println(n.getTitle());
-//                System.out.println(n.getText());
-//                System.out.println(n.getUrl());
+//            System.out.println(manager.setAuthentication("rui", "40bd001563085fc35165329ea1ff5c5ecbdbbeef"));
+//            
+//            
+//            
+//            //Student student = new Student("teste", "40bd001563085fc35165329ea1ff5c5ecbdbbeef", "Ruben", "Paixao", "r@r.r");
+////           manager.userService().getNews();
+////            for(News n: manager.current_student.getNews()){
+////                System.out.println(n.getProfessor());
+////               System.out.println(n.getTitle());
+////                System.out.println(n.getText());
+////                System.out.println(n.getUrl());
+////            }
+//            
+//           manager.userService().updateCourses(student_id);
+//
+//            for (Course c : manager.current_student.getCourses()) {
+//                System.out.println("CURSO: " + c.getName());
+//
+//                manager.userService().updateDisciplines(c);
+//                for (Discipline d : c.getDisciplines()) {
+//                    manager.userService().updateModules(d);
+//                    if(d.getName().equals("es")){
+//                    System.out.println("\nDISCIPLINA: " + d.getName());
+//                    for (Module m : d.getModules()) {
+//                        System.out.println("*MODULO: " + m.getName());
+//                        manager.userService().updateTests(m);
+//                        for (Test t : m.getTests()) {
+//                            System.out.println("**TESTE : " + t.getName() + " ->" + t.showURLS);
+//                            manager.userService().updateQuestions(t);
+//                            for( Question q: t.getQuestions()){
+//                                for(URL u : q.getURLS()){
+//                                    System.out.println("URL:" + u.getName() + " - AVERAGE:" + u.getAverage());
+//                                    
+//                                    manager.userService().setVotes(u, 4);
+//                                }
+//                        }
+//                        }
+//                    }
+//                    }
+//                }
 //            }
-            
-           manager.userService().updateCourses(student_id);
-
-            for (Course c : manager.current_student.getCourses()) {
-                System.out.println("CURSO: " + c.getName());
-
-                manager.userService().updateDisciplines(c);
-                for (Discipline d : c.getDisciplines()) {
-                    manager.userService().updateModules(d);
-                    if(d.getName().equals("es")){
-                    System.out.println("\nDISCIPLINA: " + d.getName());
-                    for (Module m : d.getModules()) {
-                        System.out.println("*MODULO: " + m.getName());
-                        manager.userService().updateTests(m);
-                        for (Test t : m.getTests()) {
-                            System.out.println("**TESTE : " + t.getName() + " ->" + t.showURLS);
-                            manager.userService().updateQuestions(t);
-                            for( Question q: t.getQuestions()){
-                                for(URL u : q.getURLS()){
-                                    System.out.println("URL:" + u.getName() + " - AVERAGE:" + u.getAverage());
-                                    
-                                    manager.userService().setVotes(u, 4);
-                                }
-                        }
-                        }
-                    }
-                    }
-                }
-            }
             
                             /**
                             manager.userService().updateQuestions(t);
@@ -229,6 +229,8 @@ public class EtoileJavaapi {
             //                    break;
             //            }
             //        }
+            
+            manager.userService().addStudent(new Student("Rpaixao15", "123", "R", "P", "ruben.npaixao@gmail.com"));
         } catch (InstantiationException ex) {
             Logger.getLogger(EtoileJavaapi.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {

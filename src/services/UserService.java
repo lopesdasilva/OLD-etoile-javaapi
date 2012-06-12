@@ -52,6 +52,14 @@ public class UserService implements Serializable{
         while(rSet.next()){
         String statmentAddCourse = SQLInstruct.registerStudentCourse(rSet.getInt(1),1);
         db.updateDB(statmentAddCourse);
+        
+        SendMail sm = new SendMail("smtp.gmail.com","465"); 
+        String origem = "etoileplatform@gmail.com";
+        String destino = student.getEmail();
+        String assunto = "EtoilePlatform Registration";
+        String mensagem = student.getUsername()+", Thank's for your registration.\n\n Etoile Team."; 
+        sm.sendMail(origem,destino,assunto,mensagem);
+        
         }
         
     }
