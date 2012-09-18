@@ -29,6 +29,10 @@ public class SQLInstruct implements Serializable {
 
     }
     
+    public static String changePassword(String email,String password){
+        return "UPDATE student SET password='"+password+"' WHERE student.email='"+email+"'";
+    }
+    
     public static String getNews(){
        return "SELECT id,title,news,url, professor FROM news"; 
     }
