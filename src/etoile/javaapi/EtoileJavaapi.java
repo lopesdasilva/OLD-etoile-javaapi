@@ -167,7 +167,11 @@ public class EtoileJavaapi {
                 //        }
                 
                 //manager.userService().addStudent(new Student("Rpaixao15", "123", "R", "P", "ruben.npaixao@gmail.com"));
-                manager.userService().resetPassword("ruben.npaixao@gmail.com");
+                //manager.userService().resetPassword("ruben.npaixao@gmail.com");
+
+                manager.setAuthentication("Admin", "2e6f9b0d5885b6010f9167787445617f553a735f");
+                manager.userService().changePassword("123");
+                
             } catch (NoSuchAlgorithmException ex) {
                 Logger.getLogger(EtoileJavaapi.class.getName()).log(Level.SEVERE, null, ex);
             }

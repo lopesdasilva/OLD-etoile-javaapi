@@ -428,5 +428,38 @@ public class UserService implements Serializable{
         String mensagem = "Dear Student, This is your new Password " + sb.toString() ; 
         sm.sendMail(origem,destino,assunto,mensagem);
     }
+    
+        public void changePassword(String new_password) throws NoSuchAlgorithmException, SQLException{
+          
+        MessageDigest md = MessageDigest.getInstance("SHA1");
+        md.update(new_password.getBytes());
+        byte[] bytes = md.digest();
+
+        StringBuilder s = new StringBuilder();
+        for (int i = 0; i < bytes.length; i++) {
+            int parteAlta = ((bytes[i] >> 4) & 0xf) << 4;
+            int parteBaixa = bytes[i] & 0xf;
+            if (parteAlta == 0) {
+                s.append('0');
+            }
+            s.append(Integer.toHexString(parteAlta | parteBaixa));
+        } 
+            
+        String SQLStatement = SQLInstruct.changePassword_logedin(current_student.username,s.toString());
+        System.out.println(SQLStatement);
+        db.updateDB(SQLStatement);
+        
+        //Ir buscar o user
+        
+        
+        SendMail sm = new SendMail("smtp.gmail.com","465"); 
+        String origem = "etoileplatform@gmail.com";
+        String destino = current_student.email;
+        String assunto = "EtoilePlatform Password Changed";
+        String mensagem = "Dear Student, This is your new Password " + new_password ; 
+        sm.sendMail(origem,destino,assunto,mensagem);
+                
+        }
+    
    
 }

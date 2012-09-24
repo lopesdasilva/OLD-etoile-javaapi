@@ -33,6 +33,10 @@ public class SQLInstruct implements Serializable {
         return "UPDATE student SET password='"+password+"' WHERE student.email='"+email+"'";
     }
     
+    public static String changePassword_logedin(String username,String password){
+        return "UPDATE student SET password='"+password+"' WHERE student.username='"+username+"'";
+    }
+    
     public static String getNews(){
        return "SELECT id,title,news,url, professor FROM news"; 
     }
