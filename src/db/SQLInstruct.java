@@ -206,6 +206,10 @@ public class SQLInstruct implements Serializable {
         return "UPDATE openanswer SET text=('') WHERE id='"+id+"'";
     }
 
+    public static String validEmail(String email) {
+        return "SELECT email,username FROM student WHERE email='"+email+"'";
+    }
+
     
 
  

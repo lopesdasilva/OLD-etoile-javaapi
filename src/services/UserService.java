@@ -385,6 +385,10 @@ public class UserService implements Serializable{
     public void resetPassword(String email) throws NoSuchAlgorithmException, SQLException{
         //GERAR Nova Password
         
+        String SQLString = SQLInstruct.validEmail(email);
+        ResultSet rSet = db.queryDB(SQLString);
+        try{
+        if(rSet.next()){
         final int PASSWORD_LENGTH = 8;  
         StringBuffer sb = new StringBuffer();  
         for (int x = 0; x < PASSWORD_LENGTH; x++)  
@@ -425,8 +429,19 @@ public class UserService implements Serializable{
         String origem = "etoileplatform@gmail.com";
         String destino = email;
         String assunto = "EtoilePlatform Reset Password";
-        String mensagem = "Dear Student, This is your new Password: " + sb.toString() ; 
+        String mensagem = "Dear "+rSet.getString(2)+", This is your new Password: " + sb.toString() ; 
         sm.sendMail(origem,destino,assunto,mensagem);
+        }else{
+           throw new SQLException();
+
+        }
+        }catch(SQLException e){
+           throw e;
+        }
+ 
+    
+    
+        
     }
     
         public void changePassword(String new_password) throws NoSuchAlgorithmException, SQLException{
@@ -456,7 +471,7 @@ public class UserService implements Serializable{
         String origem = "etoileplatform@gmail.com";
         String destino = current_student.email;
         String assunto = "EtoilePlatform Password Changed";
-        String mensagem = "Dear Student, This is your new Password: " + new_password ; 
+        String mensagem = "Dear "+current_student.getUsername()+", This is your new Password: " + new_password ; 
         sm.sendMail(origem,destino,assunto,mensagem);
                 
         }
