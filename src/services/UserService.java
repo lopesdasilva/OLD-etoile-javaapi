@@ -425,7 +425,7 @@ public class UserService implements Serializable{
         String origem = "etoileplatform@gmail.com";
         String destino = email;
         String assunto = "EtoilePlatform Reset Password";
-        String mensagem = "Dear Student, This is your new Password " + sb.toString() ; 
+        String mensagem = "Dear Student, This is your new Password: " + sb.toString() ; 
         sm.sendMail(origem,destino,assunto,mensagem);
     }
     
@@ -456,7 +456,7 @@ public class UserService implements Serializable{
         String origem = "etoileplatform@gmail.com";
         String destino = current_student.email;
         String assunto = "EtoilePlatform Password Changed";
-        String mensagem = "Dear Student, This is your new Password " + new_password ; 
+        String mensagem = "Dear Student, This is your new Password: " + new_password ; 
         sm.sendMail(origem,destino,assunto,mensagem);
                 
         }
