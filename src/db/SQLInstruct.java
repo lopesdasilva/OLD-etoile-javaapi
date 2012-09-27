@@ -210,6 +210,16 @@ public class SQLInstruct implements Serializable {
         return "SELECT email,username FROM student WHERE email='"+email+"'";
     }
 
+    public static String setVoted(int url_id, int student_id) {
+        return "INSERT INTO url_student (url_id,student_id) VALUES ('"+url_id+"','"+student_id+"')";
+    }
+    
+    public static String checkVoted(int url_id, int student_id) {
+        return "SELECT url_id,student_id FROM url_student WHERE url_id='"+url_id+"' AND student_id='"+student_id+"'";
+    }
+    
+    
+
     
 
  

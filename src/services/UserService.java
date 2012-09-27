@@ -8,6 +8,7 @@ import db.DBConnect;
 import db.SQLInstruct;
 import etoile.javaapi.*;
 import etoile.javaapi.question.*;
+import exceptions.VoteException;
 import java.io.Serializable;
 import java.security.MessageDigest;
 import java.sql.ResultSet;
@@ -311,12 +312,31 @@ public class UserService implements Serializable{
             
     }
     
-    public void setVotes(URL url, int stars) throws SQLException{
+    public void setVotes(URL url, int stars) throws SQLException, Exception{
+        boolean voted = false;
+        
+        String SQLStatement_check = SQLInstruct.checkVoted(url.getId(), current_student.getId());
+        ResultSet rSet = db.queryDB(SQLStatement_check);
+        
+        
+        //ver na base de dados
+        try{
+        if(rSet.next()){
+            throw new VoteException();
+        }else{
+        
         System.out.println("Vou votar!!!" + stars);
         String sqlStatement = SQLInstruct.vote(url.getId(),stars);
         db.updateDB(sqlStatement);
+        
+        String SQLStatement_voted = SQLInstruct.setVoted(url.getId(),current_student.getId());
+        db.updateDB(SQLStatement_voted);
 
         url.setVotes(stars);
+        }
+        }catch(Exception e){
+            throw e;
+        }
     }
     
     public void addURL(String url_name, String url , QuestionType type, Question question ) throws SQLException{
