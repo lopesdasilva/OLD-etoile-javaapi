@@ -324,12 +324,20 @@ public class UserService implements Serializable{
             throw new VoteException();
         }else{
         
-        System.out.println("Vou votar!!!" + stars);
+       
+        
+        String SQLStatement_getUpdatedValues = SQLInstruct.getURL(url.getId());
+        ResultSet rSet_getUpdatedValues = db.queryDB(SQLStatement_getUpdatedValues);
         int new_rating=0;
-        int total_stars = url.getVotes()+stars;
-            System.out.println("STARS: " + total_stars);
-        int total_votes = url.getNVotes()+1;
-            System.out.println("NVOTES: "+total_votes);
+        int total_stars = 0;
+        int total_votes = 0;
+        while(rSet_getUpdatedValues.next()){
+        total_stars = rSet_getUpdatedValues.getInt(1)+stars;
+        total_votes = rSet_getUpdatedValues.getInt(2)+1;
+        }
+            System.out.println("DEBUG");
+            System.out.println(total_stars);
+            System.out.println(total_votes);
         double new_rating_aux = ((total_stars*0.7)+(total_votes*0.3))/5;
 //        if(new_rating_aux<1 && url.getVotes()>3 && url.getNVotes()>0 && url.getNVotes()<6 ){
 //            new_rating = (int)new_rating_aux + 2;

@@ -218,6 +218,10 @@ public class SQLInstruct implements Serializable {
     public static String checkVoted(int url_id, int student_id) {
         return "SELECT url_id,student_id FROM url_student WHERE url_id='"+url_id+"' AND student_id='"+student_id+"'";
     }
+
+    public static String getURL(int id) {
+        return "SELECT url.votes, url.n_votes FROM url WHERE url.id='"+id+"'";
+    }
     
     
 
