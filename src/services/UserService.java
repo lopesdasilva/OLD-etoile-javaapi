@@ -222,7 +222,7 @@ public class UserService implements Serializable{
           String sqlStatement = SQLInstruct.getOpenQuestionURLs(q.getId());
           ResultSet rSet = db.queryDB(sqlStatement);
           while(rSet.next()){
-              q.addURL(new URL(rSet.getInt(1),rSet.getString(2),rSet.getString(3),"noname",rSet.getInt(4), rSet.getInt(5)));
+              q.addURL(new URL(rSet.getInt(1),rSet.getString(2),rSet.getString(3),"noname",rSet.getInt(4), rSet.getInt(5), rSet.getInt(6)));
           }
       }
     }
@@ -232,7 +232,7 @@ public class UserService implements Serializable{
           String sqlStatement = SQLInstruct.getOneChoiceURLs(q.getId());
           ResultSet rSet = db.queryDB(sqlStatement);
           while(rSet.next()){
-              q.addURL(new URL(rSet.getInt(1),rSet.getString(2),rSet.getString(3),"noname",rSet.getInt(4), rSet.getInt(5)));
+              q.addURL(new URL(rSet.getInt(1),rSet.getString(2),rSet.getString(3),"noname",rSet.getInt(4), rSet.getInt(5),rSet.getInt(6)));
           }
       }
     } 
@@ -242,7 +242,7 @@ public class UserService implements Serializable{
           String sqlStatement = SQLInstruct.getMultipleChoiceURLs(q.getId());
           ResultSet rSet = db.queryDB(sqlStatement);
           while(rSet.next()){
-              q.addURL(new URL(rSet.getInt(1),rSet.getString(2),rSet.getString(3),"noname",rSet.getInt(4), rSet.getInt(5)));
+              q.addURL(new URL(rSet.getInt(1),rSet.getString(2),rSet.getString(3),"noname",rSet.getInt(4), rSet.getInt(5), rSet.getInt(6)));
           }
       } 
     } 
@@ -313,8 +313,7 @@ public class UserService implements Serializable{
     }
     
     public void setVotes(URL url, int stars) throws SQLException, Exception{
-        boolean voted = false;
-        
+    
         String SQLStatement_check = SQLInstruct.checkVoted(url.getId(), current_student.getId());
         ResultSet rSet = db.queryDB(SQLStatement_check);
         
@@ -326,10 +325,25 @@ public class UserService implements Serializable{
         }else{
         
         System.out.println("Vou votar!!!" + stars);
-        String sqlStatement = SQLInstruct.vote(url.getId(),stars);
+        int new_rating=0;
+        int total_stars = url.getVotes()+stars;
+            System.out.println("STARS: " + total_stars);
+        int total_votes = url.getNVotes()+1;
+            System.out.println("NVOTES: "+total_votes);
+        double new_rating_aux = ((total_stars*0.7)+(total_votes*0.3))/5;
+//        if(new_rating_aux<1 && url.getVotes()>3 && url.getNVotes()>0 && url.getNVotes()<6 ){
+//            new_rating = (int)new_rating_aux + 2;
+//        }else{
+        new_rating = (int)new_rating_aux;
+//        }
+        
+        System.out.println("NEW RATING = "+ new_rating);
+        url.setAverage(new_rating);
+        url.setVotes(stars);
+        String sqlStatement = SQLInstruct.vote(url.getId(),stars,new_rating);
         db.updateDB(sqlStatement);
         
-        String SQLStatement_voted = SQLInstruct.setVoted(url.getId(),current_student.getId());
+        String SQLStatement_voted = SQLInstruct.setVoted(url.getId(),current_student.getId(),stars);
         db.updateDB(SQLStatement_voted);
 
         url.setVotes(stars);
@@ -372,7 +386,7 @@ public class UserService implements Serializable{
     
                 }
                
-                question.addURL(new URL(rSet.getInt(1),url_name,url,"noname",0,0));
+                question.addURL(new URL(rSet.getInt(1),url_name,url,"noname",0,0,0));
      
                 
     
