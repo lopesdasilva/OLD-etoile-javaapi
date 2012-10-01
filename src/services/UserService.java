@@ -338,7 +338,14 @@ public class UserService implements Serializable{
             System.out.println("DEBUG");
             System.out.println(total_stars);
             System.out.println(total_votes);
-        double new_rating_aux = ((total_stars*0.7)+(total_votes*0.3))/5;
+        double new_rating_aux = 0;
+        if(total_votes>0 && total_votes<5){
+            new_rating_aux = total_stars/total_votes;
+        }else if(total_votes > 4 && total_votes <=6){
+                new_rating_aux=((total_stars*0.7)+(total_votes*0.3))/5;
+        }else{
+             new_rating_aux=((total_stars*0.7)+(total_votes*0.3))/5;
+        }
 //        if(new_rating_aux<1 && url.getVotes()>3 && url.getNVotes()>0 && url.getNVotes()<6 ){
 //            new_rating = (int)new_rating_aux + 2;
 //        }else{
