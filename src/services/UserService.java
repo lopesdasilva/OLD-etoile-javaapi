@@ -329,8 +329,8 @@ public class UserService implements Serializable{
         String SQLStatement_getUpdatedValues = SQLInstruct.getURL(url.getId());
         ResultSet rSet_getUpdatedValues = db.queryDB(SQLStatement_getUpdatedValues);
         int new_rating=0;
-        int total_stars = 0;
-        int total_votes = 0;
+        double total_stars = 0;
+        double total_votes = 0;
         while(rSet_getUpdatedValues.next()){
         total_stars = rSet_getUpdatedValues.getInt(1)+stars;
         total_votes = rSet_getUpdatedValues.getInt(2)+1;
@@ -338,19 +338,23 @@ public class UserService implements Serializable{
             System.out.println("DEBUG");
             System.out.println(total_stars);
             System.out.println(total_votes);
+
         double new_rating_aux = 0;
         if(total_votes>0 && total_votes<5){
-            new_rating_aux = total_stars/total_votes;
+                new_rating_aux = (total_stars/total_votes)+0.7;
         }else if(total_votes > 4 && total_votes <=6){
                 new_rating_aux=((total_stars*0.7)+(total_votes*0.3))/5;
         }else{
-             new_rating_aux=((total_stars*0.7)+(total_votes*0.3))/5;
+             new_rating_aux=total_stars/total_votes;
+             System.out.println("ASDAS"+new_rating_aux);
         }
-//        if(new_rating_aux<1 && url.getVotes()>3 && url.getNVotes()>0 && url.getNVotes()<6 ){
-//            new_rating = (int)new_rating_aux + 2;
-//        }else{
+        
+            System.out.println("new rating aux >= 4.5?" + new_rating_aux);
+        if(new_rating_aux >= 4.5){
+            new_rating= 5;
+        }else{
         new_rating = (int)new_rating_aux;
-//        }
+        }
         
         System.out.println("NEW RATING = "+ new_rating);
         url.setAverage(new_rating);
