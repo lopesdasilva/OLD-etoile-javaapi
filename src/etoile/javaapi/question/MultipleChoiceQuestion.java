@@ -26,6 +26,7 @@ public class MultipleChoiceQuestion extends Question implements Serializable, Co
     private boolean isMultipleChoice = true;
     private boolean isOpen = false;
     private int number;
+    private LinkedList<URL> filteredURLS;
 
    
     @Override
@@ -160,20 +161,25 @@ public class MultipleChoiceQuestion extends Question implements Serializable, Co
         return correctAnswers;
     }
 
-@Override
+    @Override
     public LinkedList<URL> getURLS() {
-        LinkedList<URL> aux_URL=new LinkedList<URL>();
-        
-        for (int i=0; i!=5;i++){
-            aux_URL.add(urls.get(i));
+        if (urls.size() > 5) {
+            LinkedList<URL> aux_URL = new LinkedList<URL>();
+
+            for (int i = 0; i != 5; i++) {
+                aux_URL.add(urls.get(i));
+            }
+//            for (int i = 0; i != 5; i++) {
+//                int randomNum = 5 + (int) ((urls.size() - 1 - 5) * Math.random());
+//
+//                aux_URL.add(urls.get(randomNum));
+//            }
+
+
+            return aux_URL;
+        } else {
+            return urls;
         }
-         for (int i=0; i!=5;i++){
-             int randomNum = 5 + (int)(Math.random()*urls.size()); 
-        
-            aux_URL.add(urls.get(randomNum));
-        }
-        
-        return aux_URL;
     }
 
     @Override
@@ -248,5 +254,14 @@ public class MultipleChoiceQuestion extends Question implements Serializable, Co
     @Override
     public int getAnswerId() {
         return 0;
+    }
+     @Override
+    public LinkedList<URL> getFilteredURLS() {
+        return this.filteredURLS;
+    }
+
+    @Override
+    public void setFilteredURLS(LinkedList<URL> filteredURLS) {
+        this.filteredURLS=filteredURLS;
     }
 }

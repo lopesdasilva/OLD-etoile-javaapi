@@ -18,6 +18,10 @@ public abstract class Question implements Serializable, Comparable<Question> {
     
     public abstract LinkedList<URL> getURLS();
     
+    public abstract LinkedList<URL> getFilteredURLS();
+    
+    public abstract void setFilteredURLS(LinkedList<URL> filteredURLS);
+    
     public abstract boolean setURLS(LinkedList<URL> urls);
     
     public abstract void setCorrectAnswer(String correctAnswer);

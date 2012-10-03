@@ -26,6 +26,7 @@ public class OpenQuestion extends Question implements Serializable, Comparable<Q
     
     public String userAnswer;
     private int answer_id;
+    private LinkedList<URL> filteredURLS;
 
     public boolean isIsMultipleChoice() {
         return isMultipleChoice;
@@ -155,18 +156,23 @@ public class OpenQuestion extends Question implements Serializable, Comparable<Q
 
     @Override
     public LinkedList<URL> getURLS() {
-        LinkedList<URL> aux_URL=new LinkedList<URL>();
-        
-        for (int i=0; i!=5;i++){
-            aux_URL.add(urls.get(i));
+       if (urls.size() > 5) {
+            LinkedList<URL> aux_URL = new LinkedList<URL>();
+
+            for (int i = 0; i != 5; i++) {
+                aux_URL.add(urls.get(i));
+            }
+//            for (int i = 0; i != 5; i++) {
+//                int randomNum = 5 + (int) ((urls.size() - 1 - 5) * Math.random());
+//
+//                aux_URL.add(urls.get(randomNum));
+//            }
+
+
+            return aux_URL;
+        } else {
+            return urls;
         }
-         for (int i=0; i!=5;i++){
-             int randomNum = 5 + (int)(Math.random()*urls.size()); 
-        
-            aux_URL.add(urls.get(randomNum));
-        }
-        
-        return aux_URL;
     }
 
     @Override
@@ -242,6 +248,16 @@ public class OpenQuestion extends Question implements Serializable, Comparable<Q
     @Override
     public String getUserAnswersString() {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public LinkedList<URL> getFilteredURLS() {
+        return this.filteredURLS;
+    }
+
+    @Override
+    public void setFilteredURLS(LinkedList<URL> filteredURLS) {
+        this.filteredURLS=filteredURLS;
     }
     
     
