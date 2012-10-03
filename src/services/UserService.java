@@ -312,7 +312,7 @@ public class UserService implements Serializable{
             
     }
     
-    public void setVotes(URL url, int stars) throws SQLException, Exception{
+    public void setVotes(URL url, int stars) throws SQLException, VoteException{
     
         String SQLStatement_check = SQLInstruct.checkVoted(url.getId(), current_student.getId());
         ResultSet rSet = db.queryDB(SQLStatement_check);
@@ -368,7 +368,7 @@ public class UserService implements Serializable{
         String SQLStatement_voted = SQLInstruct.setVoted(url.getId(),current_student.getId(),stars);
         db.updateDB(SQLStatement_voted);
 
-        url.setVotes(stars);
+        
         }
         }catch(VoteException e){
             throw e;
