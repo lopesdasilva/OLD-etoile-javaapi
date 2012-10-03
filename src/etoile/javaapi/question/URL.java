@@ -84,6 +84,7 @@ public class URL implements Serializable{
     
     public void setAverage(int stars){
      aux_vote=stars;
+     average = stars;
     }
     
     public int getNVotes(){
