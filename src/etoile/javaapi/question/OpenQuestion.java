@@ -155,7 +155,18 @@ public class OpenQuestion extends Question implements Serializable, Comparable<Q
 
     @Override
     public LinkedList<URL> getURLS() {
-        return urls;
+        LinkedList<URL> aux_URL=new LinkedList<URL>();
+        
+        for (int i=0; i!=5;i++){
+            aux_URL.add(urls.get(i));
+        }
+         for (int i=0; i!=5;i++){
+             int randomNum = 5 + (int)(Math.random()*urls.size()); 
+        
+            aux_URL.add(urls.get(randomNum));
+        }
+        
+        return aux_URL;
     }
 
     @Override
