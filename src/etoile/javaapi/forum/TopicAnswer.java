@@ -5,16 +5,16 @@
 package etoile.javaapi.forum;
 
 import java.util.Date;
-import java.util.LinkedList;
 
 /**
  *
  * @author rubenpaixao
  */
-class Topic {
+class TopicAnswer {
     int id;
-    String title;
-    Date date ;
-    LinkedList<TopicAnswer> answer = new LinkedList<TopicAnswer>();
+    String username;
+    String answer;
+    Date date;
+    
     
 }

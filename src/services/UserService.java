@@ -7,6 +7,7 @@ package services;
 import db.DBConnect;
 import db.SQLInstruct;
 import etoile.javaapi.*;
+import etoile.javaapi.forum.Forum;
 import etoile.javaapi.question.*;
 import exceptions.VoteException;
 import java.io.Serializable;
@@ -531,6 +532,30 @@ public class UserService implements Serializable{
         sm.sendMail(origem,destino,assunto,mensagem);
                 
         }
+        
+        
+        //BEGIN FORUM
+        
+        public void updateForum(Discipline d) throws SQLException{
+            //id à db buscar o id do forum
+            //criar Forum f
+            //updateTopics(f)
+            //adicionar à Discipline
+            
+            String sqlStatement = SQLInstruct.getForum(d.getId());
+            ResultSet rSet = db.queryDB(sqlStatement);
+
+            while (rSet.next()) {
+                Forum f = new Forum(rSet.getInt(1),rSet.getString(2));
+                d.setForum(f);
+//                TODO:updateForumTopics(f);
+             }
+            
+            
+            
+        }
+        
+        //END FORUM
     
    
 }

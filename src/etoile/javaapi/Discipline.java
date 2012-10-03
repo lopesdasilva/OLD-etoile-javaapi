@@ -4,6 +4,7 @@
  */
 package etoile.javaapi;
 
+import etoile.javaapi.forum.Forum;
 import java.io.Serializable;
 import java.util.LinkedList;
 
@@ -18,11 +19,20 @@ public class Discipline implements Serializable{
     public String description;
     
     public LinkedList<Module> modules= new LinkedList<Module>();
+    public Forum forum;
 
     public Discipline(int id, String description,String name) {
         this.name = name;
         this.id = id;
         this.description=description;
+    }
+    
+    public void setForum(Forum f){
+        this.forum=f;
+    }
+    
+    public Forum getForum(){
+        return forum;
     }
 
     public String getDescription(){

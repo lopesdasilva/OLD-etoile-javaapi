@@ -31,7 +31,7 @@ public class EtoileJavaapi {
     private void run() {
         try {
             ServiceManager manager = new ServiceManager();
-//            System.out.println(manager.setAuthentication("rui", "40bd001563085fc35165329ea1ff5c5ecbdbbeef"));
+            System.out.println(manager.setAuthentication("rui", "40bd001563085fc35165329ea1ff5c5ecbdbbeef"));
 //            
 //            
 //            
@@ -72,7 +72,7 @@ public class EtoileJavaapi {
 //                    }
 //                }
 //            }
-            try {
+//            try {
                 //manager.userService().addStudent(student);
 
                 //        Student st=new Student("Rui","123","rui@iscte.pt");
@@ -171,20 +171,49 @@ public class EtoileJavaapi {
 
                 //manager.setAuthentication("Admin", "2e6f9b0d5885b6010f9167787445617f553a735f");
                 //manager.userService().changePassword("123");
-                manager.userService().resetPassword("asdasd.npaixao@gmail.com");
+                //manager.userService().resetPassword("asdasd.npaixao@gmail.com");
                 
-            } catch (NoSuchAlgorithmException ex) {
-                Logger.getLogger(EtoileJavaapi.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } catch (InstantiationException ex) {
+                manager.userService().updateCourses(student_id);
+                  for (Course c : manager.current_student.getCourses()) {
+                System.out.println("CURSO: " + c.getName());
+
+                manager.userService().updateDisciplines(c);
+                for (Discipline d : c.getDisciplines()) {
+                    manager.userService().updateForum(d);
+                    System.out.println(d.getForum().getTitle());
+                    
+                }
+                
+                }
+                
+                
+                
+                
+                
+                
+//            } catch (NoSuchAlgorithmException ex) {
+//                Logger.getLogger(EtoileJavaapi.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        } catch (InstantiationException ex) {
+//            Logger.getLogger(EtoileJavaapi.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            Logger.getLogger(EtoileJavaapi.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (ClassNotFoundException ex) {
+//            Logger.getLogger(EtoileJavaapi.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(EtoileJavaapi.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+
+//    }
+}       catch (InstantiationException ex) {
             Logger.getLogger(EtoileJavaapi.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
             Logger.getLogger(EtoileJavaapi.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(EtoileJavaapi.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        }
+        catch (SQLException ex) {
             Logger.getLogger(EtoileJavaapi.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 }

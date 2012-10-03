@@ -16,4 +16,37 @@ public class Forum {
     String title;
     LinkedList<Topic> topics = new LinkedList<Topic>();
     
+    public Forum(int id, String title){
+        this.id=id;
+        this.title=title;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public LinkedList<Topic> getTopics() {
+        return topics;
+    }
+
+    public void setTopics(LinkedList<Topic> topics) {
+        this.topics = topics;
+    }
+    
+    
+    
+    
+    
 }

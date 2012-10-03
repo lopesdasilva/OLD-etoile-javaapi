@@ -224,6 +224,14 @@ public class SQLInstruct implements Serializable {
     }
     
     
+    //BEGIN FORUM
+    public static String getForum(int discipline_id) {
+        return "SELECT * FROM forum WHERE forum.discipline_id='"+discipline_id+"'";
+    }
+    
+    //END FORUM
+    
+    
 
     
 
