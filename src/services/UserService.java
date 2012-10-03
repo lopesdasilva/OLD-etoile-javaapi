@@ -223,8 +223,15 @@ public class UserService implements Serializable{
           String sqlStatement = SQLInstruct.getOpenQuestionURLs(q.getId());
           ResultSet rSet = db.queryDB(sqlStatement);
           while(rSet.next()){
-              q.addURL(new URL(rSet.getInt(1),rSet.getString(2),rSet.getString(3),"noname",rSet.getInt(4), rSet.getInt(5), rSet.getInt(6)));
-          }
+              String SQLstatement_checkVoted = SQLInstruct.checkVoted(rSet.getInt(1), current_student.getId());
+              ResultSet rSet_checkVoted = db.queryDB(SQLstatement_checkVoted);
+              if(rSet_checkVoted.next()){
+              q.addURL(new URL(rSet.getInt(1),rSet.getString(2),rSet.getString(3),"noname",rSet.getInt(4), rSet.getInt(5), rSet.getInt(6), true));
+              }else{
+              q.addURL(new URL(rSet.getInt(1),rSet.getString(2),rSet.getString(3),"noname",rSet.getInt(4), rSet.getInt(5), rSet.getInt(6), false));
+    
+              }
+              }
       }
     }
      
@@ -233,8 +240,15 @@ public class UserService implements Serializable{
           String sqlStatement = SQLInstruct.getOneChoiceURLs(q.getId());
           ResultSet rSet = db.queryDB(sqlStatement);
           while(rSet.next()){
-              q.addURL(new URL(rSet.getInt(1),rSet.getString(2),rSet.getString(3),"noname",rSet.getInt(4), rSet.getInt(5),rSet.getInt(6)));
-          }
+              String SQLstatement_checkVoted = SQLInstruct.checkVoted(rSet.getInt(1), current_student.getId());
+              ResultSet rSet_checkVoted = db.queryDB(SQLstatement_checkVoted);
+              if(rSet_checkVoted.next()){
+              q.addURL(new URL(rSet.getInt(1),rSet.getString(2),rSet.getString(3),"noname",rSet.getInt(4), rSet.getInt(5),rSet.getInt(6),true));
+              }else{
+              q.addURL(new URL(rSet.getInt(1),rSet.getString(2),rSet.getString(3),"noname",rSet.getInt(4), rSet.getInt(5),rSet.getInt(6),false));
+
+              }
+              }
       }
     } 
     
@@ -243,8 +257,14 @@ public class UserService implements Serializable{
           String sqlStatement = SQLInstruct.getMultipleChoiceURLs(q.getId());
           ResultSet rSet = db.queryDB(sqlStatement);
           while(rSet.next()){
-              q.addURL(new URL(rSet.getInt(1),rSet.getString(2),rSet.getString(3),"noname",rSet.getInt(4), rSet.getInt(5), rSet.getInt(6)));
-          }
+              String SQLstatement_checkVoted = SQLInstruct.checkVoted(rSet.getInt(1), current_student.getId());
+              ResultSet rSet_checkVoted = db.queryDB(SQLstatement_checkVoted);
+              if(rSet_checkVoted.next()){
+              q.addURL(new URL(rSet.getInt(1),rSet.getString(2),rSet.getString(3),"noname",rSet.getInt(4), rSet.getInt(5), rSet.getInt(6),true));
+              }else{
+              q.addURL(new URL(rSet.getInt(1),rSet.getString(2),rSet.getString(3),"noname",rSet.getInt(4), rSet.getInt(5), rSet.getInt(6),true));                  
+              }
+              }
       } 
     } 
      
@@ -313,15 +333,13 @@ public class UserService implements Serializable{
             
     }
     
-    public void setVotes(URL url, int stars) throws SQLException, VoteException{
-    
-        String SQLStatement_check = SQLInstruct.checkVoted(url.getId(), current_student.getId());
-        ResultSet rSet = db.queryDB(SQLStatement_check);
+    public void setVotes(URL url, int stars) throws SQLException, VoteException{    
+        //votar
         
         
         //ver na base de dados
         try{
-        if(rSet.next()){
+        if(url.isAlready_voted()){
             throw new VoteException();
         }else{
         
@@ -368,6 +386,8 @@ public class UserService implements Serializable{
         
         String SQLStatement_voted = SQLInstruct.setVoted(url.getId(),current_student.getId(),stars);
         db.updateDB(SQLStatement_voted);
+        
+        url.setAlready_voted(true);
 
         
         }
@@ -409,7 +429,7 @@ public class UserService implements Serializable{
     
                 }
                
-                question.addURL(new URL(rSet.getInt(1),url_name,url,"noname",0,0,0));
+                question.addURL(new URL(rSet.getInt(1),url_name,url,"noname",0,0,0,false));
      
                 
     

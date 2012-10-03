@@ -26,6 +26,8 @@ public class URL implements Serializable{
     int average;
     
     int aux_vote;
+    
+    boolean already_voted;
 
     public int getAux_vote() {
         return aux_vote;
@@ -33,7 +35,7 @@ public class URL implements Serializable{
     
     
 
-    public URL(int id, String name, String url, String username, int votes, int n_votes, int average) {
+    public URL(int id, String name, String url, String username, int votes, int n_votes, int average, boolean voted) {
         this.id = id;
         this.url = url;
         this.name = name;
@@ -41,6 +43,7 @@ public class URL implements Serializable{
         this.votes = votes;
         this.n_votes = n_votes;
         this.average = average;
+        this.already_voted=voted;
         
     }
 
@@ -94,5 +97,23 @@ public class URL implements Serializable{
     public int getAverage(){
         return average;
     }
+
+    public boolean isAlready_voted() {
+        return already_voted;
+    }
+
+    public void setAlready_voted(boolean already_voted) {
+        this.already_voted = already_voted;
+    }
+
+    public int getN_votes() {
+        return n_votes;
+    }
+
+    public void setN_votes(int n_votes) {
+        this.n_votes = n_votes;
+    }
+    
+    
 }
     
