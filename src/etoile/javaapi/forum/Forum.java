@@ -44,6 +44,11 @@ public class Forum {
     public void setTopics(LinkedList<Topic> topics) {
         this.topics = topics;
     }
+
+    public void addTopic(Topic t) {
+        System.out.println("Adicionar tópico");
+        topics.add(t);
+    }
     
     
     

@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @author rubenpaixao
  */
-class TopicAnswer {
+public class TopicAnswer {
     int id;
     String username;
     String answer;

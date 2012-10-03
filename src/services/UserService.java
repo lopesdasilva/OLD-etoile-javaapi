@@ -8,6 +8,7 @@ import db.DBConnect;
 import db.SQLInstruct;
 import etoile.javaapi.*;
 import etoile.javaapi.forum.Forum;
+import etoile.javaapi.forum.Topic;
 import etoile.javaapi.question.*;
 import exceptions.VoteException;
 import java.io.Serializable;
@@ -566,9 +567,9 @@ public class UserService implements Serializable{
             ResultSet rSet = db.queryDB(sqlStatement);
 
             while (rSet.next()) {
-                Forum f = new Forum(rSet.getInt(1),rSet.getString(2));
+                Forum f = new Forum(rSet.getInt(1),rSet.getString(3));
                 d.setForum(f);
-//                TODO:updateForumTopics(f);
+                updateForumTopics(f);
              }
             
             
@@ -576,6 +577,16 @@ public class UserService implements Serializable{
         }
         
         //END FORUM
+
+    private void updateForumTopics(Forum f) throws SQLException {
+        String SQLStatement = SQLInstruct.getForumTopics(f.getId());
+        ResultSet rSet = db.queryDB(SQLStatement);
+        
+        while(rSet.next()){
+            Topic t = new Topic(rSet.getInt(1),rSet.getString(2),rSet.getString(3));
+            f.addTopic(t);
+        }
+    }
     
    
 }

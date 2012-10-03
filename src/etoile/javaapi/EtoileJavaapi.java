@@ -4,6 +4,8 @@
  */
 package etoile.javaapi;
 
+import etoile.javaapi.forum.Forum;
+import etoile.javaapi.forum.Topic;
 import etoile.javaapi.question.*;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
@@ -179,8 +181,17 @@ public class EtoileJavaapi {
 
                 manager.userService().updateDisciplines(c);
                 for (Discipline d : c.getDisciplines()) {
+                    if(d.getId()==2){
                     manager.userService().updateForum(d);
                     System.out.println(d.getForum().getTitle());
+                     Forum f = d.getForum();
+                        System.out.println(f.getTitle());
+                        for(Topic t: f.getTopics()){
+                            System.out.println("Topic:"+t.getTitle()); 
+                    }
+                    
+                    }
+                       
                     
                 }
                 
