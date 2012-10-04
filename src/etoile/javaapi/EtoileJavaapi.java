@@ -183,9 +183,14 @@ public class EtoileJavaapi {
                 manager.userService().updateDisciplines(c);
                 for (Discipline d : c.getDisciplines()) {
                     if(d.getId()==2){
-                    manager.userService().updateForum(d);
+                     manager.userService().updateForum(d);
                     System.out.println(d.getForum().getTitle());
                      Forum f = d.getForum();
+                     System.out.println("ESTOU CA");
+
+                     //
+//                        manager.userService().addForumTopic(f, "FirstRunTest");
+                     //   
                         System.out.println(f.getTitle());
                         System.out.println("TopicsSIZE: "+f.getTopics().size());
                         for(Topic t: f.getTopics()){
@@ -194,6 +199,10 @@ public class EtoileJavaapi {
                                 for(TopicAnswer ta:t.getAnswers()){
                                     System.out.println("Answer: "+ta.getAnswer());
                                 }
+                                
+//                                if(t.getId()==3){
+//                                    manager.userService().addTopicAnswer(t, "FirstRunTest Add Answer");
+//                                }
                     }
                     
                     }
@@ -202,9 +211,6 @@ public class EtoileJavaapi {
                 }
                 
                 }
-                
-                
-                
                 
                 
                 

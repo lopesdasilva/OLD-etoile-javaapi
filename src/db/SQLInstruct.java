@@ -234,14 +234,42 @@ public class SQLInstruct implements Serializable {
        return "SELECT forumtopic.id, forumtopic.username, forumtopic.title FROM forum, forum_forumtopic, forumtopic WHERE forum.id='"+forum_id+"' AND forum.id=forum_forumtopic.forum_id AND forum_forumtopic.forumtopic_id=forumtopic.id";
     }
     
-    //END FORUM
+
 
     public static String getTopicAnswers(int topic_id) {
         return"SELECT topicanswer.id, topicanswer.username, topicanswer.answer FROM forumtopic, forumtopic_topicanswer, topicanswer WHERE forumtopic.id='"+topic_id+"' AND forumtopic.id=forumtopic_topicanswer.forumtopic_id AND forumtopic_topicanswer.topicanswer_id = topicanswer.id";
     }
+        //INSERT NEW FORUM
+    public static String addForumTopic(String username, String title){
+        return "INSERT INTO forumtopic (username,title) VALUES ('"+username+"','"+title+"')";
+    }
+    
+    public static String getLastTopicInserted(){
+        return  "SELECT MAX(forumtopic.id) FROM forumtopic;";
+    }
+    
+    public static String linkTopicForum(int forum_id, int forumtopic_id) {
+        return "INSERT INTO forum_forumtopic( forum_id, forumtopic_id ) VALUES('"+forum_id+"','"+forumtopic_id+"');";
+    }
+    
+    //INSERT NEW ANSWER
+    
+    public static String addTopicAnswer(String username, String answer){
+        return "INSERT INTO topicanswer (username,answer) VALUES ('"+username+"','"+answer+"')";
+    }
+    
+    public static String getLastTopicAnswerInserted(){
+        return  "SELECT MAX(topicanswer.id) FROM topicanswer;";
+    }
+    
+    public static String linkAnswerTopic(int forumtopic_id, int topicanswer_id) {
+        return "INSERT INTO forumtopic_topicanswer( forumtopic_id, topicanswer_id ) VALUES('"+forumtopic_id+"','"+topicanswer_id+"');";
+    }
+    
+    
     
 
-    
+        //END FORUM
 
  
 }

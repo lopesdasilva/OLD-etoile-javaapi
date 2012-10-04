@@ -577,9 +577,9 @@ public class UserService implements Serializable{
             
         }
         
-        //END FORUM
 
-    private void updateForumTopics(Forum f) throws SQLException {
+
+    public void updateForumTopics(Forum f) throws SQLException {
         String SQLStatement = SQLInstruct.getForumTopics(f.getId());
         ResultSet rSet = db.queryDB(SQLStatement);
         
@@ -590,7 +590,7 @@ public class UserService implements Serializable{
         }
     }
 
-    private void updateTopicAnswers(Topic t) throws SQLException {
+    public void updateTopicAnswers(Topic t) throws SQLException {
         String SQLStatement = SQLInstruct.getTopicAnswers(t.getId());
         ResultSet rSet = db.queryDB(SQLStatement);
         
@@ -599,6 +599,44 @@ public class UserService implements Serializable{
             t.addAnswer(ta);
         }
     }
+    
+    public void addForumTopic(Forum f, String title) throws SQLException{
+        Topic t;
+        
+        String SQLStatement = SQLInstruct.addForumTopic(current_student.getUsername(), title);
+        db.updateDB(SQLStatement);
+        //Topico já adicionado
+        
+        String SQLStatement_getLastTopic = SQLInstruct.getLastTopicInserted();
+        ResultSet rSet = db.queryDB(SQLStatement_getLastTopic);
+        if(rSet.next()){
+           String SQLStatement_linkTopic = SQLInstruct.linkTopicForum(f.getId(), rSet.getInt(1)); 
+           db.updateDB(SQLStatement_linkTopic);
+           t = new Topic(rSet.getInt(1), current_student.getUsername(), title);
+        }
+
+    }
+    
+    public void addTopicAnswer(Topic t, String answer) throws SQLException{
+        
+        TopicAnswer ta;
+        String SQLStatement = SQLInstruct.addTopicAnswer(current_student.getUsername(), answer);
+        db.updateDB(SQLStatement);
+        //Answer já adicionada
+        
+        String SQLStatement_getLastAnswer = SQLInstruct.getLastTopicInserted();
+        ResultSet rSet = db.queryDB(SQLStatement_getLastAnswer);
+        
+        if(rSet.next()){
+           String SQLStatement_linkAnswer = SQLInstruct.linkAnswerTopic(t.getId(), rSet.getInt(1)); 
+           db.updateDB(SQLStatement_linkAnswer);
+           ta = new TopicAnswer(rSet.getInt(1), current_student.getUsername(), answer);
+        }
+        
+        
+    }
+    
+            //END FORUM
     
    
 }
