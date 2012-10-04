@@ -6,6 +6,7 @@ package etoile.javaapi;
 
 import etoile.javaapi.forum.Forum;
 import etoile.javaapi.forum.Topic;
+import etoile.javaapi.forum.TopicAnswer;
 import etoile.javaapi.question.*;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
@@ -186,8 +187,13 @@ public class EtoileJavaapi {
                     System.out.println(d.getForum().getTitle());
                      Forum f = d.getForum();
                         System.out.println(f.getTitle());
+                        System.out.println("TopicsSIZE: "+f.getTopics().size());
                         for(Topic t: f.getTopics()){
-                            System.out.println("Topic:"+t.getTitle()); 
+                            System.out.println("Topic: "+t.getTitle());
+                            System.out.println("AnswersSIZE: "+t.getAnswers().size());
+                                for(TopicAnswer ta:t.getAnswers()){
+                                    System.out.println("Answer: "+ta.getAnswer());
+                                }
                     }
                     
                     }

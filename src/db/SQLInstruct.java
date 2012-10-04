@@ -235,6 +235,10 @@ public class SQLInstruct implements Serializable {
     }
     
     //END FORUM
+
+    public static String getTopicAnswers(int topic_id) {
+        return"SELECT topicanswer.id, topicanswer.username, topicanswer.answer FROM forumtopic, forumtopic_topicanswer, topicanswer WHERE forumtopic.id='"+topic_id+"' AND forumtopic.id=forumtopic_topicanswer.forumtopic_id AND forumtopic_topicanswer.topicanswer_id = topicanswer.id";
+    }
     
 
     

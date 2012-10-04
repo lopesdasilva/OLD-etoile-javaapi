@@ -9,6 +9,7 @@ import db.SQLInstruct;
 import etoile.javaapi.*;
 import etoile.javaapi.forum.Forum;
 import etoile.javaapi.forum.Topic;
+import etoile.javaapi.forum.TopicAnswer;
 import etoile.javaapi.question.*;
 import exceptions.VoteException;
 import java.io.Serializable;
@@ -585,6 +586,17 @@ public class UserService implements Serializable{
         while(rSet.next()){
             Topic t = new Topic(rSet.getInt(1),rSet.getString(2),rSet.getString(3));
             f.addTopic(t);
+            updateTopicAnswers(t);
+        }
+    }
+
+    private void updateTopicAnswers(Topic t) throws SQLException {
+        String SQLStatement = SQLInstruct.getTopicAnswers(t.getId());
+        ResultSet rSet = db.queryDB(SQLStatement);
+        
+        while(rSet.next()){
+            TopicAnswer ta = new TopicAnswer(rSet.getInt(1),rSet.getString(2),rSet.getString(3));
+            t.addAnswer(ta);
         }
     }
     

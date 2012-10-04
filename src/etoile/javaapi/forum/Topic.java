@@ -28,7 +28,7 @@ public class Topic {
     
     
 
-    public LinkedList<TopicAnswer> getAnswer() {
+    public LinkedList<TopicAnswer> getAnswers() {
         return answers;
     }
 
