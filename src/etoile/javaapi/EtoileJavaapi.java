@@ -200,9 +200,10 @@ public class EtoileJavaapi {
                                     System.out.println("Answer: "+ta.getAnswer());
                                 }
                                 
-//                                if(t.getId()==3){
-//                                    manager.userService().addTopicAnswer(t, "FirstRunTest Add Answer");
-//                                }
+                                if(t.getId()==3){
+                                    for(int i = 0 ; i != 10; i++)
+                                    manager.userService().addTopicAnswer(t, "A"+i);
+                                }
                     }
                     
                     }

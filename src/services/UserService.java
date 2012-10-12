@@ -300,6 +300,7 @@ public class UserService implements Serializable{
     
     public void updateOpenAnswer(int question_id, String openanswer) throws SQLException{
         // answer_id este valor é obtido após ser feito um get na Question.getAnswerId();
+        //openanswer = openanswer.replaceAll("'", "''");
         String sqlStatement_getQuestion = SQLInstruct.getOpenQuestionAnswer(question_id, current_student.getId());
         ResultSet rSet = db.queryDB(sqlStatement_getQuestion);
         while(rSet.next()){
@@ -592,6 +593,7 @@ public class UserService implements Serializable{
 
     public void updateTopicAnswers(Topic t) throws SQLException {
         String SQLStatement = SQLInstruct.getTopicAnswers(t.getId());
+        System.out.println(SQLStatement);
         ResultSet rSet = db.queryDB(SQLStatement);
         
         while(rSet.next()){
@@ -624,7 +626,7 @@ public class UserService implements Serializable{
         db.updateDB(SQLStatement);
         //Answer já adicionada
         
-        String SQLStatement_getLastAnswer = SQLInstruct.getLastTopicInserted();
+        String SQLStatement_getLastAnswer = SQLInstruct.getLastTopicAnswerInserted();
         ResultSet rSet = db.queryDB(SQLStatement_getLastAnswer);
         
         if(rSet.next()){
