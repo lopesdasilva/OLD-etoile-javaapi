@@ -6,6 +6,7 @@ package etoile.javaapi.question;
 
 import java.io.Serializable;
 import java.util.LinkedList;
+import java.util.List;
 
 
 /**
@@ -18,7 +19,7 @@ public abstract class Question implements Serializable, Comparable<Question> {
     
     public abstract LinkedList<URL> getURLS();
     
-    public abstract LinkedList<URL> getFilteredURLS();
+    public abstract List<URL> getFilteredURLS();
     
     public abstract void setFilteredURLS(LinkedList<URL> filteredURLS);
     

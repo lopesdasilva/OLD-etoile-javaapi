@@ -6,6 +6,7 @@ package etoile.javaapi.question;
 
 import java.io.Serializable;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
@@ -15,11 +16,11 @@ public class MultipleChoiceQuestion extends Question implements Serializable, Co
 
     public String text;
     public int id;
-    public LinkedList<String> userAnswer = new LinkedList<String>();
-    public LinkedList<String> possibleAnswers = new LinkedList<String>();
-    public LinkedList<String> correctAnswers = new LinkedList<String>();
+    public LinkedList<String> userAnswer = new LinkedList<>();
+    public LinkedList<String> possibleAnswers = new LinkedList<>();
+    public LinkedList<String> correctAnswers = new LinkedList<>();
     public QuestionType questionType = QuestionType.MULTIPLE_CHOICE;
-    private LinkedList<URL> urls = new LinkedList<URL>();
+    private LinkedList<URL> urls = new LinkedList<>();
     private boolean isFirst = false;
     private boolean isLast = false;
     private boolean isOneChoice = false;
@@ -163,23 +164,7 @@ public class MultipleChoiceQuestion extends Question implements Serializable, Co
 
     @Override
     public LinkedList<URL> getURLS() {
-        if (urls.size() > 5) {
-            LinkedList<URL> aux_URL = new LinkedList<URL>();
-
-            for (int i = 0; i != 5; i++) {
-                aux_URL.add(urls.get(i));
-            }
-//            for (int i = 0; i != 5; i++) {
-//                int randomNum = 5 + (int) ((urls.size() - 1 - 5) * Math.random());
-//
-//                aux_URL.add(urls.get(randomNum));
-//            }
-
-
-            return aux_URL;
-        } else {
             return urls;
-        }
     }
 
     @Override
@@ -255,9 +240,13 @@ public class MultipleChoiceQuestion extends Question implements Serializable, Co
     public int getAnswerId() {
         return 0;
     }
-     @Override
-    public LinkedList<URL> getFilteredURLS() {
-        return this.filteredURLS;
+    @Override
+    public List<URL> getFilteredURLS() {
+      if(this.urls.size()>5){
+          return this.urls.subList(1, 5);
+        } else{
+            return urls;  
+        }
     }
 
     @Override

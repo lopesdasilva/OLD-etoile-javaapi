@@ -6,6 +6,7 @@ package etoile.javaapi.question;
 
 import java.io.Serializable;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
@@ -143,23 +144,7 @@ public class OneChoiceQuestion extends Question implements Serializable, Compara
 
     @Override
     public LinkedList<URL> getURLS() {
-        if (urls.size() > 5) {
-            LinkedList<URL> aux_URL = new LinkedList<URL>();
-
-            for (int i = 0; i != 5; i++) {
-                aux_URL.add(urls.get(i));
-            }
-//            for (int i = 0; i != 5; i++) {
-//                int randomNum = 5 + (int) ((urls.size() - 1 - 5) * Math.random());
-//
-//                aux_URL.add(urls.get(randomNum));
-//            }
-
-
-            return aux_URL;
-        } else {
             return urls;
-        }
     }
     
     
@@ -244,9 +229,13 @@ public class OneChoiceQuestion extends Question implements Serializable, Compara
     public String getUserAnswersString() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-     @Override
-    public LinkedList<URL> getFilteredURLS() {
-        return this.filteredURLS;
+    @Override
+    public List<URL> getFilteredURLS() {
+        if(this.urls.size()>5){
+          return this.urls.subList(1, 5);
+        } else{
+            return urls;  
+        }
     }
 
     @Override
