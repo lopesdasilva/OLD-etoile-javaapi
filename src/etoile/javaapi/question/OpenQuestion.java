@@ -238,7 +238,7 @@ public class OpenQuestion extends Question implements Serializable, Comparable<Q
     @Override
     public List<URL> getFilteredURLS() {
        if(this.urls.size()>5){
-          return this.urls.subList(1, 5);
+          return this.urls.subList(0, 5);
         } else{
             return urls;  
         }
