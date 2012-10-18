@@ -16,11 +16,11 @@ public class MultipleChoiceQuestion extends Question implements Serializable, Co
 
     public String text;
     public int id;
-    public LinkedList<String> userAnswer = new LinkedList<>();
-    public LinkedList<String> possibleAnswers = new LinkedList<>();
-    public LinkedList<String> correctAnswers = new LinkedList<>();
+    public LinkedList<String> userAnswer = new LinkedList<String>();
+    public LinkedList<String> possibleAnswers = new LinkedList<String>();
+    public LinkedList<String> correctAnswers = new LinkedList<String>();
     public QuestionType questionType = QuestionType.MULTIPLE_CHOICE;
-    private LinkedList<URL> urls = new LinkedList<>();
+    private LinkedList<URL> urls = new LinkedList<URL>();
     private boolean isFirst = false;
     private boolean isLast = false;
     private boolean isOneChoice = false;

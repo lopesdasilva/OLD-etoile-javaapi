@@ -231,7 +231,11 @@ public class SQLInstruct implements Serializable {
     
 
     public static String getForumTopics(int forum_id) {
-       return "SELECT forumtopic.id, forumtopic.username, forumtopic.title FROM forum, forum_forumtopic, forumtopic WHERE forum.id='"+forum_id+"' AND forum.id=forum_forumtopic.forum_id AND forum_forumtopic.forumtopic_id=forumtopic.id";
+       return "SELECT forumtopic.id, forumtopic.username, forumtopic.title, forumtopic.n_answers FROM forum, forum_forumtopic, forumtopic WHERE forum.id='"+forum_id+"' AND forum.id=forum_forumtopic.forum_id AND forum_forumtopic.forumtopic_id=forumtopic.id";
+    }
+    
+    public static String getForumTopic(int topic_id){
+        return "SELECT forumtopic.n_answers FROM forumtopic WHERE forumtopic.id='"+topic_id+"'";
     }
     
 
@@ -255,7 +259,7 @@ public class SQLInstruct implements Serializable {
     //INSERT NEW ANSWER
     
     public static String addTopicAnswer(String username, String answer){
-        return "INSERT INTO topicanswer (username,answer) VALUES ('"+username+"','"+answer+"')";
+        return "INSERT INTO topicanswer (username,answer) VALUES ('"+username+"','"+answer+"');";
     }
     
     public static String getLastTopicAnswerInserted(){
@@ -270,6 +274,10 @@ public class SQLInstruct implements Serializable {
     
 
         //END FORUM
+
+    public static String updateNAnswers(int topic_id) {
+        return "UPDATE forumtopic SET n_answers=(n_answers+1) WHERE id='"+topic_id+"'";
+    }
 
  
 }

@@ -27,14 +27,14 @@ public class EtoileJavaapi {
     //TEST
     int student_id = 1;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoSuchAlgorithmException, InstantiationException {
         new EtoileJavaapi().run();
     }
 
-    private void run() {
+    private void run() throws NoSuchAlgorithmException, InstantiationException {
         try {
             ServiceManager manager = new ServiceManager();
-            System.out.println(manager.setAuthentication("rui", "40bd001563085fc35165329ea1ff5c5ecbdbbeef"));
+//            System.out.println(manager.setAuthentication("rui", "40bd001563085fc35165329ea1ff5c5ecbdbbeef"));
 //            
 //            
 //            
@@ -172,17 +172,18 @@ public class EtoileJavaapi {
                 //manager.userService().addStudent(new Student("Rpaixao15", "123", "R", "P", "ruben.npaixao@gmail.com"));
                 //manager.userService().resetPassword("ruben.npaixao@gmail.com");
 
-                //manager.setAuthentication("Admin", "2e6f9b0d5885b6010f9167787445617f553a735f");
-                //manager.userService().changePassword("123");
+                manager.setAuthentication("rls", "40bd001563085fc35165329ea1ff5c5ecbdbbeef");
+//                manager.userService().changePassword("123");
                 //manager.userService().resetPassword("asdasd.npaixao@gmail.com");
-                
+                System.out.println(manager.current_student.getUsername());
                 manager.userService().updateCourses(student_id);
                   for (Course c : manager.current_student.getCourses()) {
                 System.out.println("CURSO: " + c.getName());
 
                 manager.userService().updateDisciplines(c);
                 for (Discipline d : c.getDisciplines()) {
-                    if(d.getId()==2){
+                    System.out.println(d.getId());
+                    if(d.getId()==1){
                      manager.userService().updateForum(d);
                     System.out.println(d.getForum().getTitle());
                      Forum f = d.getForum();
@@ -196,14 +197,16 @@ public class EtoileJavaapi {
                         for(Topic t: f.getTopics()){
                             System.out.println("Topic: "+t.getTitle());
                             System.out.println("AnswersSIZE: "+t.getAnswers().size());
+                            System.out.println("Topic N Answers:" + t.getN_answers());
                                 for(TopicAnswer ta:t.getAnswers()){
                                     System.out.println("Answer: "+ta.getAnswer());
                                 }
                                 
-                                if(t.getId()==3){
-                                    for(int i = 0 ; i != 10; i++)
-                                    manager.userService().addTopicAnswer(t, "A"+i);
-                                }
+                                if(t.getId()==6){
+                                    System.out.println("ANTES: "+t.getN_answers());
+                                    manager.userService().addTopicAnswer(t, "Answer 3");
+                                    System.out.println("DEPOIS: "+t.getN_answers());
+                                
                     }
                     
                     }
@@ -229,14 +232,14 @@ public class EtoileJavaapi {
 //        }
 
 //    }
-}       catch (InstantiationException ex) {
+                  }
+
+    }
+        catch (SQLException ex) {
             Logger.getLogger(EtoileJavaapi.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
             Logger.getLogger(EtoileJavaapi.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(EtoileJavaapi.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        catch (SQLException ex) {
             Logger.getLogger(EtoileJavaapi.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

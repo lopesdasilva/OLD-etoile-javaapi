@@ -585,9 +585,9 @@ public class UserService implements Serializable{
         ResultSet rSet = db.queryDB(SQLStatement);
         
         while(rSet.next()){
-            Topic t = new Topic(rSet.getInt(1),rSet.getString(2),rSet.getString(3));
+            Topic t = new Topic(rSet.getInt(1),rSet.getString(2),rSet.getString(3), rSet.getInt(4));
             f.addTopic(t);
-            updateTopicAnswers(t);
+            //updateTopicAnswers(t);
         }
     }
 
@@ -600,6 +600,10 @@ public class UserService implements Serializable{
             TopicAnswer ta = new TopicAnswer(rSet.getInt(1),rSet.getString(2),rSet.getString(3));
             t.addAnswer(ta);
         }
+        
+        
+        
+        //E QUANDO FOR CHAMADO DUAS VEZES? acrescenta sempre mais 1 ? ver disto !
     }
     
     public void addForumTopic(Forum f, String title) throws SQLException{
@@ -614,7 +618,7 @@ public class UserService implements Serializable{
         if(rSet.next()){
            String SQLStatement_linkTopic = SQLInstruct.linkTopicForum(f.getId(), rSet.getInt(1)); 
            db.updateDB(SQLStatement_linkTopic);
-           t = new Topic(rSet.getInt(1), current_student.getUsername(), title);
+           t = new Topic(rSet.getInt(1), current_student.getUsername(), title, 0);
         }
 
     }
@@ -634,6 +638,23 @@ public class UserService implements Serializable{
            db.updateDB(SQLStatement_linkAnswer);
            ta = new TopicAnswer(rSet.getInt(1), current_student.getUsername(), answer);
         }
+        
+
+        //actualizar o numero de answers do topico
+        String SQLStatement_UpdateNAnswers = SQLInstruct.updateNAnswers(t.getId());
+        db.updateDB(SQLStatement_UpdateNAnswers);
+        
+        //isto tava a dar problemas tenho que ir sempre buscar `a DB antes de por na classe.
+        
+//        String StringSQL_getNanswers = SQLInstruct.getForumTopic(t.getId());
+//        ResultSet rSet_NAnswers = db.queryDB(StringSQL_getNanswers);
+//        
+//        while(rSet_NAnswers.next()){
+//            System.out.println("ASDHASDJKHASKDJHASKDJHASJKD"+rSet.getInt(1));
+//            t.setN_answers(rSet.getInt(1));
+//        }
+        
+        t.setN_answers(t.getN_answers()+1);
         
         
     }
