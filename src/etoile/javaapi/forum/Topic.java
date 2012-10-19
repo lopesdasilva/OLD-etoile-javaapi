@@ -89,6 +89,10 @@ public class Topic {
     public void addAnswer(TopicAnswer answer){
         answers.add(answer);
     }
+
+    public void clearAnswers() {
+        answers = new LinkedList<TopicAnswer>();
+    }
     
     
     

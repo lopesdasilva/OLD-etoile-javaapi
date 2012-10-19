@@ -593,6 +593,7 @@ public class UserService implements Serializable{
     }
 
     public void updateTopicAnswers(Topic t) throws SQLException {
+        t.clearAnswers();
         String SQLStatement = SQLInstruct.getTopicAnswers(t.getId());
         System.out.println(SQLStatement);
         ResultSet rSet = db.queryDB(SQLStatement);
