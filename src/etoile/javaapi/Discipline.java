@@ -70,5 +70,9 @@ public class Discipline implements Serializable{
     public void addModule(Module m) {
         modules.add(m);
     }
+
+    public void cleanForum() {
+        forum = null;
+    }
     
 }

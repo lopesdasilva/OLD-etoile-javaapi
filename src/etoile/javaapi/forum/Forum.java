@@ -49,6 +49,10 @@ public class Forum {
         System.out.println("Adicionar tópico");
         topics.add(t);
     }
+
+    public void clearTopics() {
+        topics = new LinkedList<Topic>();
+    }
     
     
     

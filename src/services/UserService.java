@@ -564,7 +564,7 @@ public class UserService implements Serializable{
             //criar Forum f
             //updateTopics(f)
             //adicionar à Discipline
-            
+            d.cleanForum();
             String sqlStatement = SQLInstruct.getForum(d.getId());
             ResultSet rSet = db.queryDB(sqlStatement);
 
@@ -581,6 +581,7 @@ public class UserService implements Serializable{
 
 
     public void updateForumTopics(Forum f) throws SQLException {
+        f.clearTopics();
         String SQLStatement = SQLInstruct.getForumTopics(f.getId());
         ResultSet rSet = db.queryDB(SQLStatement);
         
@@ -606,7 +607,7 @@ public class UserService implements Serializable{
         //E QUANDO FOR CHAMADO DUAS VEZES? acrescenta sempre mais 1 ? ver disto !
     }
     
-    public void addForumTopic(Forum f, String title) throws SQLException{
+    public void addForumTopic(Forum f, String title, String answer) throws SQLException{
         Topic t;
         
         String SQLStatement = SQLInstruct.addForumTopic(current_student.getUsername(), title);
@@ -619,8 +620,11 @@ public class UserService implements Serializable{
            String SQLStatement_linkTopic = SQLInstruct.linkTopicForum(f.getId(), rSet.getInt(1)); 
            db.updateDB(SQLStatement_linkTopic);
            t = new Topic(rSet.getInt(1), current_student.getUsername(), title, 0);
+           
+           addTopicAnswer(t, answer);
+           f.addTopic(t);
         }
-
+        
     }
     
     public void addTopicAnswer(Topic t, String answer) throws SQLException{
@@ -637,9 +641,10 @@ public class UserService implements Serializable{
            String SQLStatement_linkAnswer = SQLInstruct.linkAnswerTopic(t.getId(), rSet.getInt(1)); 
            db.updateDB(SQLStatement_linkAnswer);
            ta = new TopicAnswer(rSet.getInt(1), current_student.getUsername(), answer);
+           t.addAnswer(ta);
         }
         
-
+        
         //actualizar o numero de answers do topico
         String SQLStatement_UpdateNAnswers = SQLInstruct.updateNAnswers(t.getId());
         db.updateDB(SQLStatement_UpdateNAnswers);
@@ -653,7 +658,6 @@ public class UserService implements Serializable{
 //            System.out.println("ASDHASDJKHASKDJHASKDJHASJKD"+rSet.getInt(1));
 //            t.setN_answers(rSet.getInt(1));
 //        }
-        
         t.setN_answers(t.getN_answers()+1);
         
         
